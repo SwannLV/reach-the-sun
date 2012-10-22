@@ -89,7 +89,7 @@ function init() {
         Airship = new THREE.Mesh(Geometry, new THREE.MeshFaceMaterial());
         Airship.scale.set(2, 2, 2);
         Airship.position.set(20, 0, -100); // Positions the mesh right from the center
-        Airship.position.y   = 35;
+        Airship.position.y   = 235;
         Airship.position.x   = 0;
         Airship.position.z   = 0;
         //Airship.rotation.y   = - Math.PI / 2;
