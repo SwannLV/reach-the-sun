@@ -66,11 +66,11 @@ function init() {
 	);
 	box_material.map.wrapS = ground_material.map.wrapT = THREE.RepeatWrapping;
 	box_material.map.repeat.set( .25, .25 );*/
-    var box_material = Physijs.createMaterial(
+   /* var box_material = Physijs.createMaterial(
     	new THREE.MeshPhongMaterial( { ambient: 0x555555, color: 0xFF0000, specular: 0xffffff, shininess: 500, shading: THREE.SmoothShading }),
 		.4, // low friction
 		.6 // high restitution
-	);
+	);*/
 
      // Airship
     var loader = new THREE.JSONLoader();
@@ -97,23 +97,23 @@ function init() {
     });
 
     // Box
-    box = new Physijs.BoxMesh(
+    /*box = new Physijs.BoxMesh(
 		new THREE.CubeGeometry( 100, 100, 100 ),
 		box_material
 	);
-    box.position.set(0,50,-400);/*
+    box.position.set(0,50,-400);
 	box.position.set(
 		Math.random() * 50 - 25,
 		10 + Math.random() * 5,
 		Math.random() * 50 - 25
-	);*/
+	);
 	box.rotation.set(
 		Math.random() * Math.PI * 2,
 		Math.random() * Math.PI * 2,
 		Math.random() * Math.PI * 2
 	);
 	//box.castShadow = true;
-	scene.add( box );
+	scene.add( box );*/
 
     // LIGHTS
     var dirLight = new THREE.DirectionalLight( 0xffffff, 0.125 );
@@ -307,7 +307,7 @@ function animateGrid()
 function animate() {
 
 	requestAnimationFrame( animate );
-    box.position.z += spaceshipSpeed;
+    //box.position.z += spaceshipSpeed;
     animateAirship();
     animateGrid();
 	render();
