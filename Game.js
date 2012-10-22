@@ -169,7 +169,7 @@ function init() {
 
    // Grid creation
    var squareLength = 100;
-   var gridXNumber = 6;
+   var gridXNumber = 3;
    var gridZNumber = FAR / squareLength;
    for (var i = - gridXNumber; i <= gridXNumber; i++){
         createLine(v(i/2 * squareLength, 0, FAR), v(i/2 * squareLength, 0, -FAR), 0xFFFFFF);
