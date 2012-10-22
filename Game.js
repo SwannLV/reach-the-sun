@@ -6,10 +6,7 @@ Physijs.scripts.worker = 'physijs_worker.js';
 Physijs.scripts.ammo = 'ammo.js';
 
 var camera, scene, renderer, composer, box;
-var sun_uniforms, sun_material, sun;
-var Airship_mat, Airship;
-var speedRotZ = 0.00;
-var speedRotX = 0.02;
+var sun_uniforms, sun_material, sun, Airship;
 var spaceshipSpeed = 10.0;
 
 var keyboard  = new THREEx.KeyboardState();
@@ -18,9 +15,6 @@ var WIDTH = window.innerWidth || 2;
 var HEIGHT = window.innerHeight || 2;
 var FAR = 3500;
 
-var windowHalfX = WIDTH / 2;
-var windowHalfY = HEIGHT / 2;
-
 init();
 animate();
 
@@ -28,7 +22,7 @@ function init() {
 
 	container = document.getElementById( 'container' );
 
-	camera = new THREE.PerspectiveCamera( 45, windowHalfX / windowHalfY, 1, FAR );
+	camera = new THREE.PerspectiveCamera( 45, WIDTH / HEIGHT, 1, FAR );
     camera.position.z = 400;
     camera.position.y = 200;
 
@@ -173,22 +167,22 @@ function init() {
         scene.add(line);
     }
 
-    var debugaxis = function(axisLength){
-       createLine(v(-axisLength, 0, 0), v(axisLength, 0, 0), 0xFF0000);
-       createLine(v(0, -axisLength, 0), v(0, axisLength, 0), 0x00FF00);
-       createLine(v(0, 0, -axisLength), v(0, 0, axisLength), 0x0000FF);
-    };
-
-    var createGrid = function(){
-       for (var i = - WIDTH/100; i <= WIDTH/100 + 1; i++){
-            createLine(v(i/2 * 100, 0, FAR), v(i/2 * 100, 0, -FAR), 0xFFFFFF);
-       }
-       for (var j = - FAR/100; j <= FAR/100; j++){
-            createLine(v(WIDTH/2, 0, j*100), v(-WIDTH/2, 0, j*100), 0xFFFFFF);
-       }
-    };
-    createGrid();
-    //debugaxis(50);
+   // Grid creation
+   var squareLength = 100;
+   var gridXNumber = 6;
+   var gridZNumber = FAR / squareLength;
+   for (var i = - gridXNumber; i <= gridXNumber; i++){
+        createLine(v(i/2 * squareLength, 0, FAR), v(i/2 * squareLength, 0, -FAR), 0xFFFFFF);
+   }
+   for (var j = - gridZNumber; j <= gridZNumber; j++){
+        createLine(v(gridXNumber * squareLength / 2, 0, j*100), v(-gridXNumber * squareLength / 2, 0, j*100), 0xFFFFFF);
+   }
+    /*for (var i = - WIDTH/100; i <= WIDTH/100 + 1; i++){
+        createLine(v(i/2 * 100, 0, FAR), v(i/2 * 100, 0, -FAR), 0xFFFFFF);
+   }
+   for (var j = - FAR/100; j <= FAR/100; j++){
+        createLine(v(WIDTH/2, 0, j*100), v(-WIDTH/2, 0, j*100), 0xFFFFFF);
+   }*/
 
     //
 

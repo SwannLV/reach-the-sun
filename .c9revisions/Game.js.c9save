@@ -1702,3 +1702,72 @@
 {"ts":1350919560986,"patch":[[{"diffs":[[0,".y   = 2"],[-1,"2"],[1,"3"],[0,"0;\n     "]],"start1":3029,"start2":3029,"length1":17,"length2":17}]],"length":9202,"saved":false}
 {"ts":1350919593333,"patch":[[{"diffs":[[0,".y   = 2"],[-1,"30"],[1,"25"],[0,";\n      "]],"start1":3029,"start2":3029,"length1":18,"length2":18}]],"length":9202,"saved":false}
 {"ts":1350919615317,"patch":[[{"diffs":[[0,".y   = 2"],[-1,"2"],[1,"3"],[0,"5;\n     "]],"start1":3029,"start2":3029,"length1":17,"length2":17}]],"length":9202,"saved":false}
+{"ts":1350923354501,"patch":[[{"diffs":[[0,"ra( 45, "],[-1,"windowHalfX"],[1,"WIDTH"],[0," / windo"]],"start1":693,"start2":693,"length1":27,"length2":21}]],"length":9196,"saved":false}
+{"ts":1350923357573,"patch":[[{"diffs":[[0,"WIDTH / "],[-1,"windowHalfY"],[1,"HEIGHT"],[0,", 1, FAR"]],"start1":701,"start2":701,"length1":27,"length2":22}]],"length":9191,"saved":false}
+{"ts":1350923360667,"patch":[[{"diffs":[[0,"0;\n\n"],[-1,"var windowHalfX = WIDTH / 2;\nvar windowHalfY = HEIGHT / 2;\n\n"],[0,"init"]],"start1":501,"start2":501,"length1":68,"length2":8}]],"length":9131,"saved":false}
+{"ts":1350923397505,"patch":[[{"diffs":[[0,"ip;\n"],[-1,"var speedRotZ = 0.00;\nvar speedRotX = 0.02;\n"],[0,"var "]],"start1":293,"start2":293,"length1":52,"length2":8}]],"length":9087,"saved":false}
+{"ts":1350923400878,"patch":[[{"diffs":[[0," sun"],[-1,";\nvar Airship_mat, "],[0,"Airs"]],"start1":265,"start2":265,"length1":27,"length2":8}]],"length":9068,"saved":false}
+{"ts":1350923402185,"patch":[[{"diffs":[[0,"ial, sun"],[1,", "],[0,"Airship;"]],"start1":261,"start2":261,"length1":16,"length2":18}]],"length":9070,"saved":false}
+{"ts":1350923463960,"patch":[[{"diffs":[[0,"};\n\n"],[-1,"    var createGrid = function(){\n"],[0,"    "]],"start1":5668,"start2":5668,"length1":41,"length2":8}]],"length":9037,"saved":false}
+{"ts":1350923468399,"patch":[[{"diffs":[[0,"   }"],[-1,"\n    };\n    createGrid();\n    //debugaxis(50);"],[0,"\n\n  "]],"start1":5953,"start2":5953,"length1":54,"length2":8}]],"length":8991,"saved":false}
+{"ts":1350923472964,"patch":[[{"diffs":[[0,"    };\n\n"],[-1,"    "],[0,"   for ("]],"start1":5664,"start2":5664,"length1":20,"length2":16},{"diffs":[[0," + 1; i++){\n"],[-1,"    "],[0,"        crea"]],"start1":5715,"start2":5715,"length1":28,"length2":24},{"diffs":[[0,"FFFFF);\n"],[-1,"    "],[0,"   }\n"],[-1,"    "],[0,"   for ("]],"start1":5794,"start2":5794,"length1":29,"length2":21},{"diffs":[[0,"/100; j++){\n"],[-1,"    "],[0,"        crea"]],"start1":5842,"start2":5842,"length1":28,"length2":24},{"diffs":[[0,"FFFFF);\n"],[-1,"    "],[0,"   }\n\n  "]],"start1":5921,"start2":5921,"length1":20,"length2":16}]],"length":8967,"saved":false}
+{"ts":1350923482942,"patch":[[{"diffs":[[0," }\n\n"],[-1,"    var debugaxis = function(axisLength){\n       createLine(v(-axisLength, 0, 0), v(axisLength, 0, 0), 0xFF0000);\n       createLine(v(0, -axisLength, 0), v(0, axisLength, 0), 0x00FF00);\n       createLine(v(0, 0, -axisLength), v(0, 0, axisLength), 0x0000FF);\n    };\n\n"],[0,"   f"]],"start1":5402,"start2":5402,"length1":274,"length2":8}]],"length":8701,"saved":false}
+{"ts":1350923497093,"patch":[[{"diffs":[[0,"\n    }\n\n"],[1,"  \n"],[0,"   for ("]],"start1":5398,"start2":5398,"length1":16,"length2":19}]],"length":8704,"saved":false}
+{"ts":1350923498793,"patch":[[{"diffs":[[0,"   }\n\n  "],[1," // "],[0,"\n   for "]],"start1":5400,"start2":5400,"length1":16,"length2":20}]],"length":8708,"saved":false}
+{"ts":1350923499498,"patch":[[{"diffs":[[0,"\n\n   // "],[1,"Gri"],[0,"\n   for "]],"start1":5404,"start2":5404,"length1":16,"length2":19}]],"length":8711,"saved":false}
+{"ts":1350923500776,"patch":[[{"diffs":[[0,"  // Gri"],[1,"d cr"],[0,"\n   for "]],"start1":5407,"start2":5407,"length1":16,"length2":20}]],"length":8715,"saved":false}
+{"ts":1350923502993,"patch":[[{"diffs":[[0," Grid cr"],[1,"eation"],[0,"\n   for "]],"start1":5411,"start2":5411,"length1":16,"length2":22}]],"length":8721,"saved":false}
+{"ts":1350923512129,"patch":[[{"diffs":[[0,"reation\n"],[1,"   var \n"],[0,"   for ("]],"start1":5418,"start2":5418,"length1":16,"length2":24}]],"length":8729,"saved":false}
+{"ts":1350923521679,"patch":[[{"diffs":[[0,"\n   var "],[1,"w"],[0,"\n   for "]],"start1":5425,"start2":5425,"length1":16,"length2":17}]],"length":8730,"saved":false}
+{"ts":1350923522154,"patch":[[{"diffs":[[0,"\n   var "],[-1,"w"],[0,"\n   for "]],"start1":5425,"start2":5425,"length1":17,"length2":16}]],"length":8729,"saved":false}
+{"ts":1350923524976,"patch":[[{"diffs":[[0,"\n   var "],[1,"g"],[0,"\n   for "]],"start1":5425,"start2":5425,"length1":16,"length2":17}]],"length":8730,"saved":false}
+{"ts":1350923527986,"patch":[[{"diffs":[[0,"   var g"],[1,"ridWid"],[0,"\n   for "]],"start1":5426,"start2":5426,"length1":16,"length2":22}]],"length":8736,"saved":false}
+{"ts":1350923529420,"patch":[[{"diffs":[[0," gridWid"],[1,"th "],[0,"\n   for "]],"start1":5432,"start2":5432,"length1":16,"length2":19}]],"length":8739,"saved":false}
+{"ts":1350923530217,"patch":[[{"diffs":[[0,"idWidth "],[1,"= "],[0,"\n   for "]],"start1":5435,"start2":5435,"length1":16,"length2":18}]],"length":8741,"saved":false}
+{"ts":1350923535396,"patch":[[{"diffs":[[0,"Width = "],[1,"WIDTH"],[0,"\n   for "]],"start1":5437,"start2":5437,"length1":16,"length2":21}]],"length":8746,"saved":false}
+{"ts":1350923569398,"patch":[[{"diffs":[[0,"var grid"],[-1,"Width"],[1,"X"],[0," = WIDTH"]],"start1":5429,"start2":5429,"length1":21,"length2":17}]],"length":8742,"saved":false}
+{"ts":1350923571559,"patch":[[{"diffs":[[0,"ar gridX"],[1,"numbe"],[0," = WIDTH"]],"start1":5430,"start2":5430,"length1":16,"length2":21}]],"length":8747,"saved":false}
+{"ts":1350923574600,"patch":[[{"diffs":[[0,"ridX"],[-1,"numbe"],[1,"Nu"],[0," = W"]],"start1":5434,"start2":5434,"length1":13,"length2":10}]],"length":8744,"saved":false}
+{"ts":1350923577655,"patch":[[{"diffs":[[0," gridXNu"],[1,"mber"],[0," = WIDTH"]],"start1":5432,"start2":5432,"length1":16,"length2":20}]],"length":8748,"saved":false}
+{"ts":1350923590208,"patch":[[{"diffs":[[0," = WIDTH"],[1," / 10"],[0,"\n   for "]],"start1":5444,"start2":5444,"length1":16,"length2":21}]],"length":8753,"saved":false}
+{"ts":1350923592486,"patch":[[{"diffs":[[0,"WIDTH / "],[-1,"10"],[0,"\n   for "]],"start1":5447,"start2":5447,"length1":18,"length2":16}]],"length":8751,"saved":false}
+{"ts":1350923610550,"patch":[[{"diffs":[[0,"WIDTH / "],[1,"squa"],[0,"\n   for "]],"start1":5447,"start2":5447,"length1":16,"length2":20}]],"length":8755,"saved":false}
+{"ts":1350923611703,"patch":[[{"diffs":[[0,"H / squa"],[1,"re"],[0,"\n   for "]],"start1":5451,"start2":5451,"length1":16,"length2":18}]],"length":8757,"saved":false}
+{"ts":1350923614909,"patch":[[{"diffs":[[0,"/ square"],[1,"Leng"],[0,"\n   for "]],"start1":5453,"start2":5453,"length1":16,"length2":20}]],"length":8761,"saved":false}
+{"ts":1350923615422,"patch":[[{"diffs":[[0,"uareLeng"],[1,"th"],[0,"\n   for "]],"start1":5457,"start2":5457,"length1":16,"length2":18}]],"length":8763,"saved":false}
+{"ts":1350923618233,"patch":[[{"diffs":[[0,"reLength"],[1,";"],[0,"\n   for "]],"start1":5459,"start2":5459,"length1":16,"length2":17}]],"length":8764,"saved":false}
+{"ts":1350923623765,"patch":[[{"diffs":[[0,"reation\n"],[1,"   var squareLength =\n"],[0,"   var g"]],"start1":5418,"start2":5418,"length1":16,"length2":38}]],"length":8786,"saved":false}
+{"ts":1350923624356,"patch":[[{"diffs":[[0,"Length ="],[1," 1"],[0,"\n   var "]],"start1":5439,"start2":5439,"length1":16,"length2":18}]],"length":8788,"saved":false}
+{"ts":1350923627040,"patch":[[{"diffs":[[0,"ngth = 1"],[1,"00;"],[0,"\n   var "]],"start1":5441,"start2":5441,"length1":16,"length2":19}]],"length":8791,"saved":false}
+{"ts":1350923639854,"patch":[[{"diffs":[[0,"Length;\n"],[1,"   var gridXNumber = WIDTH / squareLength;\n"],[0,"   for ("]],"start1":5488,"start2":5488,"length1":16,"length2":59}]],"length":8834,"saved":false}
+{"ts":1350923642873,"patch":[[{"diffs":[[0,"gth;\n   var grid"],[-1,"X"],[1,"Z"],[0,"Number = WIDTH /"]],"start1":5491,"start2":5491,"length1":33,"length2":33}]],"length":8834,"saved":false}
+{"ts":1350923652513,"patch":[[{"diffs":[[0,"r gridZNumber = "],[-1,"WIDTH"],[1,"FAR"],[0," / squareLength;"]],"start1":5501,"start2":5501,"length1":37,"length2":35}]],"length":8832,"saved":false}
+{"ts":1350923691407,"patch":[[{"diffs":[[0,"FFFFF);\n   }"],[1,"\n    for (var i = - WIDTH/100; i <= WIDTH/100 + 1; i++){\n        createLine(v(i/2 * 100, 0, FAR), v(i/2 * 100, 0, -FAR), 0xFFFFFF);\n   }\n   for (var j = - FAR/100; j <= FAR/100; j++){\n        createLine(v(WIDTH/2, 0, j*100), v(-WIDTH/2, 0, j*100), 0xFFFFFF);\n   }"],[0,"\n\n    //\n\n\tr"]],"start1":5786,"start2":5786,"length1":24,"length2":287}]],"length":9095,"saved":false}
+{"ts":1350923692734,"patch":[[{"diffs":[[0,"FFFFF);\n   }"],[1,"*/"],[0,"\n\n    //\n\n\tr"]],"start1":6049,"start2":6049,"length1":24,"length2":26}]],"length":9097,"saved":false}
+{"ts":1350923694772,"patch":[[{"diffs":[[0,"FFFFF);\n   }"],[1,"/*"],[0,"\n    for (va"]],"start1":5786,"start2":5786,"length1":24,"length2":26}]],"length":9099,"saved":false}
+{"ts":1350923696029,"patch":[[{"diffs":[[0,"\n   }/*\n    "],[1,"/*"],[0,"for (var i ="]],"start1":5793,"start2":5793,"length1":24,"length2":26}]],"length":9101,"saved":false}
+{"ts":1350923698321,"patch":[[{"diffs":[[0,"F);\n   }"],[-1,"/*"],[0,"\n    /*f"]],"start1":5790,"start2":5790,"length1":18,"length2":16}]],"length":9099,"saved":false}
+{"ts":1350923728014,"patch":[[{"diffs":[[0,"squareLength"],[1," / 2"],[0,";\n   var gri"]],"start1":5482,"start2":5482,"length1":24,"length2":28}]],"length":9103,"saved":false}
+{"ts":1350923741588,"patch":[[{"diffs":[[0,"reLength"],[-1," / 2"],[0,";\n   var"]],"start1":5486,"start2":5486,"length1":20,"length2":16}]],"length":9099,"saved":false}
+{"ts":1350923751694,"patch":[[{"diffs":[[0," (var i = - "],[-1,"WIDTH/100"],[1,"gridXNumber"],[0,"; i <= WIDTH"]],"start1":5543,"start2":5543,"length1":33,"length2":35}]],"length":9101,"saved":false}
+{"ts":1350923757709,"patch":[[{"diffs":[[0,"umber; i <= "],[-1,"WIDTH/100"],[1,"gridXNumber"],[0," + 1; i++){\n"]],"start1":5561,"start2":5561,"length1":33,"length2":35}]],"length":9103,"saved":false}
+{"ts":1350923780308,"patch":[[{"diffs":[[0,"   createLine(v("],[-1,"WIDTH"],[1,"gridXNumber"],[0,"/2, 0, j*100), v"]],"start1":5728,"start2":5728,"length1":37,"length2":43}]],"length":9109,"saved":false}
+{"ts":1350923783694,"patch":[[{"diffs":[[0,", 0, j*100), v(-"],[-1,"WIDTH"],[1,"gridXNumber"],[0,"/2, 0, j*100), 0"]],"start1":5757,"start2":5757,"length1":37,"length2":43}]],"length":9115,"saved":false}
+{"ts":1350923808012,"patch":[[{"diffs":[[0,"eLine(v("],[-1,"gridXNumber"],[1,"WIDTH"],[0,"/2, 0, j"]],"start1":5736,"start2":5736,"length1":27,"length2":21},{"diffs":[[0,"00), v(-"],[-1,"gridXNumber"],[1,"WIDTH"],[0,"/2, 0, j"]],"start1":5759,"start2":5759,"length1":27,"length2":21}]],"length":9103,"saved":false}
+{"ts":1350923830492,"patch":[[{"diffs":[[0,"00; j++){\n      "],[1,"//"],[0,"  createLine(v(W"]],"start1":5713,"start2":5713,"length1":32,"length2":34}]],"length":9105,"saved":false}
+{"ts":1350923882005,"patch":[[{"diffs":[[0," 1; i++){\n      "],[1,"//"],[0,"  createLine(v(i"]],"start1":5586,"start2":5586,"length1":32,"length2":34},{"diffs":[[0,"00; j++){\n      "],[-1,"//"],[0,"  createLine(v(W"]],"start1":5715,"start2":5715,"length1":34,"length2":32}]],"length":9105,"saved":false}
+{"ts":1350924067252,"patch":[[{"diffs":[[0,"{\n      "],[-1,"//"],[0,"  create"]],"start1":5594,"start2":5594,"length1":18,"length2":16}]],"length":9103,"saved":false}
+{"ts":1350924131370,"patch":[[{"diffs":[[0,"umber = "],[-1,"WIDTH"],[1,"1000"],[0," / squar"]],"start1":5466,"start2":5466,"length1":21,"length2":20}]],"length":9102,"saved":false}
+{"ts":1350924159058,"patch":[[{"diffs":[[0,"r = "],[-1,"1000 / squareLength"],[1,"5"],[0,";\n  "]],"start1":5470,"start2":5470,"length1":27,"length2":9}]],"length":9084,"saved":false}
+{"ts":1350924190532,"patch":[[{"diffs":[[0,"ateLine(v(i/2 * "],[-1,"100"],[1,"squareLength"],[0,", 0, FAR), v(i/2"]],"start1":5588,"start2":5588,"length1":35,"length2":44}]],"length":9093,"saved":false}
+{"ts":1350924193246,"patch":[[{"diffs":[[0,", FAR), v(i/2 * "],[-1,"100"],[1,"squareLength"],[0,", 0, -FAR), 0xFF"]],"start1":5619,"start2":5619,"length1":35,"length2":44}]],"length":9102,"saved":false}
+{"ts":1350924214714,"patch":[[{"diffs":[[0," for (var j = - "],[-1,"FAR/100"],[1,"gridZNumber"],[0,"; j <= FAR/100; "]],"start1":5677,"start2":5677,"length1":39,"length2":43}]],"length":9106,"saved":false}
+{"ts":1350924218546,"patch":[[{"diffs":[[0,"umber; j <= "],[-1,"FAR/100"],[1,"gridZNumber"],[0,"; j++){\n    "]],"start1":5699,"start2":5699,"length1":31,"length2":35}]],"length":9110,"saved":false}
+{"ts":1350924232265,"patch":[[{"diffs":[[0,"   createLine(v("],[-1,"WIDTH/2"],[1,"gridXNumber"],[0,", 0, j*100), v(-"]],"start1":5735,"start2":5735,"length1":39,"length2":43}]],"length":9114,"saved":false}
+{"ts":1350924236343,"patch":[[{"diffs":[[0,", 0, j*100), v(-"],[-1,"WIDTH/2"],[1,"gridXNumber"],[0,", 0, j*100), 0xF"]],"start1":5762,"start2":5762,"length1":39,"length2":43}]],"length":9118,"saved":false}
+{"ts":1350924272982,"patch":[[{"diffs":[[0,"ne(v(gridXNumber"],[1," * squareLength"],[0,", 0, j*100), v(-"]],"start1":5746,"start2":5746,"length1":32,"length2":47}]],"length":9133,"saved":false}
+{"ts":1350924277176,"patch":[[{"diffs":[[0,"dXNumber"],[1," * squareLength"],[0,", 0, j*1"]],"start1":5796,"start2":5796,"length1":16,"length2":31}]],"length":9148,"saved":false}
+{"ts":1350924387850,"patch":[[{"diffs":[[0,"r * squareLength"],[1," / 2"],[0,", 0, j*100), v(-"]],"start1":5761,"start2":5761,"length1":32,"length2":36}]],"length":9152,"saved":false}
+{"ts":1350924391183,"patch":[[{"diffs":[[0,"squareLength"],[1," / 2"],[0,", 0, j*100),"]],"start1":5811,"start2":5811,"length1":24,"length2":28}]],"length":9156,"saved":false}
+{"ts":1350924412126,"patch":[[{"diffs":[[0,"dXNumber"],[-1," + 1"],[0,"; i++){\n"]],"start1":5557,"start2":5557,"length1":20,"length2":16}]],"length":9152,"saved":false}
+{"ts":1350924430125,"patch":[[{"diffs":[[0,"umber = "],[-1,"5"],[1,"6"],[0,";\n   var"]],"start1":5466,"start2":5466,"length1":17,"length2":17}]],"length":9152,"saved":false}
