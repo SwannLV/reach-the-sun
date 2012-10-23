@@ -7,7 +7,7 @@ Physijs.scripts.ammo = 'ammo.js';
 
 var camera, scene, renderer, composer;
 var sun_uniforms, sun_material, sun, Airship, AirshipCamera;
-var spaceshipSpeed = 10.0;
+var speed = 800;
 
 var keyboard  = new THREEx.KeyboardState();
 
@@ -68,9 +68,9 @@ function initSun () {
 	sun_material = new THREE.ShaderMaterial( {
 
 		uniforms: sun_uniforms,
-		vertexShader: document.getElementById( 'vertexShader' ).textContent,
+		vertexShader: document.getElementById( 'sunVertexShader' ).textContent,
 
-		fragmentShader: document.getElementById( 'fragmentShader' ).textContent
+		fragmentShader: document.getElementById( 'sunFragmentShader' ).textContent
 	} );
 
 	sun = new THREE.Mesh( new THREE.SphereGeometry( 600, 200, 30, 30 ), sun_material );
@@ -237,7 +237,7 @@ function animateAirship()
     }
 }
 
-function animateGrid()
+function animateGrid(deltaClock)
 {
     for ( var i = 0; i < scene.children.length; i ++ ) {
         var object = scene.children[ i ];
@@ -250,36 +250,33 @@ function animateGrid()
                 /*object.position.x = Math.random() * 2 - 1;
 		        object.position.y = Math.random() * 2 - 1;*/
             }
-            object.position.z += spaceshipSpeed;
+            object.position.z += speed * deltaClock;
         }
     }
 }
 
 function animate() {
 
+    var deltaClock = clock.getDelta();
+
 	requestAnimationFrame( animate );
     animateAirship();
-    animateGrid();
-	render();
+    animateGrid(deltaClock);
+	render(deltaClock);
 	stats.update();
 
 }
 
-function render() {
-
-	var delta = 5 * clock.getDelta();
+function render(deltaClock) {
 
     if (Airship) {
         camera.lookAt( Airship.position );
+        Airship.visible = false;
+        AirshipCamera.updateCubeMap( renderer, scene );
+        Airship.visible = true;
     }
-	sun_uniforms.time.value += 0.2 * delta;
-
-    Airship.visible = false;
-    AirshipCamera.updateCubeMap( renderer, scene );
-	Airship.visible = true;
-	
+	sun_uniforms.time.value += deltaClock;
 	renderer.render( scene, camera );
-    
     renderer.clear();
     composer.render( 0.01 );
 

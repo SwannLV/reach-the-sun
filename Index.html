@@ -34,7 +34,7 @@
 	<body>
 		<div id="container"></div>
 		<div id="info">
-            <a href="http://ca.linkedin.com/in/swannlv" target="_blank">SwannLV</a> - WebGL/Three.js demo
+            <a href="http://ca.linkedin.com/in/swannlv" target="_blank">SwannLV</a> - WebGL Demo
             - Arrows to control
         </div>
 
@@ -53,7 +53,7 @@
 		<script src="http://mrdoob.github.com/three.js/examples/js/libs/stats.min.js"></script>
         <script src="Physi.js"></script>
 
-		<script id="fragmentShader" type="x-shader/x-fragment">
+		<script id="sunFragmentShader" type="x-shader/x-fragment">
 			uniform float time;
 			uniform vec2 resolution;
 
@@ -97,7 +97,7 @@
 
 		</script>
 
-		<script id="vertexShader" type="x-shader/x-vertex">
+		<script id="sunVertexShader" type="x-shader/x-vertex">
 			uniform vec2 uvScale;
 			varying vec2 vUv;
 
