@@ -323,3 +323,24 @@
 {"ts":1351011547373,"patch":[[{"diffs":[[0,"idden;\n\t\t\t}\n"],[-1,"\n"],[0,"\t\t\t#info {\n\t"]],"start1":408,"start2":408,"length1":25,"length2":24}]],"length":3641,"saved":false}
 {"ts":1351011549389,"patch":[[{"diffs":[[0,"x;\n\t\t\t}\n"],[-1,"\n"],[0,"\t\t\ta {\n\t"]],"start1":497,"start2":497,"length1":17,"length2":16}]],"length":3640,"saved":false}
 {"ts":1351011552938,"patch":[[{"diffs":[[0,"f;\n\t\t\t}\n"],[-1,"\n"],[0,"\t\t\t#oldi"]],"start1":529,"start2":529,"length1":17,"length2":16}]],"length":3639,"saved":false}
+{"ts":1351022214024,"patch":[[{"diffs":[[0," Arrows "],[1,"& S"],[0,"to contr"]],"start1":737,"start2":737,"length1":16,"length2":19}]],"length":3642,"saved":false}
+{"ts":1351022216044,"patch":[[{"diffs":[[0,"rows & S"],[1,"pace "],[0,"to contr"]],"start1":740,"start2":740,"length1":16,"length2":21}]],"length":3647,"saved":false}
+{"ts":1351022246130,"patch":[[{"diffs":[[0,"& Space "],[1," "],[0,"to contr"]],"start1":745,"start2":745,"length1":16,"length2":17}]],"length":3648,"saved":false}
+{"ts":1351022247846,"patch":[[{"diffs":[[0,"& Space "],[1,"keys"],[0," to cont"]],"start1":745,"start2":745,"length1":16,"length2":20}]],"length":3652,"saved":false}
+{"ts":1351022250424,"patch":[[{"diffs":[[0,"e ke"],[-1,"ys to control"],[0,"\n   "]],"start1":751,"start2":751,"length1":21,"length2":8}]],"length":3639,"saved":false}
+{"ts":1351022251931,"patch":[[{"diffs":[[0,"Space ke"],[1,"ys"],[0,"\n       "]],"start1":747,"start2":747,"length1":16,"length2":18}]],"length":3641,"saved":false}
+{"ts":1351022254346,"patch":[[{"diffs":[[0,"L Demo -"],[1," Use"],[0," Arrows "]],"start1":729,"start2":729,"length1":16,"length2":20}]],"length":3645,"saved":false}
+{"ts":1351022277575,"patch":[[{"diffs":[[0,"o - Use "],[1,"<"],[0,"Arrows &"]],"start1":734,"start2":734,"length1":16,"length2":17}]],"length":3646,"saved":false}
+{"ts":1351022279360,"patch":[[{"diffs":[[0," - Use <"],[1,"b>"],[0,"Arrows &"]],"start1":735,"start2":735,"length1":16,"length2":18}]],"length":3648,"saved":false}
+{"ts":1351022282665,"patch":[[{"diffs":[[0,"b>Arrows"],[1,"<"],[0," & Space"]],"start1":743,"start2":743,"length1":16,"length2":17}]],"length":3649,"saved":false}
+{"ts":1351022284825,"patch":[[{"diffs":[[0,">Arrows<"],[1,"/"],[0," & Space"]],"start1":744,"start2":744,"length1":16,"length2":17}]],"length":3650,"saved":false}
+{"ts":1351022285954,"patch":[[{"diffs":[[0,"Arrows</"],[1,"b>"],[0," & Space"]],"start1":745,"start2":745,"length1":16,"length2":18}]],"length":3652,"saved":false}
+{"ts":1351022305521,"patch":[[{"diffs":[[0,"Use "],[-1,"<b>Arrows</b>"],[1,"ARROW"],[0," & S"]],"start1":738,"start2":738,"length1":21,"length2":13}]],"length":3644,"saved":false}
+{"ts":1351022306391,"patch":[[{"diffs":[[0,"se ARROW"],[1,"S"],[0," & Space"]],"start1":739,"start2":739,"length1":16,"length2":17}]],"length":3645,"saved":false}
+{"ts":1351022309492,"patch":[[{"diffs":[[0,"ROWS & S"],[-1,"pace"],[1,"PA"],[0," keys\n  "]],"start1":744,"start2":744,"length1":20,"length2":18}]],"length":3643,"saved":false}
+{"ts":1351022311474,"patch":[[{"diffs":[[0,"WS & SPA"],[1,"CE"],[0," keys\n  "]],"start1":746,"start2":746,"length1":16,"length2":18}]],"length":3645,"saved":false}
+{"ts":1351022325649,"patch":[[{"diffs":[[0,"ACE "],[-1,"keys"],[1,"to "],[0,"\n   "]],"start1":753,"start2":753,"length1":12,"length2":11}]],"length":3644,"saved":false}
+{"ts":1351022327454,"patch":[[{"diffs":[[0,"PACE to "],[1,"control"],[0,"\n       "]],"start1":752,"start2":752,"length1":16,"length2":23}]],"length":3651,"saved":false}
+{"ts":1351022331478,"patch":[[{"diffs":[[0,"OWS "],[-1,"&"],[1,"and"],[0," SPA"]],"start1":745,"start2":745,"length1":9,"length2":11}]],"length":3653,"saved":false}
+{"ts":1351022334323,"patch":[[{"diffs":[[0," control"],[1,"."],[0,"\n       "]],"start1":761,"start2":761,"length1":16,"length2":17}]],"length":3654,"saved":false}
+{"ts":1351022343520,"patch":[[{"diffs":[[0," control"],[-1,"."],[0,"\n       "]],"start1":761,"start2":761,"length1":17,"length2":16}]],"length":3653,"saved":false}

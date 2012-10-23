@@ -9,7 +9,8 @@ var Airship, AirshipCamera;
 var WIDTH     = window.innerWidth  || 2;
 var HEIGHT    = window.innerHeight || 2;
 var FAR       = 3500;
-var speed     = 800;
+var SPEED     = 800;
+var SLOWSPEED = 100; 
 
 init();
 animate();
@@ -203,7 +204,7 @@ function onWindowResize( event ) {
 }
 
 // ANIMATE AIRSHIP
-function animateAirship()
+function animateAirship(deltaClock)
 {
      if( keyboard.pressed("left") ) {
         Airship.position.x -= 5;
@@ -217,11 +218,21 @@ function animateAirship()
     else if( keyboard.pressed("down") && Airship.position.y > 25) {
         Airship.position.y -= 5;
     }
+    if( keyboard.pressed("space") ) {
+        if (camera.position.z > -300) {
+            camera.position.z -= SLOWSPEED * deltaClock;
+        }
+    }
+    else if (camera.position.z < 400) {
+        camera.position.z += SLOWSPEED * deltaClock;
+    }
 }
 
 // ANIMATE GRID
 function animateGrid(deltaClock)
 {
+    var speed = keyboard.pressed("space") ? SLOWSPEED : SPEED;
+
     for ( var i = 0; i < scene.children.length; i ++ ) {
         var object = scene.children[ i ];
         if ( object instanceof THREE.Line ) {
@@ -242,7 +253,7 @@ function animateGrid(deltaClock)
 function animate() {
     var deltaClock = clock.getDelta();
 	requestAnimationFrame( animate );
-    animateAirship();
+    animateAirship(deltaClock);
     animateGrid(deltaClock);
 	render(deltaClock);
 	stats.update();
@@ -258,6 +269,5 @@ function render(deltaClock) {
     camera.lookAt( Airship.position ); // TO DO: error on start, but camera has to look at
 	sun_uniforms.time.value += deltaClock;
 	renderer.render( scene, camera );
-    renderer.clear();
     composer.render( 0.01 );
 }
