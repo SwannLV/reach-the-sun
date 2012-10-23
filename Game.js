@@ -14,7 +14,6 @@ var keyboard  = new THREEx.KeyboardState();
 var WIDTH = window.innerWidth || 2;
 var HEIGHT = window.innerHeight || 2;
 var FAR = 3500;
-var radius = 6371;
 
 init();
 animate();
@@ -27,13 +26,6 @@ function initPlane () {
 }
 
 function initAirship () {
-  /*  var sphereGeom =  new THREE.SphereGeometry( 50, 32, 16 ); // radius, segmentsWidth, segmentsHeight
-    
-	
-	mirrorSphere = new THREE.Mesh( sphereGeom, mirrorSphereMaterial );
-	mirrorSphere.position.set(75,50,0);
-	scene.add(mirrorSphere);
-    */
     var loader = new THREE.JSONLoader();
     loader.load("spaceship.js", function (Geometry) {
         /*Airship_mat  = Physijs.createMaterial(
@@ -47,12 +39,9 @@ function initAirship () {
             0
     	);*/
         AirshipCamera = new THREE.CubeCamera ( 0.1, 5000, 512 );//( 0.1, 5000, 512 );
-        // mirrorCubeCamera.renderTarget.minFilter = THREE.LinearMipMapLinearFilter;
         scene.add( AirshipCamera );
-        var mirrorSphereMaterial = new THREE.MeshBasicMaterial( { envMap: AirshipCamera.renderTarget } );
-        //Geometry.materials[0].color.setHex(0xFFFFFF); // Sets the material color to red
-        Airship = new THREE.Mesh(Geometry, mirrorSphereMaterial);
-        //Airship = new THREE.Mesh(Geometry, new THREE.MeshFaceMaterial());
+        var mirrorMaterial = new THREE.MeshBasicMaterial( { envMap: AirshipCamera.renderTarget } );
+        Airship = new THREE.Mesh(Geometry, mirrorMaterial);
         Airship.scale.set(2, 2, 2);
         Airship.position.set (140, 170, 0);
         AirshipCamera.position = Airship.position;
@@ -205,70 +194,17 @@ function init() {
 
     // EFFECTS
 	var renderModel = new THREE.RenderPass( scene, camera );
-	//var effectBloom = new THREE.BloomPass( 3.25 );
 	var effectFilm = new THREE.FilmPass( 0.35, 0.95, 2048, false );
-
 	effectFilm.renderToScreen = true;
 	composer = new THREE.EffectComposer( renderer );
 	composer.addPass( renderModel );
-	//composer.addPass( effectBloom );
 	composer.addPass( effectFilm );
 
     // RESIZE
 	onWindowResize();
 	window.addEventListener( 'resize', onWindowResize, false );
+    
 }
-
-// Materials
-    /*var ground_material = Physijs.createMaterial(
-		new THREE.MeshLambertMaterial({ map: THREE.ImageUtils.loadTexture( 'textures/lavatext.jpg' ) }),
-		.8, // high friction
-		.4 // low restitution
-	);
-	/*ground_material.map.wrapS = ground_material.map.wrapT = THREE.RepeatWrapping;
-	ground_material.map.repeat.set( 3, 3 );*/
-
-    // Ground
-    /*	ground = new Physijs.BoxMesh(
-			new THREE.CubeGeometry(WIDTH, 1, FAR),
-			ground_material,
-			0 // mass
-		);
-		//ground.receiveShadow = true;
-		scene.add( ground );
-        ground.position.y = -1;*/
-
-	/*var box_material = Physijs.createMaterial(
-		new THREE.MeshLambertMaterial({ map: THREE.ImageUtils.loadTexture( 'textures/lavatext.jpg' ) }),
-		.4, // low friction
-		.6 // high restitution
-	);
-	box_material.map.wrapS = ground_material.map.wrapT = THREE.RepeatWrapping;
-	box_material.map.repeat.set( .25, .25 );*/
-   /* var box_material = Physijs.createMaterial(
-    	new THREE.MeshPhongMaterial( { ambient: 0x555555, color: 0xFF0000, specular: 0xffffff, shininess: 500, shading: THREE.SmoothShading }),
-		.4, // low friction
-		.6 // high restitution
-	);*/
-
-    // Box
-    /*box = new Physijs.BoxMesh(
-		new THREE.CubeGeometry( 100, 100, 100 ),
-		box_material
-	);
-    box.position.set(0,50,-400);
-	box.position.set(
-		Math.random() * 50 - 25,
-		10 + Math.random() * 5,
-		Math.random() * 50 - 25
-	);
-	box.rotation.set(
-		Math.random() * Math.PI * 2,
-		Math.random() * Math.PI * 2,
-		Math.random() * Math.PI * 2
-	);
-	//box.castShadow = true;
-	scene.add( box );*/
 
 
 function onWindowResize( event ) {
@@ -338,8 +274,6 @@ function render() {
     }
 	sun_uniforms.time.value += 0.2 * delta;
 
-	
-    
     Airship.visible = false;
     AirshipCamera.updateCubeMap( renderer, scene );
 	Airship.visible = true;
