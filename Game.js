@@ -1,31 +1,29 @@
 if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
-var container, stats;
-var clock = new THREE.Clock();
-Physijs.scripts.worker = 'physijs_worker.js';
-Physijs.scripts.ammo = 'ammo.js';
-
-var camera, scene, renderer, composer;
-var sun_uniforms, sun_material, sun, Airship, AirshipCamera;
-var speed = 800;
-
+var clock     = new THREE.Clock();
 var keyboard  = new THREEx.KeyboardState();
-
-var WIDTH = window.innerWidth || 2;
-var HEIGHT = window.innerHeight || 2;
-var FAR = 3500;
+var container, stats;
+var camera, scene, renderer, composer;
+var sun_uniforms, sun_material, sun;
+var Airship, AirshipCamera;
+var WIDTH     = window.innerWidth  || 2;
+var HEIGHT    = window.innerHeight || 2;
+var FAR       = 3500;
+var speed     = 800;
 
 init();
 animate();
 
-function initPlane () {
+// CREATE PLANE
+function createPlane () {
     var plane = new THREE.Mesh( new THREE.PlaneGeometry( 10000, 10000 ), new THREE.MeshBasicMaterial( { color: 0x0000FF, opacity: 0.1, transparent: true } ) );
     plane.position.y = -1;
     plane.rotation.x = - Math.PI / 2;
     scene.add( plane );
 }
 
-function initAirship () {
+// CREATE AIRSHIP
+function createAirship () {
     var loader = new THREE.JSONLoader();
     loader.load("spaceship.js", function (Geometry) {
         /*Airship_mat  = Physijs.createMaterial(
@@ -49,9 +47,9 @@ function initAirship () {
     });
 }
 
-function initSun () {
+// CREATE SUN
+function createSun () {
     sun_uniforms = {
-
 		fogDensity: { type: "f", value: 0.45 },
 		fogColor: { type: "v3", value: new THREE.Vector3( 0, 0, 0 ) },
 		time: { type: "f", value: 1.0 },
@@ -59,29 +57,22 @@ function initSun () {
 		uvScale: { type: "v2", value: new THREE.Vector2( 3.0, 1.0 ) },
 		texture1: { type: "t", value: THREE.ImageUtils.loadTexture( "textures/cloud.png" ) },
 		texture2: { type: "t", value: THREE.ImageUtils.loadTexture( "textures/lavatext.jpg" ) }
-
 	};
-
 	sun_uniforms.texture1.value.wrapS = sun_uniforms.texture1.value.wrapT = THREE.RepeatWrapping;
 	sun_uniforms.texture2.value.wrapS = sun_uniforms.texture2.value.wrapT = THREE.RepeatWrapping;
-
 	sun_material = new THREE.ShaderMaterial( {
-
 		uniforms: sun_uniforms,
 		vertexShader: document.getElementById( 'sunVertexShader' ).textContent,
-
 		fragmentShader: document.getElementById( 'sunFragmentShader' ).textContent
 	} );
-
 	sun = new THREE.Mesh( new THREE.SphereGeometry( 600, 200, 30, 30 ), sun_material );
 	sun.rotation.z = 6*3.14/4;
-    sun.position.x = 0;
-    sun.position.y = 700;
-    sun.position.z = -3000;
+    sun.position.set (0, 700, -3000);
 	scene.add( sun );
 }
 
-function initGrid () {
+// CREATE GRID
+function createGrid () {
     //Shorten the vertex function
     function v(x,y,z){
         return new THREE.Vertex(new THREE.Vector3(x,y,z));
@@ -98,8 +89,9 @@ function initGrid () {
 
    // Grid creation
    var squareLength = 100;
-   var gridXNumber = 3;
-   var gridZNumber = FAR / squareLength;
+   var gridXNumber  = 3;
+   var gridZNumber  = FAR / squareLength;
+   
    for (var i = - gridXNumber; i <= gridXNumber; i++){
         createLine(v(i/2 * squareLength, 0, FAR), v(i/2 * squareLength, 0, -FAR), 0xFFFFFF);
    }
@@ -108,38 +100,28 @@ function initGrid () {
    }
 }
 
-function initStars (lineX, lineY, lineZ, scale) {
-
+// CREATE STARS
+function createStars (lineX, lineY, lineZ, scale) {
     var i, line, vertex1, vertex2, material, p,
 		parameters = [ [ 0.25, 0xff7700, 1, 2 ], [ 0.5, 0xff9900, 1, 1 ], [ 0.75, 0xffaa00, 0.75, 1 ], [ 1, 0xffaa00, 0.5, 1 ], [ 1.25, 0x000833, 0.8, 1 ],
 				       [ 3.0, 0xaaaaaa, 0.75, 2 ], [ 3.5, 0xffffff, 0.5, 1 ], [ 4.5, 0xffffff, 0.25, 1 ], [ 5.5, 0xffffff, 0.125, 1 ] ],
-
 		geometry = new THREE.Geometry();
 
-
 	for ( i = 0; i < 1500; i ++ ) {
-
 		var vertex1 = new THREE.Vector3();
 		vertex1.x = Math.random() * 2 - 1;
 		vertex1.y = Math.random() * 2 - 1;
 		vertex1.z = Math.random() * 2 - 1;
 		vertex1.normalize();
 		vertex1.multiplyScalar( 450 );
-
 		vertex2 = vertex1.clone();
 		vertex2.multiplyScalar( Math.random() * 0.09 + 1 );
-
 		geometry.vertices.push( vertex1 );
 		geometry.vertices.push( vertex2 );
-
 	}
-
 	for( i = 0; i < parameters.length; ++ i ) {
-
 		p = parameters[ i ];
-
 		material = new THREE.LineBasicMaterial( { color: p[ 1 ], opacity: p[ 2 ], linewidth: p[ 3 ] } );
-
 		line = new THREE.Line( geometry, material, THREE.LinePieces );
 		line.scale.x = line.scale.y = line.scale.z = p[ 0 ] * scale;
 		line.originalScale = p[ 0 ];
@@ -149,13 +131,17 @@ function initStars (lineX, lineY, lineZ, scale) {
         line.position.z = lineZ;
 		line.updateMatrix();
 		scene.add( line );
-
 	}
 }
 
 // INIT
 function init() {
 
+    // PHYSIJS > TO DO
+    Physijs.scripts.worker = 'physijs_worker.js';
+    Physijs.scripts.ammo = 'ammo.js';
+
+    // CONTAINER
 	container = document.getElementById( 'container' );
     renderer = new THREE.WebGLRenderer( { antialias: true } );
     container.appendChild( renderer.domElement );
@@ -166,6 +152,7 @@ function init() {
     camera.position.z = 400;
     camera.position.y = 200;
 
+    // SCENE
 	scene = new Physijs.Scene;
 
     // LIGHTS
@@ -178,12 +165,12 @@ function init() {
     scene.fog = new THREE.Fog( 0x000000, 250, 3000 );
     
     // OBJECTS
-    initStars(0, 100, -10000, 0.5);
-    initStars(0, 300, -5000, 10);
-    initPlane();
-    initAirship();
-    initSun();
-    initGrid();
+    createStars(0, 100, -10000, 0.5);
+    createStars(0, 300, -5000, 10);
+    createPlane();
+    createAirship();
+    createSun();
+    createGrid();
     
     // STATS
     stats = new Stats();
@@ -203,24 +190,19 @@ function init() {
     // RESIZE
 	onWindowResize();
 	window.addEventListener( 'resize', onWindowResize, false );
-    
 }
 
-
+// ON WINDOW RESIZE
 function onWindowResize( event ) {
-
 	sun_uniforms.resolution.value.x = window.innerWidth;
 	sun_uniforms.resolution.value.y = window.innerHeight;
-
 	renderer.setSize( window.innerWidth, window.innerHeight );
-
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
-
 	composer.reset();
-
 }
 
+// ANIMATE AIRSHIP
 function animateAirship()
 {
      if( keyboard.pressed("left") ) {
@@ -232,11 +214,12 @@ function animateAirship()
     if( keyboard.pressed("up") ) {
         Airship.position.y += 5;
     }
-    else if( keyboard.pressed("down") && Airship.position.y > 35) {
+    else if( keyboard.pressed("down") && Airship.position.y > 25) {
         Airship.position.y -= 5;
     }
 }
 
+// ANIMATE GRID
 function animateGrid(deltaClock)
 {
     for ( var i = 0; i < scene.children.length; i ++ ) {
@@ -255,29 +238,26 @@ function animateGrid(deltaClock)
     }
 }
 
+// ANIMATE
 function animate() {
-
     var deltaClock = clock.getDelta();
-
 	requestAnimationFrame( animate );
     animateAirship();
     animateGrid(deltaClock);
 	render(deltaClock);
 	stats.update();
-
 }
 
+// RENDER
 function render(deltaClock) {
-
     if (Airship) {
-        camera.lookAt( Airship.position );
         Airship.visible = false;
         AirshipCamera.updateCubeMap( renderer, scene );
         Airship.visible = true;
     }
+    camera.lookAt( Airship.position ); // TO DO: error on start, but camera has to look at
 	sun_uniforms.time.value += deltaClock;
 	renderer.render( scene, camera );
     renderer.clear();
     composer.render( 0.01 );
-
 }

@@ -19,4 +19,4 @@ fu.get("/Game.js", fu.staticHandler("Game.js"));
 // Useless relaxing games
 // > play without fear to loose, to let imagination goes away, but play.
 // As the children, they play, but never loose.
-// ex: free driving in gta > this is the most likely play experience
+// ex: free driving in gta > so cool experience

@@ -175,3 +175,6 @@
 {"contributors":[],"silentsave":true,"ts":1350918822619,"patch":[[{"diffs":[[0,"r(\"spaceship"],[1,"1"],[0,".js\"));\nfu.g"]],"start1":387,"start2":387,"length1":24,"length2":25}]],"length":1008,"saved":false}
 {"ts":1350918836781,"patch":[[{"diffs":[[0,"paceship"],[1,"1"],[0,".js\", fu"]],"start1":358,"start2":358,"length1":16,"length2":17}]],"length":1009,"saved":false}
 {"ts":1350918852382,"patch":[[{"diffs":[[0,"(\"/spaceship"],[-1,"1"],[0,".js\", fu.sta"]],"start1":354,"start2":354,"length1":25,"length2":24},{"diffs":[[0,"ship"],[-1,"1"],[0,".js\""]],"start1":395,"start2":395,"length1":9,"length2":8}]],"length":1007,"saved":false}
+{"contributors":[],"silentsave":true,"ts":1351011060548,"patch":[[{"diffs":[[0,"a > "],[-1,"this is the most likely play"],[1,"what a"],[0," exp"]],"start1":964,"start2":964,"length1":36,"length2":14}]],"length":985,"saved":false}
+{"ts":1351011062828,"patch":[[{"diffs":[[0,"> what a"],[1,"n"],[0," experie"]],"start1":966,"start2":966,"length1":16,"length2":17}]],"length":986,"saved":false}
+{"ts":1351011068795,"patch":[[{"diffs":[[0,"a > "],[-1,"what an"],[1,"so cool"],[0," exp"]],"start1":964,"start2":964,"length1":15,"length2":15}]],"length":986,"saved":false}
