@@ -3,9 +3,10 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 var clock     = new THREE.Clock();
 var keyboard  = new THREEx.KeyboardState();
 var container, stats;
-var camera, scene, renderer, composer;
+var camera_1, camera_2, scene, renderer, composer;
 var sun_uniforms, sun_material, sun;
 var Airship, AirshipCamera;
+var camera_1_IsActive;
 var WIDTH     = window.innerWidth  || 2;
 var HEIGHT    = window.innerHeight || 2;
 var FAR       = 3500;
@@ -27,7 +28,7 @@ function createPlane () {
 function createAirship () {
     var loader = new THREE.JSONLoader();
     loader.load("spaceship.js", function (Geometry) {
-        /*Airship_mat  = Physijs.createMaterial(
+        /*Airship_mat  = Physijs.createMaterial( // TO DO
             new THREE.MeshPhongMaterial( { ambient: 0x555555, color: 0xFF0000, specular: 0xffffff, shininess: 500, shading: THREE.SmoothShading }),
             .4, // low friction
             .6 // high restitution
@@ -91,10 +92,10 @@ function createGrid () {
    // Grid creation
    var squareLength = 100;
    var gridXNumber  = 3;
-   var gridZNumber  = FAR / squareLength;
+   var gridZNumber  = FAR / squareLength + 10;
    
    for (var i = - gridXNumber; i <= gridXNumber; i++){
-        createLine(v(i/2 * squareLength, 0, FAR), v(i/2 * squareLength, 0, -FAR), 0xFFFFFF);
+        createLine(v(i/2 * squareLength, 0, gridZNumber * squareLength), v(i/2 * squareLength, 0, -gridZNumber * squareLength), 0xFFFFFF);
    }
    for (var j = - gridZNumber; j <= gridZNumber; j++){
         createLine(v(gridXNumber * squareLength / 2, 0, j*100), v(-gridXNumber * squareLength / 2, 0, j*100), 0xFFFFFF);
@@ -148,14 +149,18 @@ function init() {
     container.appendChild( renderer.domElement );
 	renderer.autoClear = true;
 
-    // CAMERA
-	camera = new THREE.PerspectiveCamera( 45, WIDTH / HEIGHT, 1, FAR );
-    camera.position.z = 400;
-    camera.position.y = 200;
-
     // SCENE
 	scene = new Physijs.Scene;
-
+    
+    // CAMERAS
+    camera_1_IsActive = true;
+    camera_1 = new THREE.PerspectiveCamera( 45, WIDTH / HEIGHT, 1, FAR );
+    camera_1.position.z = 400;
+    camera_1.position.y = 200;
+    camera_2 = new THREE.PerspectiveCamera( 90, WIDTH / HEIGHT, 1, FAR );
+    scene.add (camera_2);
+    scene.add (camera_1);
+    
     // LIGHTS
     var dirLight = new THREE.DirectionalLight( 0xffffff, 0.125 );
     dirLight.position.set( 0, 0, 1 ).normalize();
@@ -181,7 +186,7 @@ function init() {
 	container.appendChild( stats.domElement );
 
     // EFFECTS
-	var renderModel = new THREE.RenderPass( scene, camera );
+	var renderModel = new THREE.RenderPass( scene, camera_1 );
 	var effectFilm = new THREE.FilmPass( 0.35, 0.95, 2048, false );
 	effectFilm.renderToScreen = true;
 	composer = new THREE.EffectComposer( renderer );
@@ -198,8 +203,8 @@ function onWindowResize( event ) {
 	sun_uniforms.resolution.value.x = window.innerWidth;
 	sun_uniforms.resolution.value.y = window.innerHeight;
 	renderer.setSize( window.innerWidth, window.innerHeight );
-	camera.aspect = window.innerWidth / window.innerHeight;
-	camera.updateProjectionMatrix();
+	camera_1.aspect = window.innerWidth / window.innerHeight;
+	camera_1.updateProjectionMatrix();
 	composer.reset();
 }
 
@@ -210,12 +215,12 @@ function animateAirship(deltaClock)
     // SLOW DOWN
     if( keyboard.pressed("space") ) {
         timeBase = deltaClock / 4;
-        if (camera.position.z > -300) {
-            camera.position.z -= SLOWSPEED * deltaClock;
+        if (camera_1.position.z > -300) {
+            camera_1.position.z -= SLOWSPEED * deltaClock;
         }
     }
-    else if (camera.position.z < 400) {
-        camera.position.z += SLOWSPEED * deltaClock;
+    else if (camera_1.position.z < 400) {
+        camera_1.position.z += SLOWSPEED * deltaClock;
     }
     // LEFT & RIGHT
     if( keyboard.pressed("left") ) {
@@ -228,19 +233,19 @@ function animateAirship(deltaClock)
             Airship.rotation.z -= timeBase;
         }
     }
-    Airship.position.x -= 10 * Airship.rotation.z;
+    Airship.position.x -= 300 * timeBase * Airship.rotation.z;
     // UP & DOWN
     if( keyboard.pressed("up") ) {
-        //if (Airship.rotation.x < Math.PI / 4) {
-            Airship.rotation.x += timeBase;
-        //}
+        Airship.rotation.x += timeBase;
     }
     else if( keyboard.pressed("down") ) {
         Airship.rotation.x -= timeBase;
     }
-    //if Airship.position.y > 25
     Airship.rotation.x = Airship.rotation.x % (2 * Math.PI);
     Airship.position.y += 300 * timeBase * Math.sin (Airship.rotation.x);
+    
+    camera_2.position.set ( Airship.position.x, Airship.position.y, Airship.position.z - 100);
+    camera_2.rotation = Airship.rotation;
 }
 
 // ANIMATE GRID
@@ -257,7 +262,7 @@ function animateGrid(deltaClock)
             else if (object.position.z >= 5000){
                 object.position.z = -5000;
                 /*object.position.x = Math.random() * 2 - 1;
-		        object.position.y = Math.random() * 2 - 1;*/
+		        object.position.y = Math.random() * 2 - 1;*/ // TO DO
             }
             object.position.z += speed * deltaClock;
         }
@@ -281,8 +286,19 @@ function render(deltaClock) {
         AirshipCamera.updateCubeMap( renderer, scene );
         Airship.visible = true;
     }
-    camera.lookAt( Airship.position ); // TO DO: error on start, but camera has to look at
+    camera_1.lookAt( Airship.position ); // TO DO: error on start, but camera has to look at
 	sun_uniforms.time.value += deltaClock;
-	renderer.render( scene, camera );
-    composer.render( 0.01 );
+    if (keyboard.pressed("1")) {
+        camera_1_IsActive = true;
+    }
+    else if (keyboard.pressed("2")) {
+        camera_1_IsActive = false;
+    }
+    if (camera_1_IsActive) {
+        renderer.render( scene, camera_1 );
+    }
+	else {
+        renderer.render( scene, camera_2 );
+    }
+    //composer.render( 0.01 ); // TO DO: find better setup
 }
