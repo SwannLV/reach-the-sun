@@ -3,6 +3,7 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 var clock     = new THREE.Clock();
 var keyboard  = new THREEx.KeyboardState();
 var container, stats;
+var slowArea, plane;
 var camera_1, camera_2, scene, renderer, composer;
 var sun_uniforms, sun_material, sun;
 var Airship, AirshipCamera;
@@ -18,7 +19,7 @@ animate();
 
 // CREATE PLANE
 function createPlane () {
-    var plane = new THREE.Mesh( new THREE.PlaneGeometry( 10000, 10000 ), new THREE.MeshBasicMaterial( { color: 0x0000FF, opacity: 0.1, transparent: true } ) );
+    plane = new THREE.Mesh( new THREE.PlaneGeometry( 10000, 10000 ), new THREE.MeshBasicMaterial( { color: 0x0000FF, opacity: 0.1, transparent: true } ) );
     plane.position.y = -1;
     plane.rotation.x = - Math.PI / 2;
     scene.add( plane );
@@ -171,6 +172,9 @@ function init() {
     scene.fog = new THREE.Fog( 0x000000, 250, 3000 );
     
     // OBJECTS
+    slowArea = new THREE.Mesh( new THREE.SphereGeometry( 30, 30, 30, 30 ), new THREE.MeshBasicMaterial( { color: 0x000000 } ) );
+    slowArea.position.set (0, 100, -10000);
+    scene.add(slowArea);
     createStars(0, 100, -10000, 0.5);
     createStars(0, 300, -5000, 10);
     createPlane();
@@ -284,12 +288,30 @@ function animateGrid(deltaClock)
             object.position.z += speed * deltaClock;
         }
     }
+    if (slowArea.position.z >= 5000){
+        slowArea.position.z = -5000;
+    }
+    slowArea.position.z += speed * deltaClock;
 }
 
 // ANIMATE
 function animate() {
     var deltaClock = clock.getDelta();
 	requestAnimationFrame( animate );
+    var dist = Airship.position.distanceToSquared(slowArea.position);
+    if (dist < 100000) {
+        var distFactor = dist / 100000.0;
+        if (distFactor < 0.2) {
+            distFactor = 0.2;
+        }
+        deltaClock = deltaClock * distFactor;
+        if (dist < 15000) {
+            plane.material.color.setRGB(Math.random(),Math.random(),Math.random());
+            var size = 3 * (1 - dist / 15000.0);
+            slowArea.scale.set(size, size, size);
+            deltaClock = deltaClock / 4;
+        }
+    }
     animateAirship(deltaClock);
     animateGrid(deltaClock);
 	render(deltaClock);
