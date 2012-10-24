@@ -242,6 +242,23 @@ function animateAirship(deltaClock)
         Airship.rotation.x -= timeBase;
     }
     Airship.rotation.x = Airship.rotation.x % (2 * Math.PI);
+    // BOX LIMITATIONS
+    if (Airship.position.y < 25) {
+        Airship.rotation.x = 0;
+        Airship.position.y = 25;
+    }
+    else if (Airship.position.y > 1000) {
+        Airship.rotation.x = 0;
+        Airship.position.y = 1000;
+    }
+    if (Airship.position.x > 1000) {
+        Airship.rotation.z = 0;
+        Airship.position.x = 1000;
+    }
+    else if (Airship.position.x < -1000) {
+        Airship.rotation.z = 0;
+        Airship.position.x = -1000;
+    }
     Airship.position.y += 300 * timeBase * Math.sin (Airship.rotation.x);
     
     camera_2.position.set ( Airship.position.x, Airship.position.y, Airship.position.z - 100);
