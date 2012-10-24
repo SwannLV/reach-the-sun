@@ -2822,3 +2822,252 @@
 {"ts":1351022916609,"patch":[[{"diffs":[[0,"z -="],[-1," (SPEED -"],[0," SLO"]],"start1":7616,"start2":7616,"length1":17,"length2":8}]],"length":9032,"saved":false}
 {"ts":1351022918719,"patch":[[{"diffs":[[0,"LOWSPEED"],[-1,")"],[0," * delta"]],"start1":7622,"start2":7622,"length1":17,"length2":16}]],"length":9031,"saved":false}
 {"ts":1351022969419,"patch":[[{"diffs":[[0,"on.z > -"],[-1,"5"],[1,"3"],[0,"00) {\n  "]],"start1":7573,"start2":7573,"length1":17,"length2":17}]],"length":9031,"saved":false}
+{"contributors":[],"silentsave":true,"ts":1351098643006,"patch":[[{"diffs":[[0,"Target } );\n"],[1,"        sun = new THREE.Mesh( new THREE.SphereGeometry( 600, 200, 30, 30 ), sun_material );\n"],[0,"        Airs"]],"start1":1475,"start2":1475,"length1":24,"length2":116}]],"length":9123,"saved":false}
+{"ts":1351098645349,"patch":[[{"diffs":[[0,"rial );\n        "],[1,"//"],[0,"Airship = new TH"]],"start1":1571,"start2":1571,"length1":32,"length2":34}]],"length":9125,"saved":false}
+{"ts":1351098649476,"patch":[[{"diffs":[[0,"Geometry) {\n"],[1,"        "],[0,"        /*Ai"]],"start1":852,"start2":852,"length1":24,"length2":32},{"diffs":[[0,"terial(\n"],[1,"        "],[0,"        "]],"start1":913,"start2":913,"length1":16,"length2":24},{"diffs":[[0,"        "],[1,"        "],[0,".4, // l"]],"start1":1081,"start2":1081,"length1":16,"length2":24},{"diffs":[[0,"        "],[1,"    "],[1,"    "],[0,".6 // hi"]],"start1":1121,"start2":1121,"length1":16,"length2":24},{"diffs":[[0,"restitution\n"],[1,"        "],[0,"        );\n "]],"start1":1148,"start2":1148,"length1":24,"length2":32},{"diffs":[[0,"         );\n"],[1,"        "],[0,"        Airs"]],"start1":1167,"start2":1167,"length1":24,"length2":32},{"diffs":[[0,"        "],[1,"  "],[1,"      "],[0,"\tnew THR"]],"start1":1226,"start2":1226,"length1":16,"length2":24},{"diffs":[[0,", 50 ),\n"],[1,"        "],[0,"    \t\tcu"]],"start1":1273,"start2":1273,"length1":16,"length2":24},{"diffs":[[0,"    "],[-1,"0\n"],[1,"        0\n        "],[0,"    "]],"start1":1313,"start2":1313,"length1":10,"length2":26}]],"length":9205,"saved":false}
+{"ts":1351098652201,"patch":[[{"diffs":[[0,"();\n    "],[1,"//"],[0,"loader.l"]],"start1":806,"start2":806,"length1":16,"length2":18}]],"length":9207,"saved":false}
+{"ts":1351098654301,"patch":[[{"diffs":[[0,"ip () {\n    "],[1,"//"],[0,"var loader ="]],"start1":761,"start2":761,"length1":24,"length2":26}]],"length":9209,"saved":false}
+{"ts":1351098662648,"patch":[[{"diffs":[[0,"        "],[-1,"sun"],[1,"Airship"],[0," = new T"]],"start1":1571,"start2":1571,"length1":19,"length2":23}]],"length":9213,"saved":false}
+{"ts":1351098678206,"patch":[[{"diffs":[[0," 200, 30, 30 ), "],[-1,"sun_m"],[1,"mirrorM"],[0,"aterial );\n     "]],"start1":1635,"start2":1635,"length1":37,"length2":39}]],"length":9215,"saved":false}
+{"ts":1351098773915,"patch":[[{"diffs":[[0,"ip);\n   "],[1,"//"],[0," });\n}\n\n"]],"start1":1885,"start2":1885,"length1":16,"length2":18}]],"length":9217,"saved":false}
+{"ts":1351098804555,"patch":[[{"diffs":[[0,"hereGeometry( 60"],[-1,"0"],[0,", 200, 30, 30 ),"]],"start1":1617,"start2":1617,"length1":33,"length2":32}]],"length":9216,"saved":false}
+{"ts":1351098806652,"patch":[[{"diffs":[[0,"etry( 60, 20"],[-1,"0"],[0,", 30, 30 ), "]],"start1":1625,"start2":1625,"length1":25,"length2":24}]],"length":9215,"saved":false}
+{"ts":1351098872543,"patch":[[{"diffs":[[0,"lane();\n    "],[1,"//"],[0,"createAirshi"]],"start1":6290,"start2":6290,"length1":24,"length2":26}]],"length":9217,"saved":false}
+{"ts":1351098900410,"patch":[[{"diffs":[[0,"ition );"],[1,"*/"],[0," // TO D"]],"start1":9050,"start2":9050,"length1":16,"length2":18}]],"length":9219,"saved":false}
+{"ts":1351098903309,"patch":[[{"diffs":[[0,"k) {\n   "],[1,"/*"],[0," if (Air"]],"start1":8869,"start2":8869,"length1":16,"length2":18}]],"length":9221,"saved":false}
+{"ts":1351098925813,"patch":[[{"diffs":[[0,"k) {\n   "],[-1,"/*"],[0," if (Air"]],"start1":8869,"start2":8869,"length1":18,"length2":16}]],"length":9219,"saved":false}
+{"ts":1351098927315,"patch":[[{"diffs":[[0,"ition );"],[-1,"*/"],[0," // TO D"]],"start1":9050,"start2":9050,"length1":18,"length2":16}]],"length":9217,"saved":false}
+{"ts":1351098931081,"patch":[[{"diffs":[[0,"();\n    "],[-1,"//"],[0,"createAi"]],"start1":6294,"start2":6294,"length1":18,"length2":16}]],"length":9215,"saved":false}
+{"ts":1351098933724,"patch":[[{"diffs":[[0,", 0.5);\n    "],[1,"//"],[0,"createStars("]],"start1":6235,"start2":6235,"length1":24,"length2":26}]],"length":9217,"saved":false}
+{"ts":1351098935910,"patch":[[{"diffs":[[0,"OBJECTS\n    "],[1,"//"],[0,"createStars("]],"start1":6197,"start2":6197,"length1":24,"length2":26}]],"length":9219,"saved":false}
+{"ts":1351098982781,"patch":[[{"diffs":[[0,"imate );\n   "],[1,"//"],[0," animateAirs"]],"start1":8725,"start2":8725,"length1":24,"length2":26}]],"length":9221,"saved":false}
+{"ts":1351099004550,"patch":[[{"diffs":[[0,"OBJECTS\n    "],[-1,"//"],[0,"createStars("]],"start1":6197,"start2":6197,"length1":26,"length2":24},{"diffs":[[0,"e );\n   "],[-1,"//"],[0," animate"]],"start1":8727,"start2":8727,"length1":18,"length2":16}]],"length":9217,"saved":false}
+{"ts":1351099006017,"patch":[[{"diffs":[[0,"5);\n    "],[-1,"//"],[0,"createSt"]],"start1":6239,"start2":6239,"length1":18,"length2":16}]],"length":9215,"saved":false}
+{"ts":1351099077667,"patch":[[{"diffs":[[0,"Clock);\n    "],[1,"//"],[0,"animateGrid("]],"start1":8754,"start2":8754,"length1":24,"length2":26}]],"length":9217,"saved":false}
+{"ts":1351099148822,"patch":[[{"diffs":[[0,"ition );"],[1,"*/"],[0," // TO D"]],"start1":9050,"start2":9050,"length1":16,"length2":18}]],"length":9219,"saved":false}
+{"ts":1351099152180,"patch":[[{"diffs":[[0,"lock) {\n    "],[1,"/*"],[0,"if (Airship)"]],"start1":8866,"start2":8866,"length1":24,"length2":26}]],"length":9221,"saved":false}
+{"ts":1351099192280,"patch":[[{"diffs":[[0," );\n    "],[1,"//"],[0,"animateA"]],"start1":8726,"start2":8726,"length1":16,"length2":18}]],"length":9223,"saved":false}
+{"ts":1351099230315,"patch":[[{"diffs":[[0,"OBJECTS\n    "],[1,"//"],[0,"createStars("]],"start1":6197,"start2":6197,"length1":24,"length2":26}]],"length":9225,"saved":false}
+{"ts":1351099234057,"patch":[[{"diffs":[[0,", 0.5);\n    "],[1,"//"],[0,"createStars("]],"start1":6237,"start2":6237,"length1":24,"length2":26}]],"length":9227,"saved":false}
+{"ts":1351099240029,"patch":[[{"diffs":[[0,"lane();\n    "],[1,"//"],[0,"createAirshi"]],"start1":6294,"start2":6294,"length1":24,"length2":26}]],"length":9229,"saved":false}
+{"ts":1351099243644,"patch":[[{"diffs":[[0,"eSun();\n    "],[1,"//"],[0,"createGrid()"]],"start1":6334,"start2":6334,"length1":24,"length2":26}]],"length":9231,"saved":false}
+{"ts":1351099263354,"patch":[[{"diffs":[[0,"eSun();\n    "],[-1,"//"],[0,"createGrid()"]],"start1":6334,"start2":6334,"length1":26,"length2":24}]],"length":9229,"saved":false}
+{"ts":1351099279528,"patch":[[{"diffs":[[0,", 0.5);\n    "],[-1,"//"],[0,"createStars("]],"start1":6237,"start2":6237,"length1":26,"length2":24}]],"length":9227,"saved":false}
+{"ts":1351099307507,"patch":[[{"diffs":[[0,"Clock);\n    "],[-1,"//"],[0,"animateGrid("]],"start1":8760,"start2":8760,"length1":26,"length2":24}]],"length":9225,"saved":false}
+{"ts":1351099332444,"patch":[[{"diffs":[[0," );\n    "],[-1,"//"],[0,"animateA"]],"start1":8730,"start2":8730,"length1":18,"length2":16}]],"length":9223,"saved":false}
+{"ts":1351099349902,"patch":[[{"diffs":[[0,"OBJECTS\n    "],[-1,"/"],[0,"/createStars"]],"start1":6197,"start2":6197,"length1":25,"length2":24},{"diffs":[[0,"();\n    "],[-1,"//"],[0,"createAi"]],"start1":6295,"start2":6295,"length1":18,"length2":16},{"diffs":[[0,"mate );\n    "],[1,"//"],[0,"animateAirsh"]],"start1":8723,"start2":8723,"length1":24,"length2":26},{"diffs":[[0,"k);\n    "],[1,"//"],[0,"animateG"]],"start1":8761,"start2":8761,"length1":16,"length2":18}]],"length":9224,"saved":false}
+{"ts":1351099351656,"patch":[[{"diffs":[[0,") {\n    "],[-1,"//"],[0,"var load"]],"start1":765,"start2":765,"length1":18,"length2":16},{"diffs":[[0,"();\n    "],[-1,"//"],[0,"loader.l"]],"start1":806,"start2":806,"length1":18,"length2":16},{"diffs":[[0,"        "],[-1,"       "],[-1," "],[0,"/*Airshi"]],"start1":864,"start2":864,"length1":24,"length2":16},{"diffs":[[0,"terial(\n"],[-1,"        "],[0,"        "]],"start1":905,"start2":905,"length1":24,"length2":16},{"diffs":[[0,"        "],[-1," "],[-1,"       "],[0,".4, // l"]],"start1":1065,"start2":1065,"length1":24,"length2":16},{"diffs":[[0,"        "],[-1,"    "],[-1,"    "],[0,".6 // hi"]],"start1":1097,"start2":1097,"length1":24,"length2":16},{"diffs":[[0,"    "],[-1,"      "],[-1,"  "],[0,");\n"],[-1,"        "],[0,"    "]],"start1":1132,"start2":1132,"length1":27,"length2":11},{"diffs":[[0,"        "],[-1," "],[-1,"       "],[0,"\tnew THR"]],"start1":1178,"start2":1178,"length1":24,"length2":16},{"diffs":[[0,", 50 ),\n"],[-1,"        "],[0,"    \t\tcu"]],"start1":1217,"start2":1217,"length1":24,"length2":16},{"diffs":[[0,"    "],[-1,"        0\n        "],[1,"0\n"],[0,"    "]],"start1":1249,"start2":1249,"length1":26,"length2":10},{"diffs":[[0,"ip ="],[-1," new THREE.Mesh( new THREE.SphereGeometry( 60, 20, 30, 30 ), mirrorMaterial );\n        //Airship ="],[0," new"]],"start1":1500,"start2":1500,"length1":106,"length2":8},{"diffs":[[0,"rship);\n"],[1,""],[0,"   "],[-1,"//"],[0," });\n}\n\n"]],"start1":1698,"start2":1698,"length1":21,"length2":19},{"diffs":[[0,"CTS\n    "],[-1,"/"],[0,"createSt"]],"start1":6017,"start2":6017,"length1":17,"length2":16},{"diffs":[[0,"mate );\n    "],[-1,"//"],[0,"animateAirsh"]],"start1":8538,"start2":8538,"length1":26,"length2":24},{"diffs":[[0,"k);\n    "],[-1,"//"],[0,"animateG"]],"start1":8574,"start2":8574,"length1":18,"length2":16},{"diffs":[[0,") {\n    "],[-1,"/*"],[0,"if (Airs"]],"start1":8684,"start2":8684,"length1":18,"length2":16},{"diffs":[[0,"ition );"],[-1,"*/"],[0," // TO D"]],"start1":8864,"start2":8864,"length1":18,"length2":16}]],"length":9031,"saved":false}
+{"ts":1351099460618,"patch":[[{"diffs":[[0,"ion.x -= 5;\n"],[1,"        A\n"],[0,"    }\n    el"]],"start1":7229,"start2":7229,"length1":24,"length2":34}]],"length":9041,"saved":false}
+{"ts":1351099461324,"patch":[[{"diffs":[[0,"       A"],[1,"ir"],[0,"\n    }\n "]],"start1":7242,"start2":7242,"length1":16,"length2":18}]],"length":9043,"saved":false}
+{"ts":1351099462143,"patch":[[{"diffs":[[0,"     Air"],[1,"s"],[0,"\n    }\n "]],"start1":7244,"start2":7244,"length1":16,"length2":17}]],"length":9044,"saved":false}
+{"ts":1351099464739,"patch":[[{"diffs":[[0,"    Airs"],[1,"hip."],[0,"\n    }\n "]],"start1":7245,"start2":7245,"length1":16,"length2":20}]],"length":9048,"saved":false}
+{"ts":1351099466365,"patch":[[{"diffs":[[0,"Airship."],[1,"ro"],[0,"\n    }\n "]],"start1":7249,"start2":7249,"length1":16,"length2":18}]],"length":9050,"saved":false}
+{"ts":1351099468043,"patch":[[{"diffs":[[0,"rship.ro"],[1,"tation."],[0,"\n    }\n "]],"start1":7251,"start2":7251,"length1":16,"length2":23}]],"length":9057,"saved":false}
+{"ts":1351099475161,"patch":[[{"diffs":[[0,"otation."],[1,"z"],[0,"\n    }\n "]],"start1":7258,"start2":7258,"length1":16,"length2":17}]],"length":9058,"saved":false}
+{"ts":1351099476267,"patch":[[{"diffs":[[0,"tation.z"],[1," ="],[0,"\n    }\n "]],"start1":7259,"start2":7259,"length1":16,"length2":18}]],"length":9060,"saved":false}
+{"ts":1351099477474,"patch":[[{"diffs":[[0,"tion.z ="],[1," "],[0,"\n    }\n "]],"start1":7261,"start2":7261,"length1":16,"length2":17}]],"length":9061,"saved":false}
+{"ts":1351099478002,"patch":[[{"diffs":[[0,"ion.z = "],[1,"Ma"],[0,"\n    }\n "]],"start1":7262,"start2":7262,"length1":16,"length2":18}]],"length":9063,"saved":false}
+{"ts":1351099479391,"patch":[[{"diffs":[[0,"n.z = Ma"],[1,"th"],[0,"\n    }\n "]],"start1":7264,"start2":7264,"length1":16,"length2":18}]],"length":9065,"saved":false}
+{"ts":1351099480826,"patch":[[{"diffs":[[0,"z = Math"],[1,"."],[0,"\n    }\n "]],"start1":7266,"start2":7266,"length1":16,"length2":17}]],"length":9066,"saved":false}
+{"ts":1351099481769,"patch":[[{"diffs":[[0," = Math."],[1,"PI"],[0,"\n    }\n "]],"start1":7267,"start2":7267,"length1":16,"length2":18}]],"length":9068,"saved":false}
+{"ts":1351099484207,"patch":[[{"diffs":[[0," Math.PI"],[1," / 2"],[0,"\n    }\n "]],"start1":7269,"start2":7269,"length1":16,"length2":20}]],"length":9072,"saved":false}
+{"ts":1351099485084,"patch":[[{"diffs":[[0,"h.PI / 2"],[1,";"],[0,"\n    }\n "]],"start1":7273,"start2":7273,"length1":16,"length2":17}]],"length":9073,"saved":false}
+{"ts":1351099515377,"patch":[[{"diffs":[[0,"= Math.PI / "],[-1,"2"],[1,"4"],[0,";\n    }\n    "]],"start1":7268,"start2":7268,"length1":25,"length2":25}]],"length":9073,"saved":false}
+{"ts":1351099551213,"patch":[[{"diffs":[[0,"ion.x -= 5;\n"],[1,"        if\n"],[0,"        Airs"]],"start1":7229,"start2":7229,"length1":24,"length2":35}]],"length":9084,"saved":false}
+{"ts":1351099552704,"patch":[[{"diffs":[[0,"      if"],[1," (Airship.rotation.z"],[0,"\n       "]],"start1":7243,"start2":7243,"length1":16,"length2":36}]],"length":9104,"saved":false}
+{"ts":1351099555363,"patch":[[{"diffs":[[0,"otation."],[-1,"z"],[0,"\n       "]],"start1":7262,"start2":7262,"length1":17,"length2":16}]],"length":9103,"saved":false}
+{"ts":1351099557394,"patch":[[{"diffs":[[0,"otation."],[1,"z"],[0,"\n       "]],"start1":7262,"start2":7262,"length1":16,"length2":17}]],"length":9104,"saved":false}
+{"ts":1351099558824,"patch":[[{"diffs":[[0,"tation.z"],[1," <"],[0,"\n       "]],"start1":7263,"start2":7263,"length1":16,"length2":18}]],"length":9106,"saved":false}
+{"ts":1351099560268,"patch":[[{"diffs":[[0,"tion.z <"],[1," "],[0,"\n       "]],"start1":7265,"start2":7265,"length1":16,"length2":17}]],"length":9107,"saved":false}
+{"ts":1351099566377,"patch":[[{"diffs":[[0,"ion.z < "],[1,"Math.PI / 4"],[0,"\n       "]],"start1":7266,"start2":7266,"length1":16,"length2":27}]],"length":9118,"saved":false}
+{"ts":1351099568127,"patch":[[{"diffs":[[0,"h.PI / 4"],[1,")"],[0,"\n       "]],"start1":7277,"start2":7277,"length1":16,"length2":17}]],"length":9119,"saved":false}
+{"ts":1351099569810,"patch":[[{"diffs":[[0,".PI / 4)"],[1," {"],[0,"\n       "]],"start1":7278,"start2":7278,"length1":16,"length2":18}]],"length":9121,"saved":false}
+{"ts":1351099573333,"patch":[[{"diffs":[[0," / 4) {\n        "],[1,"    "],[0,"Airship.rotation"]],"start1":7281,"start2":7281,"length1":32,"length2":36}]],"length":9125,"saved":false}
+{"ts":1351099575726,"patch":[[{"diffs":[[0,"PI / 4;\n"],[1,"        }\n"],[0,"    }\n  "]],"start1":7327,"start2":7327,"length1":16,"length2":26}]],"length":9135,"saved":false}
+{"ts":1351099586517,"patch":[[{"diffs":[[0,"ation.z "],[1,"+"],[0,"= Math.P"]],"start1":7312,"start2":7312,"length1":16,"length2":17}]],"length":9136,"saved":false}
+{"ts":1351099591470,"patch":[[{"diffs":[[0,"on.z += "],[-1,"Math.PI / 4"],[1,"deltaClock"],[0,";\n      "]],"start1":7315,"start2":7315,"length1":27,"length2":26}]],"length":9135,"saved":false}
+{"ts":1351099595315,"patch":[[{"diffs":[[0,".z += deltaClock"],[1," *"],[0,";\n        }\n    "]],"start1":7317,"start2":7317,"length1":32,"length2":34}]],"length":9137,"saved":false}
+{"ts":1351099598607,"patch":[[{"diffs":[[0,"aClock *"],[1," 0."],[0,";\n      "]],"start1":7327,"start2":7327,"length1":16,"length2":19}]],"length":9140,"saved":false}
+{"ts":1351099601076,"patch":[[{"diffs":[[0,"ock * 0."],[1,"1"],[0,";\n      "]],"start1":7330,"start2":7330,"length1":16,"length2":17}]],"length":9141,"saved":false}
+{"ts":1351099631646,"patch":[[{"diffs":[[0,"ock * 0."],[-1,"1"],[1,"5"],[0,";\n      "]],"start1":7330,"start2":7330,"length1":17,"length2":17}]],"length":9141,"saved":false}
+{"ts":1351099661150,"patch":[[{"diffs":[[0,"lock"],[-1," * 0.5"],[0,";\n  "]],"start1":7329,"start2":7329,"length1":14,"length2":8}]],"length":9135,"saved":false}
+{"ts":1351099699883,"patch":[[{"diffs":[[0,"ion.x += 5;\n"],[1,"         if (Airship.rotation.z < Math.PI / 4) {\n            Airship.rotation.z += deltaClock;\n        }\n"],[0,"    }\n    if"]],"start1":7415,"start2":7415,"length1":24,"length2":129}]],"length":9240,"saved":false}
+{"ts":1351099703339,"patch":[[{"diffs":[[0,"ship.rotation.z "],[-1,"+"],[1,"-"],[0,"= deltaClock;\n  "]],"start1":7491,"start2":7491,"length1":33,"length2":33}]],"length":9240,"saved":false}
+{"ts":1351099713743,"patch":[[{"diffs":[[0,"ship.rotation.z "],[-1,"<"],[1,">"],[0," Math.PI / 4) {\n"]],"start1":7443,"start2":7443,"length1":33,"length2":33}]],"length":9240,"saved":false}
+{"ts":1351099715383,"patch":[[{"diffs":[[0,"tion.z >"],[1," -"],[0," Math.PI"]],"start1":7452,"start2":7452,"length1":16,"length2":18}]],"length":9242,"saved":false}
+{"ts":1351099741282,"patch":[[{"diffs":[[0,"ion.z -="],[1," 2 *"],[0," deltaCl"]],"start1":7503,"start2":7503,"length1":16,"length2":20}]],"length":9246,"saved":false}
+{"ts":1351099745347,"patch":[[{"diffs":[[0,"ion.z +="],[1," 2 *"],[0," deltaCl"]],"start1":7314,"start2":7314,"length1":16,"length2":20}]],"length":9250,"saved":false}
+{"ts":1351099771306,"patch":[[{"diffs":[[0,"sition.x -= "],[-1,"5"],[1,"10"],[0,";\n        if"]],"start1":7226,"start2":7226,"length1":25,"length2":26}]],"length":9251,"saved":false}
+{"ts":1351099774404,"patch":[[{"diffs":[[0,"sition.x += "],[-1,"5"],[1,"10"],[0,";\n         i"]],"start1":7417,"start2":7417,"length1":25,"length2":26}]],"length":9252,"saved":false}
+{"ts":1351099818762,"patch":[[{"diffs":[[0,"on.z -= "],[-1,"2"],[1,"5"],[0," * delta"]],"start1":7510,"start2":7510,"length1":17,"length2":17}]],"length":9252,"saved":false}
+{"ts":1351099821398,"patch":[[{"diffs":[[0,"on.z += "],[-1,"2"],[1,"5"],[0," * delta"]],"start1":7316,"start2":7316,"length1":17,"length2":17}]],"length":9252,"saved":false}
+{"ts":1351099844688,"patch":[[{"diffs":[[0,"on.z += "],[-1,"5"],[1,"3"],[0," * delta"]],"start1":7316,"start2":7316,"length1":17,"length2":17}]],"length":9252,"saved":false}
+{"ts":1351099847698,"patch":[[{"diffs":[[0,"on.z -= "],[-1,"5"],[1,"3"],[0," * delta"]],"start1":7510,"start2":7510,"length1":17,"length2":17}]],"length":9252,"saved":false}
+{"ts":1351099938812,"patch":[[{"diffs":[[0,"    }\n    }\n"],[1,"    Airship.position.x +=\n"],[0,"    if( keyb"]],"start1":7538,"start2":7538,"length1":24,"length2":50}]],"length":9278,"saved":false}
+{"ts":1351099940180,"patch":[[{"diffs":[[0,"ion.x +="],[1," "],[0,"\n    if("]],"start1":7567,"start2":7567,"length1":16,"length2":17}]],"length":9279,"saved":false}
+{"ts":1351099948368,"patch":[[{"diffs":[[0,"on.x += "],[1,"Airship.rotation.z;"],[0,"\n    if("]],"start1":7568,"start2":7568,"length1":16,"length2":35}]],"length":9298,"saved":false}
+{"ts":1351099954559,"patch":[[{"diffs":[[0,") {\n"],[-1,"        Airship.position.x -= 10;\n"],[0,"    "]],"start1":7204,"start2":7204,"length1":42,"length2":8}]],"length":9264,"saved":false}
+{"ts":1351099958310,"patch":[[{"diffs":[[0,") {\n"],[-1,"        Airship.position.x += 10;\n"],[0,"    "]],"start1":7361,"start2":7361,"length1":42,"length2":8}]],"length":9230,"saved":false}
+{"ts":1351099981795,"patch":[[{"diffs":[[0,"ition.x "],[-1,"+"],[1,"-"],[0,"= Airshi"]],"start1":7497,"start2":7497,"length1":17,"length2":17}]],"length":9230,"saved":false}
+{"ts":1351099985625,"patch":[[{"diffs":[[0,"ion.x -="],[1," 10 *"],[0," Airship"]],"start1":7499,"start2":7499,"length1":16,"length2":21}]],"length":9235,"saved":false}
+{"ts":1351100022378,"patch":[[{"diffs":[[0,"z > - Math.PI / "],[-1,"4"],[1,"2"],[0,") {\n            "]],"start1":7395,"start2":7395,"length1":33,"length2":33}]],"length":9235,"saved":false}
+{"ts":1351100025910,"patch":[[{"diffs":[[0,"th.PI / "],[-1,"4"],[1,"2"],[0,") {\n    "]],"start1":7243,"start2":7243,"length1":17,"length2":17}]],"length":9235,"saved":false}
+{"ts":1351100108468,"patch":[[{"diffs":[[0,"-= 10 * "],[1,"sqrt("],[0,"Airship."]],"start1":7505,"start2":7505,"length1":16,"length2":21}]],"length":9240,"saved":false}
+{"ts":1351100111355,"patch":[[{"diffs":[[0,"tation.z"],[1,")"],[0,";\n    if"]],"start1":7528,"start2":7528,"length1":16,"length2":17}]],"length":9241,"saved":false}
+{"ts":1351100115217,"patch":[[{"diffs":[[0,"x -="],[-1," 10 *"],[0," sqr"]],"start1":7503,"start2":7503,"length1":13,"length2":8}]],"length":9236,"saved":false}
+{"ts":1351100134756,"patch":[[{"diffs":[[0,"on.x -= "],[1,"10"],[0,"sqrt(Air"]],"start1":7500,"start2":7500,"length1":16,"length2":18}]],"length":9238,"saved":false}
+{"ts":1351100137297,"patch":[[{"diffs":[[0,"= 10"],[-1,"sqrt("],[1," * sq"],[0,"Airs"]],"start1":7506,"start2":7506,"length1":13,"length2":13},{"diffs":[[0,"tation.z"],[-1,")"],[0,";\n    if"]],"start1":7525,"start2":7525,"length1":17,"length2":16}]],"length":9237,"saved":false}
+{"ts":1351100139364,"patch":[[{"diffs":[[0,"n.z < Math.PI / "],[-1,"2"],[1,"4"],[0,") {\n            "]],"start1":7235,"start2":7235,"length1":33,"length2":33},{"diffs":[[0,"th.PI / "],[-1,"2"],[0,") {\n    "]],"start1":7403,"start2":7403,"length1":17,"length2":16},{"diffs":[[0,"-= 10 * "],[-1,"sq"],[0,"Airship."]],"start1":7504,"start2":7504,"length1":18,"length2":16}]],"length":9234,"saved":false}
+{"ts":1351100140757,"patch":[[{"diffs":[[0,"th.PI / "],[-1,"4"],[1,"2"],[0,") {\n    "]],"start1":7243,"start2":7243,"length1":17,"length2":17},{"diffs":[[0,"th.PI / "],[1,"2"],[0,") {\n    "]],"start1":7403,"start2":7403,"length1":16,"length2":17}]],"length":9235,"saved":false}
+{"ts":1351100465485,"patch":[[{"diffs":[[0,"n.z < Math.PI / "],[1,"2."],[0,"2) {\n           "]],"start1":7235,"start2":7235,"length1":32,"length2":34}]],"length":9237,"saved":false}
+{"ts":1351100469639,"patch":[[{"diffs":[[0,"th.PI / "],[1,"2."],[0,"2) {\n   "]],"start1":7405,"start2":7405,"length1":16,"length2":18}]],"length":9239,"saved":false}
+{"ts":1351100494569,"patch":[[{"diffs":[[0,"> - Math.PI / 2."],[-1,"2"],[0,") {\n            "]],"start1":7399,"start2":7399,"length1":33,"length2":32}]],"length":9238,"saved":false}
+{"ts":1351100496580,"patch":[[{"diffs":[[0,"h.PI / 2"],[-1,"."],[0,") {\n    "]],"start1":7406,"start2":7406,"length1":17,"length2":16}]],"length":9237,"saved":false}
+{"ts":1351100497589,"patch":[[{"diffs":[[0,"th.PI / "],[-1,"2"],[1,"3"],[0,") {\n    "]],"start1":7405,"start2":7405,"length1":17,"length2":17}]],"length":9237,"saved":false}
+{"ts":1351100501078,"patch":[[{"diffs":[[0,"I / "],[-1,"2.2"],[1,"3"],[0,") {\n"]],"start1":7247,"start2":7247,"length1":11,"length2":9}]],"length":9235,"saved":false}
+{"ts":1351100548073,"patch":[[{"diffs":[[0,"n.z < Math.PI / "],[-1,"3"],[1,"2.7"],[0,") {\n            "]],"start1":7235,"start2":7235,"length1":33,"length2":35}]],"length":9237,"saved":false}
+{"ts":1351100552627,"patch":[[{"diffs":[[0,"th.PI / "],[-1,"3"],[1,"2.7"],[0,") {\n    "]],"start1":7405,"start2":7405,"length1":17,"length2":19}]],"length":9239,"saved":false}
+{"ts":1351100601404,"patch":[[{"diffs":[[0,"tation.z"],[1," * "],[0,";\n    if"]],"start1":7527,"start2":7527,"length1":16,"length2":19}]],"length":9242,"saved":false}
+{"ts":1351100606412,"patch":[[{"diffs":[[0,"ion.z * "],[1,"Airship.rotation.z"],[0,";\n    if"]],"start1":7530,"start2":7530,"length1":16,"length2":34}]],"length":9260,"saved":false}
+{"ts":1351100636436,"patch":[[{"diffs":[[0,"ion.z * "],[1,"abs("],[0,"Airship."]],"start1":7530,"start2":7530,"length1":16,"length2":20}]],"length":9264,"saved":false}
+{"ts":1351100639746,"patch":[[{"diffs":[[0,"tation.z"],[1,")"],[0,";\n    if"]],"start1":7552,"start2":7552,"length1":16,"length2":17}]],"length":9265,"saved":false}
+{"ts":1351100645056,"patch":[[{"diffs":[[0,"x -="],[-1," 10 *"],[0," Air"]],"start1":7507,"start2":7507,"length1":13,"length2":8}]],"length":9260,"saved":false}
+{"ts":1351100648081,"patch":[[{"diffs":[[0,"ion.z * "],[1,"Math."],[0,"abs(Airs"]],"start1":7525,"start2":7525,"length1":16,"length2":21}]],"length":9265,"saved":false}
+{"ts":1351100672013,"patch":[[{"diffs":[[0,"ion.x -="],[1," 10 *"],[0," Airship"]],"start1":7503,"start2":7503,"length1":16,"length2":21}]],"length":9270,"saved":false}
+{"ts":1351100725115,"patch":[[{"diffs":[[0,"on.x -= "],[-1,"1"],[1,"2"],[0,"0 * Airs"]],"start1":7504,"start2":7504,"length1":17,"length2":17}]],"length":9270,"saved":false}
+{"ts":1351101023972,"patch":[[{"diffs":[[0,"on.z"],[-1," * Math.abs(Airship.rotation.z)"],[0,";\n  "]],"start1":7531,"start2":7531,"length1":39,"length2":8}]],"length":9239,"saved":false}
+{"ts":1351101027138,"patch":[[{"diffs":[[0,"on.x -= "],[-1,"2"],[1,"1"],[0,"0 * Airs"]],"start1":7504,"start2":7504,"length1":17,"length2":17}]],"length":9239,"saved":false}
+{"ts":1351101075096,"patch":[[{"diffs":[[0,"lock;\n    }\n"],[1,"     Airship.position.x -= 10 * Airship.rotation.z;\n"],[0,"}\n\n// ANIMAT"]],"start1":7956,"start2":7956,"length1":24,"length2":76}]],"length":9291,"saved":false}
+{"ts":1351101080400,"patch":[[{"diffs":[[0,"irship.position."],[-1,"x"],[1,"z"],[0," -= 10 * Airship"]],"start1":7974,"start2":7974,"length1":33,"length2":33}]],"length":9291,"saved":false}
+{"ts":1351101089311,"patch":[[{"diffs":[[0,"otation."],[-1,"z"],[1,"x"],[0,";\n}\n\n// "]],"start1":8009,"start2":8009,"length1":17,"length2":17}]],"length":9291,"saved":false}
+{"ts":1351101100534,"patch":[[{"diffs":[[0,"  }\n"],[-1,"     Airship.position.z -= 10 * Airship.rotation.x;\n"],[0,"}\n\n/"]],"start1":7964,"start2":7964,"length1":60,"length2":8}]],"length":9239,"saved":false}
+{"ts":1351101105177,"patch":[[{"diffs":[[0,"-= 5;\n    }\n"],[1,"    //\n"],[0,"    if( keyb"]],"start1":7706,"start2":7706,"length1":24,"length2":31}]],"length":9246,"saved":false}
+{"ts":1351101107301,"patch":[[{"diffs":[[0,"}\n    //"],[1," SLO"],[0,"\n    if("]],"start1":7716,"start2":7716,"length1":16,"length2":20}]],"length":9250,"saved":false}
+{"ts":1351101108205,"patch":[[{"diffs":[[0,"  // SLO"],[1,"W"],[0,"\n    if("]],"start1":7720,"start2":7720,"length1":16,"length2":17}]],"length":9251,"saved":false}
+{"ts":1351101115357,"patch":[[{"diffs":[[0," // SLOW"],[1," DOWN"],[0,"\n    if("]],"start1":7721,"start2":7721,"length1":16,"length2":21}]],"length":9256,"saved":false}
+{"ts":1351101120350,"patch":[[{"diffs":[[0,"tion.z;\n"],[1,"    //\n"],[0,"    if( "]],"start1":7529,"start2":7529,"length1":16,"length2":23}]],"length":9263,"saved":false}
+{"ts":1351101122465,"patch":[[{"diffs":[[0,";\n    //"],[1," "],[0,"\n    if("]],"start1":7535,"start2":7535,"length1":16,"length2":17}]],"length":9264,"saved":false}
+{"ts":1351101124729,"patch":[[{"diffs":[[0,"\n    // "],[1,"UP DOWN"],[0,"\n    if("]],"start1":7536,"start2":7536,"length1":16,"length2":23}]],"length":9271,"saved":false}
+{"ts":1351101128371,"patch":[[{"diffs":[[0,"   // UP"],[1," &"],[0," DOWN\n  "]],"start1":7538,"start2":7538,"length1":16,"length2":18}]],"length":9273,"saved":false}
+{"ts":1351101131312,"patch":[[{"diffs":[[0,")\n{\n    "],[-1," "],[0,"if( keyb"]],"start1":7166,"start2":7166,"length1":17,"length2":16}]],"length":9272,"saved":false}
+{"ts":1351101132365,"patch":[[{"diffs":[[0,"ltaClock)\n{\n"],[1,"    \n"],[0,"    if( keyb"]],"start1":7158,"start2":7158,"length1":24,"length2":29}]],"length":9277,"saved":false}
+{"ts":1351101135400,"patch":[[{"diffs":[[0,"lock)\n{\n    "],[1,"// LEFT "],[0,"\n    if( key"]],"start1":7162,"start2":7162,"length1":24,"length2":32}]],"length":9285,"saved":false}
+{"ts":1351101136474,"patch":[[{"diffs":[[0,"// LEFT "],[1,"& RI"],[0,"\n    if("]],"start1":7174,"start2":7174,"length1":16,"length2":20}]],"length":9289,"saved":false}
+{"ts":1351101137850,"patch":[[{"diffs":[[0,"EFT & RI"],[1,"GHT"],[0,"\n    if("]],"start1":7178,"start2":7178,"length1":16,"length2":19}]],"length":9292,"saved":false}
+{"ts":1351101142228,"patch":[[{"diffs":[[0,"-= 5;\n    }\n"],[1,"    Airship.position.z -= 10 * Airship.rotation.x;\n"],[0,"    // SLOW "]],"start1":7742,"start2":7742,"length1":24,"length2":75}]],"length":9343,"saved":false}
+{"ts":1351101156116,"patch":[[{"diffs":[[0,"d(\"up\") ) {\n"],[1,"        if \n"],[0,"        Airs"]],"start1":7596,"start2":7596,"length1":24,"length2":36}]],"length":9355,"saved":false}
+{"ts":1351101157196,"patch":[[{"diffs":[[0,"     if "],[1,"(A"],[0,"\n       "]],"start1":7611,"start2":7611,"length1":16,"length2":18}]],"length":9357,"saved":false}
+{"ts":1351101158497,"patch":[[{"diffs":[[0,"   if (A"],[1,"irs"],[0,"\n       "]],"start1":7613,"start2":7613,"length1":16,"length2":19}]],"length":9360,"saved":false}
+{"ts":1351101162079,"patch":[[{"diffs":[[0,"if (Airs"],[1,"hip."],[0,"\n       "]],"start1":7616,"start2":7616,"length1":16,"length2":20}]],"length":9364,"saved":false}
+{"ts":1351101163949,"patch":[[{"diffs":[[0,"Airship."],[1,"rota"],[0,"\n       "]],"start1":7620,"start2":7620,"length1":16,"length2":20}]],"length":9368,"saved":false}
+{"ts":1351101165316,"patch":[[{"diffs":[[0,"hip.rota"],[1,"tio"],[0,"\n       "]],"start1":7624,"start2":7624,"length1":16,"length2":19}]],"length":9371,"saved":false}
+{"ts":1351101166207,"patch":[[{"diffs":[[0,".rotatio"],[1,"n"],[0,"\n       "]],"start1":7627,"start2":7627,"length1":16,"length2":17}]],"length":9372,"saved":false}
+{"ts":1351101167863,"patch":[[{"diffs":[[0,"hip.rotation"],[1,".x "],[0,"\n        Air"]],"start1":7624,"start2":7624,"length1":24,"length2":27}]],"length":9375,"saved":false}
+{"ts":1351101169198,"patch":[[{"diffs":[[0,"ation.x "],[1,"< "],[0,"\n       "]],"start1":7631,"start2":7631,"length1":16,"length2":18}]],"length":9377,"saved":false}
+{"ts":1351101173096,"patch":[[{"diffs":[[0,"ion.x < "],[1,"Math.PI"],[0,"\n       "]],"start1":7633,"start2":7633,"length1":16,"length2":23}]],"length":9384,"saved":false}
+{"ts":1351101175984,"patch":[[{"diffs":[[0," Math.PI"],[1," / "],[0,"\n       "]],"start1":7640,"start2":7640,"length1":16,"length2":19}]],"length":9387,"saved":false}
+{"ts":1351101177075,"patch":[[{"diffs":[[0,"th.PI / "],[1,"4)"],[0,"\n       "]],"start1":7643,"start2":7643,"length1":16,"length2":18}]],"length":9389,"saved":false}
+{"ts":1351101179839,"patch":[[{"diffs":[[0,".PI / 4)"],[1," {"],[0,"\n       "]],"start1":7645,"start2":7645,"length1":16,"length2":18}]],"length":9391,"saved":false}
+{"ts":1351101183116,"patch":[[{"diffs":[[0,"h.PI / 4) {\n"],[1,"            \n            \n"],[0,"        Airs"]],"start1":7644,"start2":7644,"length1":24,"length2":50}]],"length":9417,"saved":false}
+{"ts":1351101184194,"patch":[[{"diffs":[[0,"       \n        "],[-1,"    "],[1,"}"],[0,"\n        Airship"]],"start1":7661,"start2":7661,"length1":36,"length2":33}]],"length":9414,"saved":false}
+{"ts":1351101191321,"patch":[[{"diffs":[[0,"            "],[1,"Airship.rotation.z += 3 * deltaClock;"],[0,"\n        }\n "]],"start1":7656,"start2":7656,"length1":24,"length2":61}]],"length":9451,"saved":false}
+{"ts":1351101196402,"patch":[[{"diffs":[[0,"irship.rotation."],[-1,"z"],[0," += 3 * deltaClo"]],"start1":7669,"start2":7669,"length1":33,"length2":32}]],"length":9450,"saved":false}
+{"ts":1351101201676,"patch":[[{"diffs":[[0,"otation."],[1,"y"],[0," += 3 * "]],"start1":7677,"start2":7677,"length1":16,"length2":17}]],"length":9451,"saved":false}
+{"ts":1351101205597,"patch":[[{"diffs":[[0,"  }\n"],[-1,"        Airship.position.y += 5;\n"],[0,"    "]],"start1":7712,"start2":7712,"length1":41,"length2":8}]],"length":9418,"saved":false}
+{"ts":1351101241712,"patch":[[{"diffs":[[0,"otation."],[-1,"y"],[1,"x"],[0," += 3 * "]],"start1":7677,"start2":7677,"length1":17,"length2":17}]],"length":9418,"saved":false}
+{"ts":1351101274360,"patch":[[{"diffs":[[0,"ip.position."],[-1,"z"],[1,"y"],[0," -= 10 * Air"]],"start1":7838,"start2":7838,"length1":25,"length2":25}]],"length":9418,"saved":false}
+{"ts":1351101320259,"patch":[[{"diffs":[[0,"ition.y "],[-1,"-"],[1,"+"],[0,"= 10 * A"]],"start1":7844,"start2":7844,"length1":17,"length2":17}]],"length":9418,"saved":false}
+{"ts":1351101387287,"patch":[[{"diffs":[[0,"    Airship."],[-1,"posi"],[1,"rota"],[0,"tion.y -= 5;"]],"start1":7794,"start2":7794,"length1":28,"length2":28},{"diffs":[[0,"-= 5;\n    }\n    "],[1,"//"],[0,"Airship.position"]],"start1":7817,"start2":7817,"length1":32,"length2":34}]],"length":9420,"saved":false}
+{"ts":1351101402090,"patch":[[{"diffs":[[0,"otation."],[-1,"y"],[1,"x"],[0," -= 5;\n "]],"start1":7807,"start2":7807,"length1":17,"length2":17}]],"length":9420,"saved":false}
+{"ts":1351101463065,"patch":[[{"diffs":[[0,"on.x -= "],[-1,"5"],[1,"3 * deltaClock"],[0,";\n    }\n"]],"start1":7812,"start2":7812,"length1":17,"length2":30}]],"length":9433,"saved":false}
+{"ts":1351101542308,"patch":[[{"diffs":[[0,"\n   "],[-1," // SLOW DOWN\n    if( keyboard.pressed(\"space\") ) {\n        if (camera.position.z > -300) {\n            camera.position.z -= SLOWSPEED * deltaClock;\n        }\n    }\n    else if (camera.position.z < 400) {\n        camera.position.z += SLOWSPEED * deltaClock;\n    }"],[0,"\n}\n\n"]],"start1":7894,"start2":7894,"length1":271,"length2":8}]],"length":9170,"saved":false}
+{"ts":1351101544296,"patch":[[{"diffs":[[0,"tion.x;\n"],[-1,"   \n"],[0,"}\n\n// AN"]],"start1":7887,"start2":7887,"length1":20,"length2":16}]],"length":9166,"saved":false}
+{"ts":1351101549266,"patch":[[{"diffs":[[0,"ltaClock)\n{\n"],[1,"     // SLOW DOWN\n    if( keyboard.pressed(\"space\") ) {\n        if (camera.position.z > -300) {\n            camera.position.z -= SLOWSPEED * deltaClock;\n        }\n    }\n    else if (camera.position.z < 400) {\n        camera.position.z += SLOWSPEED * deltaClock;\n    }\n"],[0,"    // LEFT "]],"start1":7158,"start2":7158,"length1":24,"length2":292}]],"length":9434,"saved":false}
+{"ts":1351101614625,"patch":[[{"diffs":[[0,"ock)\n{\n "],[1,"   var speed = deltaClock;\n"],[0,"    // S"]],"start1":7163,"start2":7163,"length1":16,"length2":43}]],"length":9461,"saved":false}
+{"ts":1351101678413,"patch":[[{"diffs":[[0,"D * deltaClock;\n"],[1,"            sp\n"],[0,"        }\n    }\n"]],"start1":7334,"start2":7334,"length1":32,"length2":47}]],"length":9476,"saved":false}
+{"ts":1351101679417,"patch":[[{"diffs":[[0,"       s"],[-1,"p"],[0,"\n       "]],"start1":7355,"start2":7355,"length1":17,"length2":16}]],"length":9475,"saved":false}
+{"ts":1351101680407,"patch":[[{"diffs":[[0,"        "],[-1,"s"],[0,"\n       "]],"start1":7354,"start2":7354,"length1":17,"length2":16}]],"length":9474,"saved":false}
+{"ts":1351101681514,"patch":[[{"diffs":[[0,"ck;\n"],[-1,"            \n"],[0,"    "]],"start1":7346,"start2":7346,"length1":21,"length2":8}]],"length":9461,"saved":false}
+{"ts":1351101685091,"patch":[[{"diffs":[[0,"z > -300) {\n"],[1,"            speed = \n"],[0,"            "]],"start1":7281,"start2":7281,"length1":24,"length2":45}]],"length":9482,"saved":false}
+{"ts":1351101690255,"patch":[[{"diffs":[[0,"on.z -= "],[-1,"SLOWSPEED * deltaClock"],[1,"speed"],[0,";\n      "]],"start1":7339,"start2":7339,"length1":38,"length2":21}]],"length":9465,"saved":false}
+{"ts":1351101691991,"patch":[[{"diffs":[[0,"speed = "],[1,"SLOWSPEED * deltaClock;"],[0,"\n       "]],"start1":7305,"start2":7305,"length1":16,"length2":39}]],"length":9488,"saved":false}
+{"ts":1351101704335,"patch":[[{"diffs":[[0,"on.z += 3 * "],[-1,"deltaClock"],[1,"speed"],[0,";\n        }\n"]],"start1":7625,"start2":7625,"length1":34,"length2":29}]],"length":9483,"saved":false}
+{"ts":1351101707865,"patch":[[{"diffs":[[0,"on.z -= 3 * "],[-1,"deltaClock"],[1,"speed"],[0,";\n        }\n"]],"start1":7782,"start2":7782,"length1":34,"length2":29}]],"length":9478,"saved":false}
+{"ts":1351101729748,"patch":[[{"diffs":[[0,"lock)\n{\n    var "],[1,"base"],[0,"speed = deltaClo"]],"start1":7162,"start2":7162,"length1":32,"length2":36}]],"length":9482,"saved":false}
+{"ts":1351101731947,"patch":[[{"diffs":[[0,"var base"],[-1,"s"],[1,"S"],[0,"peed = d"]],"start1":7174,"start2":7174,"length1":17,"length2":17}]],"length":9482,"saved":false}
+{"ts":1351101736751,"patch":[[{"diffs":[[0,"        "],[-1,"s"],[1,"baseS"],[0,"peed = S"]],"start1":7301,"start2":7301,"length1":17,"length2":21}]],"length":9486,"saved":false}
+{"ts":1351101739341,"patch":[[{"diffs":[[0,"on.z -= "],[-1,"s"],[1,"baseS"],[0,"peed;\n  "]],"start1":7370,"start2":7370,"length1":17,"length2":21}]],"length":9490,"saved":false}
+{"ts":1351101752742,"patch":[[{"diffs":[[0,"on.z += 3 * "],[-1,"s"],[1,"baseS"],[0,"peed;\n      "]],"start1":7637,"start2":7637,"length1":25,"length2":29}]],"length":9494,"saved":false}
+{"ts":1351101757954,"patch":[[{"diffs":[[0," -= 3 * "],[-1,"s"],[1,"baseS"],[0,"peed;\n  "]],"start1":7802,"start2":7802,"length1":17,"length2":21}]],"length":9498,"saved":false}
+{"ts":1351101760746,"patch":[[{"diffs":[[0,"on.x += 3 * "],[-1,"deltaClock"],[1,"baseSpeed"],[0,";\n        }\n"]],"start1":8014,"start2":8014,"length1":34,"length2":33}]],"length":9497,"saved":false}
+{"ts":1351101763623,"patch":[[{"diffs":[[0," -= 3 * "],[-1,"deltaClock"],[1,"baseSpeed"],[0,";\n    }\n"]],"start1":8147,"start2":8147,"length1":26,"length2":25}]],"length":9496,"saved":false}
+{"ts":1351101815079,"patch":[[{"diffs":[[0,") {\n"],[-1,"            baseSpeed = SLOWSPEED * deltaClock;\n"],[0,"    "]],"start1":7293,"start2":7293,"length1":56,"length2":8}]],"length":9448,"saved":false}
+{"ts":1351101817935,"patch":[[{"diffs":[[0,"space\") ) {\n"],[1,"        baseSpeed = SLOWSPEED * deltaClock;\n"],[0,"        if ("]],"start1":7245,"start2":7245,"length1":24,"length2":68}]],"length":9492,"saved":false}
+{"ts":1351101835493,"patch":[[{"diffs":[[0,"    var "],[-1,"baseSpeed"],[1,"timeBa"],[0," = delta"]],"start1":7170,"start2":7170,"length1":25,"length2":22}]],"length":9489,"saved":false}
+{"ts":1351101836731,"patch":[[{"diffs":[[0,"r timeBa"],[1,"se"],[0," = delta"]],"start1":7176,"start2":7176,"length1":16,"length2":18}]],"length":9491,"saved":false}
+{"ts":1351101846140,"patch":[[{"diffs":[[0,"on.z -= "],[-1,"baseSpeed"],[1,"SLOWSPEED *"],[0,";\n      "]],"start1":7365,"start2":7365,"length1":25,"length2":27}]],"length":9493,"saved":false}
+{"ts":1351101849104,"patch":[[{"diffs":[[0,"WSPEED *"],[1," timeBase"],[0,";\n      "]],"start1":7376,"start2":7376,"length1":16,"length2":25}]],"length":9502,"saved":false}
+{"ts":1351101854655,"patch":[[{"diffs":[[0,"        "],[-1,"baseSpeed"],[1,"timeBase"],[0," = SLOWS"]],"start1":7256,"start2":7256,"length1":25,"length2":24}]],"length":9501,"saved":false}
+{"ts":1351101861742,"patch":[[{"diffs":[[0,"meBase ="],[-1," SLOWSPEED *"],[0," deltaCl"]],"start1":7266,"start2":7266,"length1":28,"length2":16}]],"length":9489,"saved":false}
+{"ts":1351101864098,"patch":[[{"diffs":[[0,"ase = deltaClock"],[1," / 2"],[0,";\n        if (ca"]],"start1":7269,"start2":7269,"length1":32,"length2":36}]],"length":9493,"saved":false}
+{"ts":1351101871246,"patch":[[{"diffs":[[0,"on.z += 3 * "],[-1,"baseSpeed"],[1,"timeBase"],[0,";\n        }\n"]],"start1":7634,"start2":7634,"length1":33,"length2":32}]],"length":9492,"saved":false}
+{"ts":1351101873595,"patch":[[{"diffs":[[0,"on.z -= 3 * "],[-1,"baseSpeed"],[1,"timeBase"],[0,";\n        }\n"]],"start1":7794,"start2":7794,"length1":33,"length2":32}]],"length":9491,"saved":false}
+{"ts":1351101879318,"patch":[[{"diffs":[[0,"on.x += 3 * "],[-1,"baseSpeed"],[1,"timeBase"],[0,";\n        }\n"]],"start1":8009,"start2":8009,"length1":33,"length2":32}]],"length":9490,"saved":false}
+{"ts":1351101881975,"patch":[[{"diffs":[[0,"3 * "],[-1,"baseSpeed"],[1,"timeBase"],[0,";\n  "]],"start1":8145,"start2":8145,"length1":17,"length2":16}]],"length":9489,"saved":false}
+{"ts":1351101933105,"patch":[[{"diffs":[[0,"Clock / "],[-1,"2"],[1,"4"],[0,";\n      "]],"start1":7280,"start2":7280,"length1":17,"length2":17}]],"length":9489,"saved":false}
+{"ts":1351101941288,"patch":[[{"diffs":[[0,"ation.x "],[-1,"+"],[1,"-"],[0,"= 3 * ti"]],"start1":8006,"start2":8006,"length1":17,"length2":17}]],"length":9489,"saved":false}
+{"ts":1351101945070,"patch":[[{"diffs":[[0,"ship.rotation.x "],[-1,"-"],[1,"+"],[0,"= 3 * timeBase;\n"]],"start1":8126,"start2":8126,"length1":33,"length2":33}]],"length":9489,"saved":false}
+{"ts":1351102009513,"patch":[[{"diffs":[[0,"wn\")"],[-1," && Airship.position.y > 25"],[0,") {\n"]],"start1":8080,"start2":8080,"length1":35,"length2":8}]],"length":9462,"saved":false}
+{"ts":1351102013072,"patch":[[{"diffs":[[0,"Base;\n    }\n"],[1,"    if \n"],[0,"    //Airshi"]],"start1":8126,"start2":8126,"length1":24,"length2":32}]],"length":9470,"saved":false}
+{"ts":1351102016611,"patch":[[{"diffs":[[0,"\n    if "],[1,"Airship.position.y > 25"],[0,"\n    //A"]],"start1":8137,"start2":8137,"length1":16,"length2":39}]],"length":9493,"saved":false}
+{"ts":1351102019499,"patch":[[{"diffs":[[0,"  }\n    "],[1,"//"],[0,"if Airsh"]],"start1":8134,"start2":8134,"length1":16,"length2":18}]],"length":9495,"saved":false}
+{"ts":1351102032323,"patch":[[{"diffs":[[0,"(\"down\")"],[1," "],[0,") {\n    "]],"start1":8076,"start2":8076,"length1":16,"length2":17}]],"length":9496,"saved":false}
+{"ts":1351102050099,"patch":[[{"diffs":[[0,"p\") ) {\n        "],[1,"//"],[0,"if (Airship.rota"]],"start1":7927,"start2":7927,"length1":32,"length2":34}]],"length":9498,"saved":false}
+{"ts":1351102052543,"patch":[[{"diffs":[[0,"meBase;\n        "],[1,"//"],[0,"}\n    }\n    else"]],"start1":8025,"start2":8025,"length1":32,"length2":34}]],"length":9500,"saved":false}
+{"ts":1351102093940,"patch":[[{"diffs":[[0,"ion.x +="],[-1," 3 *"],[0," timeBas"]],"start1":8114,"start2":8114,"length1":20,"length2":16}]],"length":9496,"saved":false}
+{"ts":1351102097293,"patch":[[{"diffs":[[0,"ion.x -="],[-1," 3 *"],[0," timeBas"]],"start1":8010,"start2":8010,"length1":20,"length2":16}]],"length":9492,"saved":false}
+{"ts":1351102135501,"patch":[[{"diffs":[[0," 25\n    "],[-1,"//"],[0,"Airship."]],"start1":8164,"start2":8164,"length1":18,"length2":16}]],"length":9490,"saved":false}
+{"ts":1351102174223,"patch":[[{"diffs":[[0,"n.y += 1"],[-1,"0"],[0," * Airsh"]],"start1":8187,"start2":8187,"length1":17,"length2":16}]],"length":9489,"saved":false}
+{"ts":1351102259297,"patch":[[{"diffs":[[0,".y > 25\n"],[1,"    Airship.rotation.x\n"],[0,"    Airs"]],"start1":8160,"start2":8160,"length1":16,"length2":39}]],"length":9512,"saved":false}
+{"ts":1351102261156,"patch":[[{"diffs":[[0,"tation.x"],[1," = "],[0,"\n    Air"]],"start1":8182,"start2":8182,"length1":16,"length2":19}]],"length":9515,"saved":false}
+{"ts":1351102261743,"patch":[[{"diffs":[[0,"ion.x = "],[1,"Airship.rotation.x"],[0,"\n    Air"]],"start1":8185,"start2":8185,"length1":16,"length2":34}]],"length":9533,"saved":false}
+{"ts":1351102264236,"patch":[[{"diffs":[[0,"tation.x"],[1," %"],[0,"\n    Air"]],"start1":8203,"start2":8203,"length1":16,"length2":18}]],"length":9535,"saved":false}
+{"ts":1351102266728,"patch":[[{"diffs":[[0,"tion.x %"],[1," Mat"],[0,"\n    Air"]],"start1":8205,"start2":8205,"length1":16,"length2":20}]],"length":9539,"saved":false}
+{"ts":1351102267694,"patch":[[{"diffs":[[0,".x % Mat"],[1,"h."],[0,"\n    Air"]],"start1":8209,"start2":8209,"length1":16,"length2":18}]],"length":9541,"saved":false}
+{"ts":1351102269291,"patch":[[{"diffs":[[0," % Math."],[1,"PI"],[0,"\n    Air"]],"start1":8211,"start2":8211,"length1":16,"length2":18}]],"length":9543,"saved":false}
+{"ts":1351102293797,"patch":[[{"diffs":[[0," Math.PI"],[1," "],[0,"\n    Air"]],"start1":8213,"start2":8213,"length1":16,"length2":17}]],"length":9544,"saved":false}
+{"ts":1351102296966,"patch":[[{"diffs":[[0," Math.PI"],[1,")"],[0," \n    Ai"]],"start1":8213,"start2":8213,"length1":16,"length2":17}]],"length":9545,"saved":false}
+{"ts":1351102298843,"patch":[[{"diffs":[[0,"ion.x = "],[1,"("],[0,"Airship."]],"start1":8185,"start2":8185,"length1":16,"length2":17}]],"length":9546,"saved":false}
+{"ts":1351102301384,"patch":[[{"diffs":[[0,"ath.PI) "],[1,"-"],[0,"\n    Air"]],"start1":8216,"start2":8216,"length1":16,"length2":17}]],"length":9547,"saved":false}
+{"ts":1351102303914,"patch":[[{"diffs":[[0,"th.PI) -"],[1," Math"],[0,"\n    Air"]],"start1":8217,"start2":8217,"length1":16,"length2":21}]],"length":9552,"saved":false}
+{"ts":1351102307055,"patch":[[{"diffs":[[0,") - Math"],[1,".P"],[0,"\n    Air"]],"start1":8222,"start2":8222,"length1":16,"length2":18}]],"length":9554,"saved":false}
+{"ts":1351102307948,"patch":[[{"diffs":[[0,"- Math.P"],[1,"i /"],[0,"\n    Air"]],"start1":8224,"start2":8224,"length1":16,"length2":19}]],"length":9557,"saved":false}
+{"ts":1351102309101,"patch":[[{"diffs":[[0,"ath.Pi /"],[1," 2)"],[0,"\n    Air"]],"start1":8227,"start2":8227,"length1":16,"length2":19}]],"length":9560,"saved":false}
+{"ts":1351102311352,"patch":[[{"diffs":[[0,"h.PI) - "],[1,"("],[0,"Math.Pi "]],"start1":8218,"start2":8218,"length1":16,"length2":17}]],"length":9561,"saved":false}
+{"ts":1351102313532,"patch":[[{"diffs":[[0," (Math.P"],[-1,"i"],[1,"I"],[0," / 2)\n  "]],"start1":8225,"start2":8225,"length1":17,"length2":17}]],"length":9561,"saved":false}
+{"ts":1351102315542,"patch":[[{"diffs":[[0,".PI / 2)"],[1,";"],[0,"\n    Air"]],"start1":8231,"start2":8231,"length1":16,"length2":17}]],"length":9562,"saved":false}
+{"ts":1351102376132,"patch":[[{"diffs":[[0,"h.PI"],[-1,") - (Math.PI / 2)"],[0,";\n  "]],"start1":8218,"start2":8218,"length1":25,"length2":8}]],"length":9545,"saved":false}
+{"ts":1351102378471,"patch":[[{"diffs":[[0,"ion.x = "],[-1,"("],[0,"Airship."]],"start1":8185,"start2":8185,"length1":17,"length2":16}]],"length":9544,"saved":false}
+{"ts":1351102407603,"patch":[[{"diffs":[[0,"tion.x %"],[1," 2 *"],[0," Math.PI"]],"start1":8205,"start2":8205,"length1":16,"length2":20}]],"length":9548,"saved":false}
+{"ts":1351102409864,"patch":[[{"diffs":[[0,"ion.x % "],[1,"("],[0,"2 * Math"]],"start1":8206,"start2":8206,"length1":16,"length2":17}]],"length":9549,"saved":false}
+{"ts":1351102412053,"patch":[[{"diffs":[[0,"(2 * Math.PI"],[1,")"],[0,";\n    Airshi"]],"start1":8214,"start2":8214,"length1":24,"length2":25}]],"length":9550,"saved":false}
+{"ts":1351102575278,"patch":[[{"diffs":[[0," += 1 * "],[1,"Math"],[0,"Airship."]],"start1":8251,"start2":8251,"length1":16,"length2":20}]],"length":9554,"saved":false}
+{"ts":1351102579332,"patch":[[{"diffs":[[0,"1 * Math"],[1,"."],[0,"Airship."]],"start1":8255,"start2":8255,"length1":16,"length2":17}]],"length":9555,"saved":false}
+{"ts":1351102580152,"patch":[[{"diffs":[[0," * Math."],[1,"s"],[0,"Airship."]],"start1":8256,"start2":8256,"length1":16,"length2":17}]],"length":9556,"saved":false}
+{"ts":1351102581291,"patch":[[{"diffs":[[0,"* Math.s"],[1,"in("],[0,"Airship."]],"start1":8257,"start2":8257,"length1":16,"length2":19}]],"length":9559,"saved":false}
+{"ts":1351102585376,"patch":[[{"diffs":[[0,"tation.x"],[1,")"],[0,";\n}\n\n// "]],"start1":8278,"start2":8278,"length1":16,"length2":17}]],"length":9560,"saved":false}
+{"ts":1351102615851,"patch":[[{"diffs":[[0,"Math.sin"],[1," "],[0,"(Airship"]],"start1":8259,"start2":8259,"length1":16,"length2":17}]],"length":9561,"saved":false}
+{"ts":1351102618023,"patch":[[{"diffs":[[0,"n.y += 1"],[1,"0"],[0," * Math."]],"start1":8248,"start2":8248,"length1":16,"length2":17}]],"length":9562,"saved":false}
+{"ts":1351102779562,"patch":[[{"diffs":[[0,".z < Math.PI / 2"],[-1,".7"],[0,") {\n            "]],"start1":7586,"start2":7586,"length1":34,"length2":32}]],"length":9560,"saved":false}
+{"ts":1351102782109,"patch":[[{"diffs":[[0,"h.PI / 2"],[-1,".7"],[0,") {\n    "]],"start1":7752,"start2":7752,"length1":18,"length2":16}]],"length":9558,"saved":false}
+{"ts":1351102868678,"patch":[[{"diffs":[[0,"SPEED * "],[-1,"timeBase"],[1,"deltaClock"],[0,";\n      "]],"start1":7368,"start2":7368,"length1":24,"length2":26}]],"length":9560,"saved":false}
+{"ts":1351102942180,"patch":[[{"diffs":[[0,"ation.x "],[-1,"-"],[1,"+"],[0,"= timeBa"]],"start1":8006,"start2":8006,"length1":17,"length2":17}]],"length":9560,"saved":false}
+{"ts":1351102947980,"patch":[[{"diffs":[[0,"ship.rotation.x "],[-1,"+"],[1,"-"],[0,"= timeBase;\n    "]],"start1":8098,"start2":8098,"length1":33,"length2":33}]],"length":9560,"saved":false}
+{"ts":1351102974140,"patch":[[{"diffs":[[0,"ion.z +="],[-1," 3 *"],[0," timeBas"]],"start1":7633,"start2":7633,"length1":20,"length2":16}]],"length":9556,"saved":false}
+{"ts":1351102976657,"patch":[[{"diffs":[[0,"z -="],[-1," 3 *"],[0," tim"]],"start1":7791,"start2":7791,"length1":12,"length2":8}]],"length":9552,"saved":false}
+{"ts":1351103235985,"patch":[[{"diffs":[[0,"y += 10 "],[1,"timeBase *"],[0,"* Math.s"]],"start1":8240,"start2":8240,"length1":16,"length2":26}]],"length":9562,"saved":false}
+{"ts":1351103237355,"patch":[[{"diffs":[[0,"meBase *"],[-1,"*"],[0," Math.si"]],"start1":8250,"start2":8250,"length1":17,"length2":16}]],"length":9561,"saved":false}
+{"ts":1351103240056,"patch":[[{"diffs":[[0,".y += 10"],[1," *"],[0," timeBas"]],"start1":8239,"start2":8239,"length1":16,"length2":18}]],"length":9563,"saved":false}
+{"ts":1351103272630,"patch":[[{"diffs":[[0,".y += 10"],[1,"0"],[0," * timeB"]],"start1":8239,"start2":8239,"length1":16,"length2":17}]],"length":9564,"saved":false}
+{"ts":1351103354439,"patch":[[{"diffs":[[0,"on.y += "],[-1,"1"],[1,"5"],[0,"00 * tim"]],"start1":8237,"start2":8237,"length1":17,"length2":17}]],"length":9564,"saved":false}
+{"ts":1351103394529,"patch":[[{"diffs":[[0,"on.y += "],[-1,"5"],[1,"3"],[0,"00 * tim"]],"start1":8237,"start2":8237,"length1":17,"length2":17}]],"length":9564,"saved":false}

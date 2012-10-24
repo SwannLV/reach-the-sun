@@ -206,19 +206,10 @@ function onWindowResize( event ) {
 // ANIMATE AIRSHIP
 function animateAirship(deltaClock)
 {
-     if( keyboard.pressed("left") ) {
-        Airship.position.x -= 5;
-    }
-    else if( keyboard.pressed("right") ) {
-        Airship.position.x += 5;
-    }
-    if( keyboard.pressed("up") ) {
-        Airship.position.y += 5;
-    }
-    else if( keyboard.pressed("down") && Airship.position.y > 25) {
-        Airship.position.y -= 5;
-    }
+    var timeBase = deltaClock;
+    // SLOW DOWN
     if( keyboard.pressed("space") ) {
+        timeBase = deltaClock / 4;
         if (camera.position.z > -300) {
             camera.position.z -= SLOWSPEED * deltaClock;
         }
@@ -226,6 +217,30 @@ function animateAirship(deltaClock)
     else if (camera.position.z < 400) {
         camera.position.z += SLOWSPEED * deltaClock;
     }
+    // LEFT & RIGHT
+    if( keyboard.pressed("left") ) {
+        if (Airship.rotation.z < Math.PI / 2) {
+            Airship.rotation.z += timeBase;
+        }
+    }
+    else if( keyboard.pressed("right") ) {
+         if (Airship.rotation.z > - Math.PI / 2) {
+            Airship.rotation.z -= timeBase;
+        }
+    }
+    Airship.position.x -= 10 * Airship.rotation.z;
+    // UP & DOWN
+    if( keyboard.pressed("up") ) {
+        //if (Airship.rotation.x < Math.PI / 4) {
+            Airship.rotation.x += timeBase;
+        //}
+    }
+    else if( keyboard.pressed("down") ) {
+        Airship.rotation.x -= timeBase;
+    }
+    //if Airship.position.y > 25
+    Airship.rotation.x = Airship.rotation.x % (2 * Math.PI);
+    Airship.position.y += 300 * timeBase * Math.sin (Airship.rotation.x);
 }
 
 // ANIMATE GRID
