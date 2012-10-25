@@ -12,7 +12,7 @@ var WIDTH     = window.innerWidth  || 2;
 var HEIGHT    = window.innerHeight || 2;
 var FAR       = 3500;
 var SPEED     = 800;
-var SLOWSPEED = 100; 
+var SLOWSPEED = 100;
 
 init();
 animate();
@@ -94,7 +94,7 @@ function createGrid () {
    var squareLength = 100;
    var gridXNumber  = 3;
    var gridZNumber  = FAR / squareLength + 10;
-   
+
    for (var i = - gridXNumber; i <= gridXNumber; i++){
         createLine(v(i/2 * squareLength, 0, gridZNumber * squareLength), v(i/2 * squareLength, 0, -gridZNumber * squareLength), 0xFFFFFF);
    }
@@ -152,7 +152,7 @@ function init() {
 
     // SCENE
 	scene = new Physijs.Scene;
-    
+
     // CAMERAS
     camera_1_IsActive = true;
     camera_1 = new THREE.PerspectiveCamera( 45, WIDTH / HEIGHT, 1, FAR );
@@ -161,7 +161,7 @@ function init() {
     camera_2 = new THREE.PerspectiveCamera( 90, WIDTH / HEIGHT, 1, FAR );
     scene.add (camera_2);
     scene.add (camera_1);
-    
+
     // LIGHTS
     var dirLight = new THREE.DirectionalLight( 0xffffff, 0.125 );
     dirLight.position.set( 0, 0, 1 ).normalize();
@@ -170,7 +170,7 @@ function init() {
     pointLight.position.set( 0, 100, -3500 );
     scene.add( pointLight );
     scene.fog = new THREE.Fog( 0x000000, 250, 3000 );
-    
+
     // OBJECTS
     slowArea = new THREE.Mesh( new THREE.SphereGeometry( 30, 30, 30, 30 ), new THREE.MeshBasicMaterial( { color: 0x000000 } ) );
     slowArea.position.set (0, 100, -10000);
@@ -181,7 +181,7 @@ function init() {
     createAirship();
     createSun();
     createGrid();
-    
+
     // STATS
     stats = new Stats();
     stats.domElement.style.position = 'absolute';
@@ -264,7 +264,7 @@ function animateAirship(deltaClock)
         Airship.position.x = -1000;
     }
     Airship.position.y += 300 * timeBase * Math.sin (Airship.rotation.x);
-    
+
     camera_2.position.set ( Airship.position.x, Airship.position.y, Airship.position.z - 100);
     camera_2.rotation = Airship.rotation;
 }
@@ -299,17 +299,17 @@ function animate() {
     var deltaClock = clock.getDelta();
 	requestAnimationFrame( animate );
     var dist = Airship.position.distanceToSquared(slowArea.position);
-    if (dist < 100000) {
-        var distFactor = dist / 100000.0;
+    if (dist < 500000) {
+        var distFactor = dist / 500000.0;
         if (distFactor < 0.2) {
             distFactor = 0.2;
         }
-        deltaClock = deltaClock * distFactor;
-        if (dist < 15000) {
+        var size = 3 * (1 - distFactor);
+        slowArea.scale.set(size, size, size);
+        //deltaClock = deltaClock * distFactor;
+        if (dist < 2000) {
             plane.material.color.setRGB(Math.random(),Math.random(),Math.random());
-            var size = 3 * (1 - dist / 15000.0);
-            slowArea.scale.set(size, size, size);
-            deltaClock = deltaClock / 4;
+            //deltaClock = deltaClock / 4;
         }
     }
     animateAirship(deltaClock);
