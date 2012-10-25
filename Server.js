@@ -1,7 +1,7 @@
 var fu = require("./fu");
 var HOST = process.env.IP;
 var PORT = process.env.PORT;
-    
+
 fu.listen(Number(process.env.PORT || PORT), HOST);
 
 fu.get("/", fu.staticHandler("Index.html"));
@@ -11,6 +11,8 @@ fu.get("/spaceship.js", fu.staticHandler("spaceship.js"));
 fu.get("/Physi.js", fu.staticHandler("Physi.js"));
 fu.get("/physijs_worker.js", fu.staticHandler("physijs_worker.js"));
 fu.get("/ammo.js", fu.staticHandler("ammo.js"));
+fu.get("/webaudio.js", fu.staticHandler("webaudio.js"));
+//fu.get("/sounds/T7.mp3", fu.staticHandler("sounds/T7.mp3"));
 fu.get("/textures/cloud.png", fu.staticHandler("textures/cloud.png"));
 fu.get("/textures/lavatext.jpg", fu.staticHandler("textures/lavatext.jpg"));
 fu.get("/Game.js", fu.staticHandler("Game.js"));

@@ -2,12 +2,17 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
 var clock     = new THREE.Clock();
 var keyboard  = new THREEx.KeyboardState();
+var webaudio  = new WebAudio();
+var ctx;// = new webkitAudioContext();
 var container, stats;
 var slowArea, plane;
 var camera_1, camera_2, scene, renderer, composer;
 var sun_uniforms, sun_material, sun;
 var Airship, AirshipCamera;
 var camera_1_IsActive;
+var soundNappe, soundT7;
+var audioBufferLoader;
+var audioFilterBassPass;
 var WIDTH     = window.innerWidth  || 2;
 var HEIGHT    = window.innerHeight || 2;
 var FAR       = 3500;
@@ -137,6 +142,102 @@ function createStars (lineX, lineY, lineZ, scale) {
 	}
 }
 
+// INIT SOUNDS
+function initSounds() {
+
+    // Detect if the audio context is supported.
+    window.AudioContext = (
+      window.AudioContext ||
+      window.webkitAudioContext ||
+      null
+    );
+
+    if (!AudioContext) {
+        alert('Sorry, Web Audio API is only support by Chrome and Safari for the moment');
+        throw new Error("AudioContext not supported!");
+    }
+
+    // Create a new audio context.
+    ctx = new AudioContext();
+
+    // Create a AudioGainNode to control the main volume.
+    var mainVolume = ctx.createGainNode();
+    // Connect the main volume node to the context destination.
+    mainVolume.connect(ctx.destination);
+
+    // Create an object with a sound source and a volume control.
+    var sound = {};
+    sound.source = ctx.createBufferSource();
+    sound.volume = ctx.createGainNode();
+
+    // Connect the sound source to the volume control.
+    sound.source.connect(sound.volume);
+    // Hook up the sound volume control to the main volume.
+    sound.volume.connect(mainVolume);
+
+    // Make the sound source loop.
+    sound.source.loop = true;
+
+    // Load a sound file using an ArrayBuffer XMLHttpRequest.
+    var request = new XMLHttpRequest();
+    request.open("GET", 'sounds/NappesTest.mp3', true);
+    request.responseType = "arraybuffer";
+    request.onload = function(e) {
+
+      // Create a buffer from the response ArrayBuffer.
+      var buffer = ctx.createBuffer(this.response, false);
+      sound.buffer = buffer;
+
+      // Make the sound source use the buffer and start playing it.
+      sound.source.buffer = sound.buffer;
+      //sound.source.noteOn(ctx.currentTime);
+
+       // Create the filter
+    audioFilterBassPass = ctx.createBiquadFilter();
+    // Create the audio graph.
+    sound.source.connect(audioFilterBassPass);
+    audioFilterBassPass.connect(ctx.destination);
+    // Create and specify parameters for the low-pass filter.
+    audioFilterBassPass.type = 1; // Low-pass filter. See BiquadFilterNode docs
+    audioFilterBassPass.frequency.value = 440; // Set cutoff to 440 HZ
+    // Playback the sound.
+    sound.source.noteOn(0);
+    };
+    request.send();
+
+
+
+/*    soundNappe = webaudio.createSound().load('sounds/NappesTest.mp3', function(sound){
+        sound.stop();//loop(true).play();
+    });*/
+    soundT7 = webaudio.createSound().load('sounds/T7.mp3', function(sound){
+        sound.stop();
+    });
+
+    //soundNappe.
+    // Create the filter
+   /* var filter = audioContext.createBiquadFilter();
+    // Create the audio graph.
+    soundNappe.connect(filter);
+    filter.connect(audioContext.destination);
+    // Create and specify parameters for the low-pass filter.
+    filter.type = 0; // Low-pass filter. See BiquadFilterNode docs
+    filter.frequency.value = 440; // Set cutoff to 440 HZ
+    // Playback the sound.
+    soundNappe.noteOn(0);*/
+   /* audioContext = new webkitAudioContext();
+    audioBufferLoader = new BufferLoader(
+    context,
+    [
+      '../sounds/hyper-reality/br-jam-loop.wav',
+      '../sounds/hyper-reality/laughter.wav',
+    ],
+    finishedLoading
+    );
+
+    bufferLoader.load();*/
+}
+
 // INIT
 function init() {
 
@@ -181,6 +282,9 @@ function init() {
     createAirship();
     createSun();
     createGrid();
+
+    // INIT SOUNDS
+    initSounds();
 
     // STATS
     stats = new Stats();
@@ -267,6 +371,21 @@ function animateAirship(deltaClock)
 
     camera_2.position.set ( Airship.position.x, Airship.position.y, Airship.position.z - 100);
     camera_2.rotation = Airship.rotation;
+
+    var minValue=40;
+    var maxValue=ctx.sampleRate/2;
+    var numberOfOctaves=Math.log(maxValue/minValue)/Math.LN2;
+    var multiplier=Math.pow(2,numberOfOctaves*((Airship.position.y/500)-1.0));
+    audioFilterBassPass.frequency.value=maxValue*multiplier;
+  // audioFilterBassPass.frequency.value = Airship.position.z;
+
+   /* FilterSample.changeFrequency=function(element){
+        var minValue=40;
+        var maxValue=audioContext.sampleRate/2;
+        var numberOfOctaves=Math.log(maxValue/minValue)/Math.LN2;
+        var multiplier=Math.pow(2,numberOfOctaves*(element.value-1.0));
+        this.filter.frequency.value=maxValue*multiplier;
+    };*/
 }
 
 // ANIMATE GRID
@@ -301,6 +420,9 @@ function animate() {
     var dist = Airship.position.distanceToSquared(slowArea.position);
     if (dist < 500000) {
         var distFactor = dist / 500000.0;
+          if (!soundT7.playing) {
+                soundT7.play();
+            }
         if (distFactor < 0.2) {
             distFactor = 0.2;
         }
