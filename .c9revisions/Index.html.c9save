@@ -357,3 +357,6 @@
 {"ts":1351175504896,"patch":[[{"diffs":[[0,"\"></script>\n"],[1,"    "],[0,"    <script "]],"start1":920,"start2":920,"length1":24,"length2":28}]],"length":3784,"saved":false}
 {"contributors":[],"silentsave":true,"ts":1351176095446,"patch":[[{"diffs":[[0,"rc=\""],[-1,"vendor/tquery/"],[0,"tque"]],"start1":949,"start2":949,"length1":22,"length2":8}]],"length":3770,"saved":false}
 {"ts":1351176103874,"patch":[[{"diffs":[[0,"pt>\n"],[-1,"        <script src=\"tquery-bundle.js\"></script> \n"],[0,"    "]],"start1":928,"start2":928,"length1":58,"length2":8}]],"length":3720,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1351721078593,"patch":[[{"diffs":[[0,"\t<body>\n"],[1,"    <embed src='/sounds/Chord.mp3' hidden='true' autostart='true' loop='true' type='audio/mp3' />\n"],[0,"\t\t<div i"]],"start1":584,"start2":584,"length1":16,"length2":114}]],"length":3818,"saved":false}
+{"ts":1351721111485,"patch":[[{"diffs":[[0,"ed src='"],[-1,"/"],[0,"sounds/C"]],"start1":600,"start2":600,"length1":17,"length2":16}]],"length":3817,"saved":false}
+{"ts":1351721134070,"patch":[[{"diffs":[[0,"nds/"],[-1,"Chord"],[1,"DarkNappe"],[0,".mp3"]],"start1":611,"start2":611,"length1":13,"length2":17}]],"length":3821,"saved":false}

@@ -180,7 +180,7 @@ function initSounds() {
 
     // Load a sound file using an ArrayBuffer XMLHttpRequest.
     var request = new XMLHttpRequest();
-    request.open("GET", 'sounds/NappesTest.mp3', true);
+    request.open("GET", 'sounds/DarkNappe.mp3', true);
     request.responseType = "arraybuffer";
     request.onload = function(e) {
 
@@ -193,13 +193,13 @@ function initSounds() {
       //sound.source.noteOn(ctx.currentTime);
 
        // Create the filter
-    audioFilterBassPass = ctx.createBiquadFilter();
+    /*audioFilterBassPass = ctx.createBiquadFilter();
     // Create the audio graph.
     sound.source.connect(audioFilterBassPass);
     audioFilterBassPass.connect(ctx.destination);
     // Create and specify parameters for the low-pass filter.
     audioFilterBassPass.type = 1; // Low-pass filter. See BiquadFilterNode docs
-    audioFilterBassPass.frequency.value = 440; // Set cutoff to 440 HZ
+    audioFilterBassPass.frequency.value = 440; // Set cutoff to 440 HZ*/
     // Playback the sound.
     sound.source.noteOn(0);
     };
@@ -372,20 +372,12 @@ function animateAirship(deltaClock)
     camera_2.position.set ( Airship.position.x, Airship.position.y, Airship.position.z - 100);
     camera_2.rotation = Airship.rotation;
 
-    var minValue=40;
+    // Change cut off freq audio on height
+    /*var minValue=40;
     var maxValue=ctx.sampleRate/2;
     var numberOfOctaves=Math.log(maxValue/minValue)/Math.LN2;
     var multiplier=Math.pow(2,numberOfOctaves*((Airship.position.y/500)-1.0));
-    audioFilterBassPass.frequency.value=maxValue*multiplier;
-  // audioFilterBassPass.frequency.value = Airship.position.z;
-
-   /* FilterSample.changeFrequency=function(element){
-        var minValue=40;
-        var maxValue=audioContext.sampleRate/2;
-        var numberOfOctaves=Math.log(maxValue/minValue)/Math.LN2;
-        var multiplier=Math.pow(2,numberOfOctaves*(element.value-1.0));
-        this.filter.frequency.value=maxValue*multiplier;
-    };*/
+    audioFilterBassPass.frequency.value=maxValue*multiplier;*/
 }
 
 // ANIMATE GRID
@@ -420,9 +412,6 @@ function animate() {
     var dist = Airship.position.distanceToSquared(slowArea.position);
     if (dist < 500000) {
         var distFactor = dist / 500000.0;
-          if (!soundT7.playing) {
-                soundT7.play();
-            }
         if (distFactor < 0.2) {
             distFactor = 0.2;
         }
@@ -431,6 +420,9 @@ function animate() {
         //deltaClock = deltaClock * distFactor;
         if (dist < 2000) {
             plane.material.color.setRGB(Math.random(),Math.random(),Math.random());
+            if (!soundT7.playing) {
+                soundT7.play();
+            }
             //deltaClock = deltaClock / 4;
         }
     }
