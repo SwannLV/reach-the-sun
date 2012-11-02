@@ -1,0 +1,31 @@
+git add .
+git commit -m "update"
+git push heroku master
+
+//
+
+git add .
+git commit -m "update"
+git push origin master
+
+//
+
+git add .
+git commit -m "update"
+git push test master
+
+//
+git remote -v
+
+//
+
+git remote add test git@heroku.com:testswannlv.git
+git remote add origin git@github.com:SwannLV/DemoSLV.git
+
+//
+
+http://www.html5rocks.com/en/tutorials/webaudio/intro/?redirect_from_locale=fr
+
+http://www.html5rocks.com/en/tutorials/webaudio/positional_audio/
+
+http://www.html5audio.org/
