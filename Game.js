@@ -1,17 +1,18 @@
+window.onload = init;
 if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
+// VARIABLES
 var clock     = new THREE.Clock();
 var keyboard  = new THREEx.KeyboardState();
-var webaudio  = new WebAudio();
-var ctx;// = new webkitAudioContext();
+var audioContext;
+var audioBufferLoader;
 var container, stats;
 var slowArea, plane;
 var camera_1, camera_2, scene, renderer, composer;
 var sun_uniforms, sun_material, sun;
 var Airship, AirshipCamera;
 var camera_1_IsActive;
-var soundNappe, soundT7;
-var audioBufferLoader;
+var soundNappe1, soundNappe2, soundNappe3, soundNappe4, soundWhale, soundKick;
 var audioFilterBassPass;
 var WIDTH     = window.innerWidth  || 2;
 var HEIGHT    = window.innerHeight || 2;
@@ -19,8 +20,78 @@ var FAR       = 3500;
 var SPEED     = 800;
 var SLOWSPEED = 100;
 
-init();
-animate();
+
+// INIT
+function init() {
+
+    // PHYSIJS > TO DO
+    //Physijs.scripts.worker = 'physijs_worker.js';
+    //Physijs.scripts.ammo = 'ammo.js';
+
+    // CONTAINER
+    container = document.getElementById( 'container' );
+    renderer = new THREE.WebGLRenderer( { antialias: true } );
+    container.appendChild( renderer.domElement );
+	renderer.autoClear = true;
+
+    // SCENE
+	scene = new THREE.Scene; // scene = new Physijs.Scene;
+
+    // CAMERAS
+    camera_1_IsActive = true;
+    camera_1 = new THREE.PerspectiveCamera( 45, WIDTH / HEIGHT, 1, FAR );
+    camera_1.position.z = 400;
+    camera_1.position.y = 200;
+    camera_2 = new THREE.PerspectiveCamera( 90, WIDTH / HEIGHT, 1, FAR );
+    scene.add (camera_2);
+    scene.add (camera_1);
+
+    // LIGHTS
+    var dirLight = new THREE.DirectionalLight( 0xffffff, 0.125 );
+    dirLight.position.set( 0, 0, 1 ).normalize();
+    scene.add( dirLight );
+    var pointLight = new THREE.PointLight( 0xffffff, 1.5 );
+    pointLight.position.set( 0, 100, -3500 );
+    scene.add( pointLight );
+    scene.fog = new THREE.Fog( 0x000000, 250, 3000 );
+
+    // OBJECTS
+    slowArea = new THREE.Mesh( new THREE.SphereGeometry( 30, 30, 30, 30 ), new THREE.MeshBasicMaterial( { color: 0x000000 } ) );
+    slowArea.position.set (0, 100, -10000);
+    scene.add(slowArea);
+    createStars(0, 100, -10000, 0.5);
+    createStars(0, 300, -5000, 10);
+    createPlane();
+    createAirship();
+    createSun();
+    createGrid();
+
+    // INIT SOUNDS
+    initSounds();
+
+    // STATS
+    stats = new Stats();
+    stats.domElement.style.position = 'absolute';
+	stats.domElement.style.top = '20px';
+    stats.domElement.style.left = '20px';
+	container.appendChild( stats.domElement );
+
+    // EFFECTS
+	var renderModel = new THREE.RenderPass( scene, camera_1 );
+	var effectFilm = new THREE.FilmPass( 0.35, 0.95, 2048, false );
+	effectFilm.renderToScreen = true;
+	composer = new THREE.EffectComposer( renderer );
+	composer.addPass( renderModel );
+	composer.addPass( effectFilm );
+
+    // RESIZE
+	onWindowResize();
+	window.addEventListener( 'resize', onWindowResize, false );
+    
+    // LAUNCH
+    animate();
+
+}
 
 // CREATE PLANE
 function createPlane () {
@@ -85,7 +156,6 @@ function createGrid () {
     function v(x,y,z){
         return new THREE.Vertex(new THREE.Vector3(x,y,z));
     }
-
     //Create line (point1, point2, colour)
     function createLine(p1, p2, color){
         var line, lineGeometry = new THREE.Geometry(),
@@ -94,12 +164,10 @@ function createGrid () {
         line = new THREE.Line(lineGeometry, lineMat);
         scene.add(line);
     }
-
    // Grid creation
    var squareLength = 100;
    var gridXNumber  = 3;
    var gridZNumber  = FAR / squareLength + 10;
-
    for (var i = - gridXNumber; i <= gridXNumber; i++){
         createLine(v(i/2 * squareLength, 0, gridZNumber * squareLength), v(i/2 * squareLength, 0, -gridZNumber * squareLength), 0xFFFFFF);
    }
@@ -114,7 +182,6 @@ function createStars (lineX, lineY, lineZ, scale) {
 		parameters = [ [ 0.25, 0xff7700, 1, 2 ], [ 0.5, 0xff9900, 1, 1 ], [ 0.75, 0xffaa00, 0.75, 1 ], [ 1, 0xffaa00, 0.5, 1 ], [ 1.25, 0x000833, 0.8, 1 ],
 				       [ 3.0, 0xaaaaaa, 0.75, 2 ], [ 3.5, 0xffffff, 0.5, 1 ], [ 4.5, 0xffffff, 0.25, 1 ], [ 5.5, 0xffffff, 0.125, 1 ] ],
 		geometry = new THREE.Geometry();
-
 	for ( i = 0; i < 1500; i ++ ) {
 		var vertex1 = new THREE.Vector3();
 		vertex1.x = Math.random() * 2 - 1;
@@ -144,166 +211,86 @@ function createStars (lineX, lineY, lineZ, scale) {
 
 // INIT SOUNDS
 function initSounds() {
-
-    // Detect if the audio context is supported.
-    window.AudioContext = (
-      window.AudioContext ||
-      window.webkitAudioContext ||
-      null
-    );
-
-    if (!AudioContext) {
-        alert('Sorry, Web Audio API is only support by Chrome and Safari for the moment');
-        throw new Error("AudioContext not supported!");
+    try {
+        audioContext = new webkitAudioContext();
     }
-
-    // Create a new audio context.
-    ctx = new AudioContext();
-
-    // Create a AudioGainNode to control the main volume.
-    var mainVolume = ctx.createGainNode();
-    // Connect the main volume node to the context destination.
-    mainVolume.connect(ctx.destination);
-
-    // Create an object with a sound source and a volume control.
-    var sound = {};
-    sound.source = ctx.createBufferSource();
-    sound.volume = ctx.createGainNode();
-
-    // Connect the sound source to the volume control.
-    sound.source.connect(sound.volume);
-    // Hook up the sound volume control to the main volume.
-    sound.volume.connect(mainVolume);
-
-    // Make the sound source loop.
-    sound.source.loop = true;
-
-    // Load a sound file using an ArrayBuffer XMLHttpRequest.
-    var request = new XMLHttpRequest();
-    request.open("GET", 'sounds/DarkNappe.mp3', true);
-    request.responseType = "arraybuffer";
-    request.onload = function(e) {
-
-      // Create a buffer from the response ArrayBuffer.
-      var buffer = ctx.createBuffer(this.response, false);
-      sound.buffer = buffer;
-
-      // Make the sound source use the buffer and start playing it.
-      sound.source.buffer = sound.buffer;
-      //sound.source.noteOn(ctx.currentTime);
-
-       // Create the filter
-    /*audioFilterBassPass = ctx.createBiquadFilter();
-    // Create the audio graph.
-    sound.source.connect(audioFilterBassPass);
-    audioFilterBassPass.connect(ctx.destination);
-    // Create and specify parameters for the low-pass filter.
-    audioFilterBassPass.type = 1; // Low-pass filter. See BiquadFilterNode docs
-    audioFilterBassPass.frequency.value = 440; // Set cutoff to 440 HZ*/
-    // Playback the sound.
-    sound.source.noteOn(0);
-    };
-    request.send();
-
-
-
-/*    soundNappe = webaudio.createSound().load('sounds/NappesTest.mp3', function(sound){
-        sound.stop();//loop(true).play();
-    });*/
-    soundT7 = webaudio.createSound().load('sounds/T7.mp3', function(sound){
-        sound.stop();
-    });
-
-    //soundNappe.
-    // Create the filter
-   /* var filter = audioContext.createBiquadFilter();
-    // Create the audio graph.
-    soundNappe.connect(filter);
-    filter.connect(audioContext.destination);
-    // Create and specify parameters for the low-pass filter.
-    filter.type = 0; // Low-pass filter. See BiquadFilterNode docs
-    filter.frequency.value = 440; // Set cutoff to 440 HZ
-    // Playback the sound.
-    soundNappe.noteOn(0);*/
-   /* audioContext = new webkitAudioContext();
+    catch(e) {
+        alert('Web Audio API is not supported in this browser');
+    }
     audioBufferLoader = new BufferLoader(
-    context,
-    [
-      '../sounds/hyper-reality/br-jam-loop.wav',
-      '../sounds/hyper-reality/laughter.wav',
-    ],
-    finishedLoading
+        audioContext,
+        [
+          'sounds/DarkNappe1.mp3',
+          'sounds/DarkNappe2.mp3',
+          'sounds/DarkNappe3.mp3',
+          'sounds/DarkNappe4.mp3',
+          'sounds/Whale.mp3',
+          'sounds/Kick.mp3',
+        ],
+        finishedAudioLoading
     );
-
-    bufferLoader.load();*/
+    audioBufferLoader.load();
 }
 
-// INIT
-function init() {
+// FINISHED AUDIO LOADING
+function finishedAudioLoading(bufferList) {
+    // Create audio buffers
+    soundNappe1 = audioContext.createBufferSource();
+    soundNappe2 = audioContext.createBufferSource();
+    soundNappe3 = audioContext.createBufferSource();
+    soundNappe4 = audioContext.createBufferSource();
+    soundWhale = audioContext.createBufferSource();
+    soundKick  = audioContext.createBufferSource();
+    soundNappe1.buffer = bufferList[0];
+    soundNappe2.buffer = bufferList[1];
+    soundNappe3.buffer = bufferList[2];
+    soundNappe4.buffer = bufferList[3];
+    soundWhale.buffer = bufferList[4];
+    soundKick.buffer  = bufferList[5];
+    //Create the filter
+    audioFilterBassPass = audioContext.createBiquadFilter();
+    audioFilterBassPass.connect(audioContext.destination); 
+    //Program audio tracks
+    programAudioTracks();
+}
 
-    // PHYSIJS > TO DO
-    Physijs.scripts.worker = 'physijs_worker.js';
-    Physijs.scripts.ammo = 'ammo.js';
+// PROGRAM AUDIO TRACKS
+function programAudioTracks() {
+    var startTime     = audioContext.currentTime+0.100;
+    var iNappesCount  = 10;
+    var nappeTime     = 31.320;
+    var barTime       = nappeTime / 4;
+    var iKicksInBar   = 16;
+    var iKicksInNappe = iKicksInBar * 4;
+    // Sequencer
+    for (var iNappe = 0; iNappe < iNappesCount; iNappe++) {
+        var time = startTime + iNappe * nappeTime;
+        // Play the Nappe in four parts due to the size limitation I guess
+        playSound(soundNappe1.buffer, time, true);
+        playSound(soundNappe2.buffer, time + barTime, true);
+        playSound(soundNappe3.buffer, time + 2 * barTime, true);
+        playSound(soundNappe4.buffer, time + 3 * barTime, true);
+        // Play the kick every eighth note / 8.
+        /*for (var i = 0; i < iKicksInNappe; i++) {
+            playSound(soundKick.buffer, time + (i + 0.23) * nappeTime / iKicksInNappe, false);
+        }*/
+    }
+}
 
-    // CONTAINER
-	container = document.getElementById( 'container' );
-    renderer = new THREE.WebGLRenderer( { antialias: true } );
-    container.appendChild( renderer.domElement );
-	renderer.autoClear = true;
-
-    // SCENE
-	scene = new Physijs.Scene;
-
-    // CAMERAS
-    camera_1_IsActive = true;
-    camera_1 = new THREE.PerspectiveCamera( 45, WIDTH / HEIGHT, 1, FAR );
-    camera_1.position.z = 400;
-    camera_1.position.y = 200;
-    camera_2 = new THREE.PerspectiveCamera( 90, WIDTH / HEIGHT, 1, FAR );
-    scene.add (camera_2);
-    scene.add (camera_1);
-
-    // LIGHTS
-    var dirLight = new THREE.DirectionalLight( 0xffffff, 0.125 );
-    dirLight.position.set( 0, 0, 1 ).normalize();
-    scene.add( dirLight );
-    var pointLight = new THREE.PointLight( 0xffffff, 1.5 );
-    pointLight.position.set( 0, 100, -3500 );
-    scene.add( pointLight );
-    scene.fog = new THREE.Fog( 0x000000, 250, 3000 );
-
-    // OBJECTS
-    slowArea = new THREE.Mesh( new THREE.SphereGeometry( 30, 30, 30, 30 ), new THREE.MeshBasicMaterial( { color: 0x000000 } ) );
-    slowArea.position.set (0, 100, -10000);
-    scene.add(slowArea);
-    createStars(0, 100, -10000, 0.5);
-    createStars(0, 300, -5000, 10);
-    createPlane();
-    createAirship();
-    createSun();
-    createGrid();
-
-    // INIT SOUNDS
-    initSounds();
-
-    // STATS
-    stats = new Stats();
-    stats.domElement.style.position = 'absolute';
-	stats.domElement.style.top = '20px';
-    stats.domElement.style.left = '20px';
-	container.appendChild( stats.domElement );
-
-    // EFFECTS
-	var renderModel = new THREE.RenderPass( scene, camera_1 );
-	var effectFilm = new THREE.FilmPass( 0.35, 0.95, 2048, false );
-	effectFilm.renderToScreen = true;
-	composer = new THREE.EffectComposer( renderer );
-	composer.addPass( renderModel );
-	composer.addPass( effectFilm );
-
-    // RESIZE
-	onWindowResize();
-	window.addEventListener( 'resize', onWindowResize, false );
+// PLAYSOUND
+function playSound(buffer, time, bFBP) {
+    var source = audioContext.createBufferSource();
+    source.buffer = buffer;
+    if (bFBP) {
+        source.connect(audioFilterBassPass);
+        // Create and specify parameters for the low-pass filter.
+        audioFilterBassPass.type = 1; // Low-pass filter. See BiquadFilterNode docs
+        audioFilterBassPass.frequency.value = 440; // Set cutoff to 440 HZ
+    }
+    else {
+        source.connect(audioContext.destination);
+    }
+    source.noteOn(time);
 }
 
 // ON WINDOW RESIZE
@@ -373,17 +360,20 @@ function animateAirship(deltaClock)
     camera_2.rotation = Airship.rotation;
 
     // Change cut off freq audio on height
-    /*var minValue=40;
-    var maxValue=ctx.sampleRate/2;
+    var dist = Airship.position.distanceToSquared(camera_1.position)/1000;
+    var minValue=40;
+    var maxValue=audioContext.sampleRate/2;
     var numberOfOctaves=Math.log(maxValue/minValue)/Math.LN2;
-    var multiplier=Math.pow(2,numberOfOctaves*((Airship.position.y/500)-1.0));
-    audioFilterBassPass.frequency.value=maxValue*multiplier;*/
+    var multiplier=Math.pow(2,numberOfOctaves*(((dist)/800)-1.0));
+    audioFilterBassPass.frequency.value=maxValue*multiplier;
 }
 
 // ANIMATE GRID
 function animateGrid(deltaClock)
 {
     var speed = keyboard.pressed("space") ? SLOWSPEED : SPEED;
+    var randomX = Math.random();
+    var randomY = Math.random();
 
     for ( var i = 0; i < scene.children.length; i ++ ) {
         var object = scene.children[ i ];
@@ -393,47 +383,55 @@ function animateGrid(deltaClock)
             }
             else if (object.position.z >= 5000){
                 object.position.z = -5000;
-                /*object.position.x = Math.random() * 2 - 1;
-		        object.position.y = Math.random() * 2 - 1;*/ // TO DO
+                object.position.x = (randomX * 2 - 1) * 300;
+		        object.position.y = randomY * 600;
             }
             object.position.z += speed * deltaClock;
         }
     }
+    // Black Hole
     if (slowArea.position.z >= 5000){
         slowArea.position.z = -5000;
+        slowArea.position.x = (randomX * 2 - 1) * 300;
+    	slowArea.position.y = randomY * 600;
     }
     slowArea.position.z += speed * deltaClock;
 }
 
 // ANIMATE
 function animate() {
+    
+    requestAnimationFrame( animate );
+    
     var deltaClock = clock.getDelta();
-	requestAnimationFrame( animate );
-    var dist = Airship.position.distanceToSquared(slowArea.position);
-    if (dist < 500000) {
-        var distFactor = dist / 500000.0;
-        if (distFactor < 0.2) {
-            distFactor = 0.2;
-        }
-        var size = 3 * (1 - distFactor);
-        slowArea.scale.set(size, size, size);
-        //deltaClock = deltaClock * distFactor;
-        if (dist < 2000) {
-            plane.material.color.setRGB(Math.random(),Math.random(),Math.random());
-            if (!soundT7.playing) {
-                soundT7.play();
+    
+    if (Airship && slowArea) {
+        var dist = Airship.position.distanceToSquared(slowArea.position);
+        if (dist < 500000) {
+            var distFactor = dist / 500000.0;
+            if (distFactor < 0.2) {
+                distFactor = 0.2;
             }
-            //deltaClock = deltaClock / 4;
+            var size = 3 * (1 - distFactor);
+            slowArea.scale.set(size, size, size);
+            if (dist < 2000) {
+                plane.material.color.setRGB(Math.random(),Math.random(),Math.random());
+                if (!soundWhale.playing) {
+                    playSound(soundWhale.buffer, 0, false);
+                }
+            }
         }
+        animateAirship(deltaClock);
+        animateGrid(deltaClock);
+    	render(deltaClock);
+    	stats.update();
     }
-    animateAirship(deltaClock);
-    animateGrid(deltaClock);
-	render(deltaClock);
-	stats.update();
+
 }
 
 // RENDER
 function render(deltaClock) {
+    
     if (Airship) {
         Airship.visible = false;
         AirshipCamera.updateCubeMap( renderer, scene );
