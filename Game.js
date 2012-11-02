@@ -112,7 +112,7 @@ function createPlane() {
 // CREATE AIRSHIP
 function createAirship() {
     var loader = new THREE.JSONLoader();
-    loader.load("spaceship.js", function(Geometry) {
+    loader.load("meshes/spaceship.js", function(Geometry) {
         /*Airship_mat  = Physijs.createMaterial( // TO DO
             new THREE.MeshPhongMaterial( { ambient: 0x555555, color: 0xFF0000, specular: 0xffffff, shininess: 500, shading: THREE.SmoothShading }),
             .4, // low friction

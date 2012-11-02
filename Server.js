@@ -24,7 +24,7 @@ fu.get("/libs/physijs_worker.js", fu.staticHandler("libs/physijs_worker.js"));
 fu.get("/libs/buffer-loader.js", fu.staticHandler("libs/buffer-loader.js"));
 fu.get("/libs/stats.min.js", fu.staticHandler("libs/stats.min.js"));
 fu.get("/libs/Detector.js", fu.staticHandler("libs/Detector.js"));
-//fu.get("/libs/Physi.js", fu.staticHandler("libs/Physi.js"));
+fu.get("/libs/Physi.js", fu.staticHandler("libs/Physi.js"));
 
 // MESHES
 fu.get("/meshes/spaceship.js", fu.staticHandler("meshes/spaceship.js"));
