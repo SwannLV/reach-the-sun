@@ -262,7 +262,7 @@ function initSounds() {
         audioContext = new webkitAudioContext();
     }
     catch (e) {
-        alert('Web Audio API is not supported in this browser\n\n Audio: OFF.\n\nPlease try it with Chrome.');
+        alert('Audio effects: OFF.\n\nPlease try it with Chrome, or wait for the next Firefox.');
     }
     if (audioContext) {
         audioBufferLoader = new BufferLoader(
