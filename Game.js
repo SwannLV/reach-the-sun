@@ -215,21 +215,24 @@ function initSounds() {
         audioContext = new webkitAudioContext();
     }
     catch(e) {
-        alert('Web Audio API is not supported in this browser');
+        alert('Web Audio API is not supported in this browser\n\n Audio: OFF.\n\nPlease try it with Chrome.');
     }
-    audioBufferLoader = new BufferLoader(
-        audioContext,
-        [
-          'sounds/DarkNappe1.mp3',
-          'sounds/DarkNappe2.mp3',
-          'sounds/DarkNappe3.mp3',
-          'sounds/DarkNappe4.mp3',
-          'sounds/Whale.mp3',
-          'sounds/Kick.mp3',
-        ],
-        finishedAudioLoading
-    );
-    audioBufferLoader.load();
+    if (audioContext)
+    {
+        audioBufferLoader = new BufferLoader(
+            audioContext,
+            [
+              'sounds/DarkNappe1.mp3',
+              'sounds/DarkNappe2.mp3',
+              'sounds/DarkNappe3.mp3',
+              'sounds/DarkNappe4.mp3',
+              'sounds/Whale.mp3',
+              'sounds/Kick.mp3',
+            ],
+            finishedAudioLoading
+        );
+        audioBufferLoader.load();
+    }
 }
 
 // FINISHED AUDIO LOADING
@@ -360,12 +363,14 @@ function animateAirship(deltaClock)
     camera_2.rotation = Airship.rotation;
 
     // Change cut off freq audio on height
-    var dist = Airship.position.distanceToSquared(camera_1.position)/1000;
-    var minValue=40;
-    var maxValue=audioContext.sampleRate/2;
-    var numberOfOctaves=Math.log(maxValue/minValue)/Math.LN2;
-    var multiplier=Math.pow(2,numberOfOctaves*(((dist)/800)-1.0));
-    audioFilterBassPass.frequency.value=maxValue*multiplier;
+    if (audioContext) {
+        var dist = Airship.position.distanceToSquared(camera_1.position)/1000;
+        var minValue=40;
+        var maxValue=audioContext.sampleRate/2;
+        var numberOfOctaves=Math.log(maxValue/minValue)/Math.LN2;
+        var multiplier=Math.pow(2,numberOfOctaves*(((dist)/800)-1.0));
+        audioFilterBassPass.frequency.value=maxValue*multiplier;
+    }
 }
 
 // ANIMATE GRID
@@ -416,7 +421,7 @@ function animate() {
             slowArea.scale.set(size, size, size);
             if (dist < 2000) {
                 plane.material.color.setRGB(Math.random(),Math.random(),Math.random());
-                if (!soundWhale.playing) {
+                if (audioContext && !soundWhale.playing) {
                     playSound(soundWhale.buffer, 0, false);
                 }
             }
