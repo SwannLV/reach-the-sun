@@ -262,7 +262,7 @@ function initSounds() {
         audioContext = new webkitAudioContext();
     }
     catch (e) {
-        alert('Audio effects: OFF.\n\nPlease try it with Chrome, or wait for the next Firefox.');
+        alert('Audio effects will be OFF.\n\nPlease try it with Chrome, or wait for the next Firefox.');
     }
     if (audioContext) {
         audioBufferLoader = new BufferLoader(
