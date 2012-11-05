@@ -4276,3 +4276,34 @@
 {"ts":1352146835039,"patch":[[{"diffs":[[0,"rotSinXAngle"],[1,"/2"],[0,") - 1.0));\n "]],"start1":13859,"start2":13859,"length1":24,"length2":26}]],"length":16494,"saved":false}
 {"ts":1352146837456,"patch":[[{"diffs":[[0,"nXAngle/"],[-1,"2"],[1,"3"],[0,") - 1.0)"]],"start1":13864,"start2":13864,"length1":17,"length2":17}]],"length":16494,"saved":false}
 {"ts":1352146870329,"patch":[[{"diffs":[[0,"nXAngle/"],[-1,"3"],[1,"2"],[0,") - 1.0)"]],"start1":13864,"start2":13864,"length1":17,"length2":17}]],"length":16494,"saved":false}
+{"ts":1352147418648,"patch":[[{"diffs":[[0," // "],[-1,"BASS"],[1,"HIGH"],[0," PAS"]],"start1":13413,"start2":13413,"length1":12,"length2":12}]],"length":16494,"saved":false}
+{"ts":1352147424593,"patch":[[{"diffs":[[0,"LN2;\n        // "],[-1,"HIGH"],[1,"BASS"],[0," PASS\n        va"]],"start1":13401,"start2":13401,"length1":36,"length2":36}]],"length":16494,"saved":false}
+{"ts":1352147426611,"patch":[[{"diffs":[[0," // "],[-1,"BASS"],[1,"audioFilterHighPass"],[0," PAS"]],"start1":13413,"start2":13413,"length1":12,"length2":27}]],"length":16509,"saved":false}
+{"ts":1352147428394,"patch":[[{"diffs":[[0,"     // "],[-1,"audioFilterHighPass"],[1,"H"],[0," PASS\n  "]],"start1":13409,"start2":13409,"length1":35,"length2":17}]],"length":16491,"saved":false}
+{"ts":1352147435064,"patch":[[{"diffs":[[0,"     // "],[-1,"H"],[1,"BASS"],[0," PASS\n  "]],"start1":13409,"start2":13409,"length1":17,"length2":20}]],"length":16494,"saved":false}
+{"ts":1352147469298,"patch":[[{"diffs":[[0,"stination);\n"],[1,"    audioFilterBassPass.type = 1;\n"],[0,"    //Progra"]],"start1":9533,"start2":9533,"length1":24,"length2":58}]],"length":16528,"saved":false}
+{"ts":1352147477265,"patch":[[{"diffs":[[0,"s.type = 1;\n"],[1,"    audioFilterBassPass.type = 1;\n"],[0,"    //Progra"]],"start1":9567,"start2":9567,"length1":24,"length2":58}]],"length":16562,"saved":false}
+{"ts":1352147482809,"patch":[[{"diffs":[[0,"\n    audioFilter"],[-1,"Bass"],[1,"High"],[0,"Pass.type = 1;\n "]],"start1":9578,"start2":9578,"length1":36,"length2":36}]],"length":16562,"saved":false}
+{"ts":1352147497453,"patch":[[{"diffs":[[0,"    "],[-1,"audioFilterBassPass.frequency.value = 440; // Set cutoff to 440 HZ"],[0,"\n   "]],"start1":10944,"start2":10944,"length1":74,"length2":8}]],"length":16496,"saved":false}
+{"ts":1352147500410,"patch":[[{"diffs":[[0,"er.\n"],[-1,"        audioFilterBassPass.type = 1; // Low-pass filter. See BiquadFilterNode docs\n        \n"],[0,"    "]],"start1":10852,"start2":10852,"length1":101,"length2":8}]],"length":16403,"saved":false}
+{"ts":1352147505335,"patch":[[{"diffs":[[0,"s);\n"],[-1,"        // Create and specify parameters for the low-pass filter.\n"],[0,"    "]],"start1":10786,"start2":10786,"length1":74,"length2":8}]],"length":16337,"saved":false}
+{"ts":1352147518150,"patch":[[{"diffs":[[0,"s.type = 1;\n"],[1,"    audioFilterBassPass.frequency.value = 440; // Set cutoff to 440 HZ\n"],[0,"    //Progra"]],"start1":9601,"start2":9601,"length1":24,"length2":95}]],"length":16408,"saved":false}
+{"ts":1352147525620,"patch":[[{"diffs":[[0,"HighPass.type = "],[-1,"1"],[1,"6"],[0,";\n    audioFilte"]],"start1":9594,"start2":9594,"length1":33,"length2":33}]],"length":16408,"saved":false}
+{"ts":1352147627150,"patch":[[{"diffs":[[0," audioFilter"],[-1,"Bass"],[1,"Freq"],[0,"Pass.type = "]],"start1":9548,"start2":9548,"length1":28,"length2":28}]],"length":16408,"saved":false}
+{"ts":1352147628626,"patch":[[{"diffs":[[0,"lterFreq"],[1,"Exc"],[0,"Pass.typ"]],"start1":9556,"start2":9556,"length1":16,"length2":19}]],"length":16411,"saved":false}
+{"ts":1352147630665,"patch":[[{"diffs":[[0,"rFreqExc"],[1,"ept"],[0,"Pass.typ"]],"start1":9559,"start2":9559,"length1":16,"length2":19}]],"length":16414,"saved":false}
+{"ts":1352147631331,"patch":[[{"diffs":[[0,"eqExcept"],[1,"ion"],[0,"Pass.typ"]],"start1":9562,"start2":9562,"length1":16,"length2":19}]],"length":16417,"saved":false}
+{"ts":1352147633545,"patch":[[{"diffs":[[0,"eqExcept"],[-1,"ion"],[0,"Pass.typ"]],"start1":9562,"start2":9562,"length1":19,"length2":16}]],"length":16414,"saved":false}
+{"ts":1352147639764,"patch":[[{"diffs":[[0,"eqExcept"],[-1,"Pass"],[0,".type = "]],"start1":9562,"start2":9562,"length1":20,"length2":16}]],"length":16410,"saved":false}
+{"ts":1352147644923,"patch":[[{"diffs":[[0,".type = "],[-1,"1"],[1,"6"],[0,";\n    au"]],"start1":9570,"start2":9570,"length1":17,"length2":17}]],"length":16410,"saved":false}
+{"ts":1352147647391,"patch":[[{"diffs":[[0,"HighPass.type = "],[-1,"6"],[1,"1"],[0,";\n    audioFilte"]],"start1":9596,"start2":9596,"length1":33,"length2":33}]],"length":16410,"saved":false}
+{"ts":1352147661652,"patch":[[{"diffs":[[0,"ioFilter"],[-1,"BassPass"],[1,"FreqExcept"],[0,", audioF"]],"start1":471,"start2":471,"length1":24,"length2":26}]],"length":16412,"saved":false}
+{"ts":1352147671179,"patch":[[{"diffs":[[0," audioFilter"],[-1,"BassPass"],[1,"FreqExcept"],[0,".frequency.v"]],"start1":13809,"start2":13809,"length1":32,"length2":34}]],"length":16414,"saved":false}
+{"ts":1352147696275,"patch":[[{"diffs":[[0,"ioFilter"],[-1,"BassPass"],[1,"FreqExcept"],[0," = audio"]],"start1":9319,"start2":9319,"length1":24,"length2":26}]],"length":16416,"saved":false}
+{"ts":1352147698326,"patch":[[{"diffs":[[0,"ioFilter"],[-1,"BassPass"],[1,"FreqExcept"],[0,".connect"]],"start1":9443,"start2":9443,"length1":24,"length2":26}]],"length":16418,"saved":false}
+{"ts":1352147700535,"patch":[[{"diffs":[[0,"ioFilter"],[-1,"BassPass"],[1,"FreqExcept"],[0,".frequen"]],"start1":9628,"start2":9628,"length1":24,"length2":26}]],"length":16420,"saved":false}
+{"ts":1352147705004,"patch":[[{"diffs":[[0,"lter"],[-1,"BassPass"],[1,"FreqExcept"],[0,");\n "]],"start1":10856,"start2":10856,"length1":16,"length2":18}]],"length":16422,"saved":false}
+{"ts":1352147748075,"patch":[[{"diffs":[[0,".type = "],[-1,"1"],[0,";\n    au"]],"start1":9610,"start2":9610,"length1":17,"length2":16}]],"length":16421,"saved":false}
+{"ts":1352147749221,"patch":[[{"diffs":[[0,".type = "],[1,"0"],[0,";\n    au"]],"start1":9610,"start2":9610,"length1":16,"length2":17}]],"length":16422,"saved":false}
+{"ts":1352147847007,"patch":[[{"diffs":[[0,"tiplierZ"],[1," *2 "],[0,";\n      "]],"start1":13559,"start2":13559,"length1":16,"length2":20}]],"length":16426,"saved":false}
+{"ts":1352147848934,"patch":[[{"diffs":[[0,"plierZ *"],[-1,"2"],[0," "],[1,"2"],[0,";\n      "]],"start1":13561,"start2":13561,"length1":18,"length2":18}]],"length":16426,"saved":false}

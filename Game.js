@@ -13,7 +13,7 @@ var sun_uniforms, sun_material, sun;
 var Airship, AirshipCamera;
 var camera_1_IsActive;
 var soundNappe1, soundNappe2, soundNappe3, soundNappe4, soundWhale, soundKick;
-var audioFilterBassPass, audioFilterHighPass;
+var audioFilterFreqExcept, audioFilterHighPass;
 var WIDTH = window.innerWidth || 2;
 var HEIGHT = window.innerHeight || 2;
 var FAR = 3500;
@@ -288,10 +288,13 @@ function finishedAudioLoading(bufferList) {
     soundWhale.buffer = bufferList[4];
     soundKick.buffer = bufferList[5];
     //Create filters
-    audioFilterBassPass = audioContext.createBiquadFilter();
+    audioFilterFreqExcept = audioContext.createBiquadFilter();
     audioFilterHighPass = audioContext.createBiquadFilter();
-    audioFilterBassPass.connect(audioFilterHighPass);
+    audioFilterFreqExcept.connect(audioFilterHighPass);
     audioFilterHighPass.connect(audioContext.destination);
+    audioFilterFreqExcept.type = 6;
+    audioFilterHighPass.type = 0;
+    audioFilterFreqExcept.frequency.value = 440; // Set cutoff to 440 HZ
     //Program audio tracks
     programAudioTracks();
 }
@@ -324,10 +327,7 @@ function playSound(buffer, time, bFBP) {
     var source = audioContext.createBufferSource();
     source.buffer = buffer;
     if (bFBP) {
-        source.connect(audioFilterBassPass);
-        // Create and specify parameters for the low-pass filter.
-        audioFilterBassPass.type = 1; // Low-pass filter. See BiquadFilterNode docs
-        audioFilterBassPass.frequency.value = 440; // Set cutoff to 440 HZ
+        source.connect(audioFilterFreqExcept);
     }
     else {
         source.connect(audioContext.destination);
@@ -409,12 +409,12 @@ function animateAirship(deltaClock) {
         // BASS PASS
         var rotSinZAngle = Math.sin(Airship.rotation.z);
         var multiplierZ = Math.pow(2, numberOfOctaves * (Math.abs(rotSinZAngle) - 1.0));
-        audioFilterHighPass.frequency.value = maxValue * multiplierZ;
+        audioFilterHighPass.frequency.value = maxValue * multiplierZ * 2;
         // HIGH PASS
         var rotSinXAngle = Math.sin(Airship.rotation.x);
         var numberOfOctaves = Math.log(maxValue / minValue) / Math.LN2;
         var multiplierX = Math.pow(2, numberOfOctaves * (Math.abs(rotSinXAngle/2) - 1.0));
-        audioFilterBassPass.frequency.value = maxValue * multiplierX;
+        audioFilterFreqExcept.frequency.value = maxValue * multiplierX;
     }
 }
 
