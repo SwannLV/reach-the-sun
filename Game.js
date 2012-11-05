@@ -13,7 +13,7 @@ var sun_uniforms, sun_material, sun;
 var Airship, AirshipCamera;
 var camera_1_IsActive;
 var soundNappe1, soundNappe2, soundNappe3, soundNappe4, soundWhale, soundKick;
-var audioFilterBassPass;
+var audioFilterBassPass, audioFilterHighPass;
 var WIDTH = window.innerWidth || 2;
 var HEIGHT = window.innerHeight || 2;
 var FAR = 3500;
@@ -287,9 +287,11 @@ function finishedAudioLoading(bufferList) {
     soundNappe4.buffer = bufferList[3];
     soundWhale.buffer = bufferList[4];
     soundKick.buffer = bufferList[5];
-    //Create the filter
+    //Create filters
     audioFilterBassPass = audioContext.createBiquadFilter();
-    audioFilterBassPass.connect(audioContext.destination);
+    audioFilterHighPass = audioContext.createBiquadFilter();
+    audioFilterBassPass.connect(audioFilterHighPass);
+    audioFilterHighPass.connect(audioContext.destination);
     //Program audio tracks
     programAudioTracks();
 }
@@ -400,12 +402,19 @@ function animateAirship(deltaClock) {
 
     // Change cut off freq audio on height
     if (audioContext) {
-        var dist = Airship.position.distanceToSquared(camera_1.position) / 1000;
-        var minValue = 40;
+        //var dist = Airship.position.distanceToSquared(camera_1.position) / 1000;
+        var minValue = 200;
         var maxValue = audioContext.sampleRate / 2;
         var numberOfOctaves = Math.log(maxValue / minValue) / Math.LN2;
-        var multiplier = Math.pow(2, numberOfOctaves * (((dist) / 800) - 1.0));
-        audioFilterBassPass.frequency.value = maxValue * multiplier;
+        // BASS PASS
+        var rotSinZAngle = Math.sin(Airship.rotation.z);
+        var multiplierZ = Math.pow(2, numberOfOctaves * (Math.abs(rotSinZAngle) - 1.0));
+        audioFilterHighPass.frequency.value = maxValue * multiplierZ;
+        // HIGH PASS
+        var rotSinXAngle = Math.sin(Airship.rotation.x);
+        var numberOfOctaves = Math.log(maxValue / minValue) / Math.LN2;
+        var multiplierX = Math.pow(2, numberOfOctaves * (Math.abs(rotSinXAngle/2) - 1.0));
+        audioFilterBassPass.frequency.value = maxValue * multiplierX;
     }
 }
 
