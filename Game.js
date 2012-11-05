@@ -14,6 +14,7 @@ var Airship, AirshipCamera;
 var camera_1_IsActive;
 var soundNappe1, soundNappe2, soundNappe3, soundNappe4, soundWhale, soundKick;
 var audioFilterFreqExcept, audioFilterHighPass;
+var gainNodeWhale;
 var WIDTH = window.innerWidth || 2;
 var HEIGHT = window.innerHeight || 2;
 var FAR = 3500;
@@ -295,6 +296,9 @@ function finishedAudioLoading(bufferList) {
     audioFilterFreqExcept.type = 6;
     audioFilterHighPass.type = 0;
     audioFilterFreqExcept.frequency.value = 440; // Set cutoff to 440 HZ
+    gainNodeWhale = audioContext.createGainNode();
+    gainNodeWhale.gain.value = 0.2;
+    gainNodeWhale.connect(audioContext.destination);
     //Program audio tracks
     programAudioTracks();
 }
@@ -330,7 +334,8 @@ function playSound(buffer, time, bFBP) {
         source.connect(audioFilterFreqExcept);
     }
     else {
-        source.connect(audioContext.destination);
+        source.connect(gainNodeWhale);
+        //source.connect(audioContext.destination);
     }
     source.noteOn(time);
 }
@@ -463,7 +468,7 @@ function animate() {
             }
             var size = 3 * (1 - distFactor);
             slowArea.scale.set(size, size, size);
-            if (dist < 2000) {
+            if (dist < 3000) {
                 plane.material.color.setRGB(Math.random(), Math.random(), Math.random());
                 if (audioContext && !soundWhale.playing) {
                     playSound(soundWhale.buffer, 0, false);
