@@ -21,13 +21,8 @@ var FAR = 3500;
 var SPEED = 800;
 var SLOWSPEED = 100;
 
-
 // INIT
 function init() {
-
-    // PHYSIJS > TO DO
-    //Physijs.scripts.worker = 'physijs_worker.js';
-    //Physijs.scripts.ammo = 'ammo.js';
 
     // CONTAINER
     container = document.getElementById('container');
@@ -38,14 +33,14 @@ function init() {
     renderer.autoClear = true;
 
     // SCENE
-    scene = new THREE.Scene; // scene = new Physijs.Scene;
+    scene = new THREE.Scene;
 
     // CAMERAS
     camera_1_IsActive = true;
-    camera_1 = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 1, FAR);
+    camera_1 = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 0.1, FAR);
     camera_1.position.z = 400;
     camera_1.position.y = 200;
-    camera_2 = new THREE.PerspectiveCamera(90, WIDTH / HEIGHT, 1, FAR);
+    camera_2 = new THREE.PerspectiveCamera(90, WIDTH / HEIGHT, 0.1, FAR);
     scene.add(camera_2);
     scene.add(camera_1);
 
@@ -64,6 +59,7 @@ function init() {
     }));
     slowArea.position.set(0, 100, - 10000);
     scene.add(slowArea);
+    //createSkybox();
     createStars(0, 100, - 10000, 0.5);
     createStars(0, 300, - 5000, 10);
     createPlane();
@@ -114,16 +110,6 @@ function createPlane() {
 function createAirship() {
     var loader = new THREE.JSONLoader();
     loader.load("meshes/spaceship.js", function(Geometry) {
-        /*Airship_mat  = Physijs.createMaterial( // TO DO
-            new THREE.MeshPhongMaterial( { ambient: 0x555555, color: 0xFF0000, specular: 0xffffff, shininess: 500, shading: THREE.SmoothShading }),
-            .4, // low friction
-            .6 // high restitution
-        );
-        Airship = new Physijs.BoxMesh(
-        	new THREE.CubeGeometry( 50, 50, 50 ),
-    		cube_mat,
-            0
-    	);*/
         AirshipCamera = new THREE.CubeCamera(0.1, 5000, 512); //( 0.1, 5000, 512 );
         scene.add(AirshipCamera);
         var mirrorMaterial = new THREE.MeshBasicMaterial({
@@ -132,6 +118,7 @@ function createAirship() {
         Airship = new THREE.Mesh(Geometry, mirrorMaterial);
         Airship.scale.set(2, 2, 2);
         Airship.position.set(140, 170, 0);
+        //Airship.useQuaternion = true;
         AirshipCamera.position = Airship.position;
         scene.add(Airship);
     });
@@ -377,10 +364,10 @@ function animateAirship(deltaClock) {
     Airship.position.x -= 300 * timeBase * Airship.rotation.z;
     // UP & DOWN
     if (keyboard.pressed("up")) {
-        Airship.rotation.x += timeBase;
+        Airship.position.y += 200 * timeBase;
     }
     else if (keyboard.pressed("down")) {
-        Airship.rotation.x -= timeBase;
+        Airship.position.y -= 200 * timeBase;
     }
     Airship.rotation.x = Airship.rotation.x % (2 * Math.PI);
     // BOX LIMITATIONS
@@ -400,13 +387,95 @@ function animateAirship(deltaClock) {
         Airship.rotation.z = 0;
         Airship.position.x = -1000;
     }
-    Airship.position.y += 300 * timeBase * Math.sin(Airship.rotation.x);
+    //Airship.position.y += 300 * timeBase * Math.sin(Airship.rotation.x);
 
+    camera_1.position.set(camera_1.position.x, (0.75*Airship.position.y) + 50, camera_1.position.z);
     camera_2.position.set(Airship.position.x, Airship.position.y, Airship.position.z - 100);
-    camera_2.rotation = Airship.rotation;
+    //camera_2.rotation = Airship.rotation;
 
     // Change cut off freq audio on height
-    if (audioContext) {
+    if (audioContext && audioFilterHighPass && audioFilterFreqExcept) {
+        //var dist = Airship.position.distanceToSquared(camera_1.position) / 1000;
+        var minValue = 200;
+        var maxValue = audioContext.sampleRate / 2;
+        var numberOfOctaves = Math.log(maxValue / minValue) / Math.LN2;
+        // BASS PASS
+        var rotSinZAngle = Math.sin(Airship.rotation.z);
+        var multiplierZ = Math.pow(2, numberOfOctaves * (Math.abs(rotSinZAngle) - 1.0));
+        audioFilterHighPass.frequency.value = maxValue * multiplierZ * 2;
+        // HIGH PASS
+        //var rotSinXAngle = Math.sin(Airship.rotation.x);
+        var numberOfOctaves = Math.log(maxValue / minValue) / Math.LN2;
+        var multiplierX = Math.pow(2, numberOfOctaves * ((Airship.position.y/800) - 1.0));
+        audioFilterFreqExcept.frequency.value = maxValue * multiplierX;
+    }
+}
+
+// ANIMATE AIRSHIP
+/*
+function animateAirship(deltaClock) {
+    var timeBase = deltaClock;
+    // SLOW DOWN
+    if (keyboard.pressed("space")) {
+        timeBase = deltaClock / 4;
+        if (camera_1.position.z > -300) {
+            camera_1.position.z -= SLOWSPEED * deltaClock;
+        }
+    }
+    else if (camera_1.position.z < 400) {
+        camera_1.position.z += SLOWSPEED * deltaClock;
+    }
+    var Airship_rotZ = 0;
+    var Airship_rotX = 0;
+    // LEFT & RIGHT
+    if (keyboard.pressed("left")) {
+        if (Airship.rotation.z < Math.PI / 2) {
+            Airship_rotZ += timeBase;
+        }
+    }
+    else if (keyboard.pressed("right")) {
+        if (Airship.rotation.z > -Math.PI / 2) {
+            Airship_rotZ -= timeBase;
+        }
+    }
+    // UP & DOWN
+    if (keyboard.pressed("up")) {
+        Airship_rotX -= timeBase;
+    }
+    else if (keyboard.pressed("down")) {
+        Airship_rotX += timeBase;
+    }
+    //Airship.rotation.x = Airship.rotation.x % (2 * Math.PI);
+    // BOX LIMITATIONS
+    if (Airship.position.y < 25) {
+        Airship_rotX = 0;
+        Airship.position.y = 25;
+    }
+    else if (Airship.position.y > 1000) {
+        Airship_rotX = 0;
+        Airship.position.y = 1000;
+    }
+    if (Airship.position.x > 1000) {
+        Airship_rotZ = 0;
+        Airship.position.x = 1000;
+    }
+    else if (Airship.position.x < -1000) {
+        Airship_rotZ = 0;
+        Airship.position.x = -1000;
+    }
+    Airship.position.y += 300 * timeBase * (Math.sin(Airship.rotation.x) + Math.cos(Airship.rotation.z));
+    Airship.position.x -= 300 * timeBase * (Math.sin(Airship.rotation.z) + Math.cos(Airship.rotation.x));//Airship.rotation.z;
+    var posX = Airship.position.x + Airship.rotation.z;
+    
+    camera_2.position.set(Airship.position.x, Airship.position.y, Airship.position.z - 100);
+    camera_2.rotation = Airship.rotation;
+    
+    rotateOnAxis( Airship, axisZ, Airship_rotZ);
+    //rotateOnAxis( Airship, axisX, Airship_rotX);
+
+
+    // Change cut off freq audio on height
+    if (audioContext && audioFilterHighPass && audioFilterFreqExcept) {
         //var dist = Airship.position.distanceToSquared(camera_1.position) / 1000;
         var minValue = 200;
         var maxValue = audioContext.sampleRate / 2;
@@ -421,7 +490,7 @@ function animateAirship(deltaClock) {
         var multiplierX = Math.pow(2, numberOfOctaves * (Math.abs(rotSinXAngle/2) - 1.0));
         audioFilterFreqExcept.frequency.value = maxValue * multiplierX;
     }
-}
+}*/
 
 // ANIMATE GRID
 function animateGrid(deltaClock) {
@@ -438,7 +507,7 @@ function animateGrid(deltaClock) {
             else if (object.position.z >= 5000) {
                 object.position.z = -5000;
                 object.position.x = (randomX * 2 - 1) * 300;
-                object.position.y = randomY * 600;
+                object.position.y = randomY * 400;
             }
             object.position.z += speed * deltaClock;
         }
@@ -447,7 +516,7 @@ function animateGrid(deltaClock) {
     if (slowArea.position.z >= 5000) {
         slowArea.position.z = -5000;
         slowArea.position.x = (randomX * 2 - 1) * 300;
-        slowArea.position.y = randomY * 600;
+        slowArea.position.y = randomY * 400;
     }
     slowArea.position.z += speed * deltaClock;
 }
@@ -468,7 +537,7 @@ function animate() {
             }
             var size = 3 * (1 - distFactor);
             slowArea.scale.set(size, size, size);
-            if (dist < 3000) {
+            if (dist < 5000) {
                 plane.material.color.setRGB(Math.random(), Math.random(), Math.random());
                 if (audioContext && !soundWhale.playing) {
                     playSound(soundWhale.buffer, 0, false);
@@ -507,3 +576,13 @@ function render(deltaClock) {
     }
     //composer.render( 0.01 ); // TO DO: find better setup
 }
+var _q1 = new THREE.Quaternion();
+var axisX = new THREE.Vector3( 1, 0, 0 );
+var axisZ = new THREE.Vector3( 0, 0, 1 );
+
+function rotateOnAxis( object, axis, angle ) {
+    
+    _q1.setFromAxisAngle( axis, angle );
+    object.quaternion.multiplySelf( _q1 );
+
+}  

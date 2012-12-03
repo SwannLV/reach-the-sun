@@ -20,12 +20,9 @@ fu.get("/libs/postprocessing/FilmPass.js", fu.staticHandler("libs/postprocessing
 fu.get("/libs/shaders/ConvolutionShader.js", fu.staticHandler("libs/shaders/ConvolutionShader.js"));
 fu.get("/libs/shaders/CopyShader.js", fu.staticHandler("libs/shaders/CopyShader.js"));
 fu.get("/libs/shaders/FilmShader.js", fu.staticHandler("libs/shaders/FilmShader.js"));
-fu.get("/libs/physijs_worker.js", fu.staticHandler("libs/physijs_worker.js"));
 fu.get("/libs/buffer-loader.js", fu.staticHandler("libs/buffer-loader.js"));
 fu.get("/libs/stats.min.js", fu.staticHandler("libs/stats.min.js"));
 fu.get("/libs/Detector.js", fu.staticHandler("libs/Detector.js"));
-fu.get("/libs/Physi.js", fu.staticHandler("libs/Physi.js"));
-//fu.get("/tools/Analytics.js", fu.staticHandler("tools/Analytics.js"));
 
 // MESHES
 fu.get("/meshes/spaceship.js", fu.staticHandler("meshes/spaceship.js"));
@@ -37,6 +34,14 @@ fu.get("/sounds/DarkNappe3.mp3", fu.staticHandler("sounds/DarkNappe3.mp3"));
 fu.get("/sounds/DarkNappe4.mp3", fu.staticHandler("sounds/DarkNappe4.mp3"));
 fu.get("/sounds/Whale.mp3", fu.staticHandler("sounds/Whale.mp3"));
 fu.get("/sounds/Kick.mp3", fu.staticHandler("sounds/Kick.mp3"));
+
+// SKYBOX
+/*fu.get("/images/skybox_stars/stars_left2.png", fu.staticHandler("images/skybox_stars/stars_left2.png"));
+fu.get("/images/skybox_stars/stars_right1.png", fu.staticHandler("images/skybox_stars/stars_right1.png"));
+fu.get("/images/skybox_stars/stars_top3.png", fu.staticHandler("images/skybox_stars/stars_top3.png"));
+fu.get("/images/skybox_stars/stars_bottom4.png", fu.staticHandler("images/skybox_stars/stars_bottom4.png"));
+fu.get("/images/skybox_stars/stars_front5.png", fu.staticHandler("images/skybox_stars/stars_front5.png"));
+fu.get("/images/skybox_stars/stars_back6.png", fu.staticHandler("images/skybox_stars/stars_back6.png"));*/
 
 // TEXTURES
 fu.get("/textures/cloud.png", fu.staticHandler("textures/cloud.png"));

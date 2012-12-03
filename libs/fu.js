@@ -30,6 +30,8 @@ var server = createServer(function(req, res) {
                 "Content-Type": "text/plain",
                 "Content-Length": body.length
             });
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "X-Requested-With");
             res.end(body);
         };
 
@@ -39,6 +41,8 @@ var server = createServer(function(req, res) {
                 "Content-Type": "text/json",
                 "Content-Length": body.length
             });
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "X-Requested-With");
             res.end(body);
         };
 
