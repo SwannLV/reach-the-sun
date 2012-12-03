@@ -12,7 +12,7 @@ var camera_1, camera_2, scene, renderer, composer;
 var sun_uniforms, sun_material, sun;
 var Airship, AirshipCamera;
 var camera_1_IsActive;
-var soundNappe1, soundNappe2, soundNappe3, soundNappe4, soundWhale, soundKick;
+var soundNappe1, soundNappe2, soundNappe3, soundNappe4, soundsWhale, soundKick;
 var audioFilterFreqExcept, audioFilterHighPass;
 var gainNodeWhale;
 var WIDTH = window.innerWidth || 2;
@@ -254,7 +254,18 @@ function initSounds() {
     }
     if (audioContext) {
         audioBufferLoader = new BufferLoader(
-        audioContext, ['sounds/DarkNappe1.mp3', 'sounds/DarkNappe2.mp3', 'sounds/DarkNappe3.mp3', 'sounds/DarkNappe4.mp3', 'sounds/Whale.mp3', 'sounds/Kick.mp3', ],
+        audioContext, [
+            'sounds/DarkNappe1.mp3',
+            'sounds/DarkNappe2.mp3',
+            'sounds/DarkNappe3.mp3',
+            'sounds/DarkNappe4.mp3',
+            'sounds/balls/bouli1.mp3',
+            'sounds/balls/bouli2.mp3',
+            'sounds/balls/bouli3.mp3',
+            'sounds/balls/bouli4.mp3',
+            'sounds/balls/bouli5.mp3',
+            'sounds/Kick.mp3'
+        ],
         finishedAudioLoading);
         audioBufferLoader.load();
     }
@@ -264,17 +275,21 @@ function initSounds() {
 function finishedAudioLoading(bufferList) {
     // Create audio buffers
     soundNappe1 = audioContext.createBufferSource();
-    soundNappe2 = audioContext.createBufferSource();
-    soundNappe3 = audioContext.createBufferSource();
-    soundNappe4 = audioContext.createBufferSource();
-    soundWhale = audioContext.createBufferSource();
-    soundKick = audioContext.createBufferSource();
     soundNappe1.buffer = bufferList[0];
+    soundNappe2 = audioContext.createBufferSource();
     soundNappe2.buffer = bufferList[1];
+    soundNappe3 = audioContext.createBufferSource();
     soundNappe3.buffer = bufferList[2];
+    soundNappe4 = audioContext.createBufferSource();
     soundNappe4.buffer = bufferList[3];
-    soundWhale.buffer = bufferList[4];
-    soundKick.buffer = bufferList[5];
+    soundsWhale = [];
+    for (var i = 0; i < 5; i++){
+        soundsWhale.push(audioContext.createBufferSource());
+        soundsWhale[i].buffer = bufferList[i+4];
+    }
+    soundKick = audioContext.createBufferSource();
+    soundKick.buffer = bufferList[9];
+
     //Create filters
     audioFilterFreqExcept = audioContext.createBiquadFilter();
     audioFilterHighPass = audioContext.createBiquadFilter();
@@ -391,7 +406,7 @@ function animateAirship(deltaClock) {
 
     camera_1.position.set(camera_1.position.x, (0.75*Airship.position.y) + 50, camera_1.position.z);
     camera_2.position.set(Airship.position.x, Airship.position.y, Airship.position.z - 100);
-    //camera_2.rotation = Airship.rotation;
+    camera_2.rotation = Airship.rotation;
 
     // Change cut off freq audio on height
     if (audioContext && audioFilterHighPass && audioFilterFreqExcept) {
@@ -410,87 +425,6 @@ function animateAirship(deltaClock) {
         audioFilterFreqExcept.frequency.value = maxValue * multiplierX;
     }
 }
-
-// ANIMATE AIRSHIP
-/*
-function animateAirship(deltaClock) {
-    var timeBase = deltaClock;
-    // SLOW DOWN
-    if (keyboard.pressed("space")) {
-        timeBase = deltaClock / 4;
-        if (camera_1.position.z > -300) {
-            camera_1.position.z -= SLOWSPEED * deltaClock;
-        }
-    }
-    else if (camera_1.position.z < 400) {
-        camera_1.position.z += SLOWSPEED * deltaClock;
-    }
-    var Airship_rotZ = 0;
-    var Airship_rotX = 0;
-    // LEFT & RIGHT
-    if (keyboard.pressed("left")) {
-        if (Airship.rotation.z < Math.PI / 2) {
-            Airship_rotZ += timeBase;
-        }
-    }
-    else if (keyboard.pressed("right")) {
-        if (Airship.rotation.z > -Math.PI / 2) {
-            Airship_rotZ -= timeBase;
-        }
-    }
-    // UP & DOWN
-    if (keyboard.pressed("up")) {
-        Airship_rotX -= timeBase;
-    }
-    else if (keyboard.pressed("down")) {
-        Airship_rotX += timeBase;
-    }
-    //Airship.rotation.x = Airship.rotation.x % (2 * Math.PI);
-    // BOX LIMITATIONS
-    if (Airship.position.y < 25) {
-        Airship_rotX = 0;
-        Airship.position.y = 25;
-    }
-    else if (Airship.position.y > 1000) {
-        Airship_rotX = 0;
-        Airship.position.y = 1000;
-    }
-    if (Airship.position.x > 1000) {
-        Airship_rotZ = 0;
-        Airship.position.x = 1000;
-    }
-    else if (Airship.position.x < -1000) {
-        Airship_rotZ = 0;
-        Airship.position.x = -1000;
-    }
-    Airship.position.y += 300 * timeBase * (Math.sin(Airship.rotation.x) + Math.cos(Airship.rotation.z));
-    Airship.position.x -= 300 * timeBase * (Math.sin(Airship.rotation.z) + Math.cos(Airship.rotation.x));//Airship.rotation.z;
-    var posX = Airship.position.x + Airship.rotation.z;
-    
-    camera_2.position.set(Airship.position.x, Airship.position.y, Airship.position.z - 100);
-    camera_2.rotation = Airship.rotation;
-    
-    rotateOnAxis( Airship, axisZ, Airship_rotZ);
-    //rotateOnAxis( Airship, axisX, Airship_rotX);
-
-
-    // Change cut off freq audio on height
-    if (audioContext && audioFilterHighPass && audioFilterFreqExcept) {
-        //var dist = Airship.position.distanceToSquared(camera_1.position) / 1000;
-        var minValue = 200;
-        var maxValue = audioContext.sampleRate / 2;
-        var numberOfOctaves = Math.log(maxValue / minValue) / Math.LN2;
-        // BASS PASS
-        var rotSinZAngle = Math.sin(Airship.rotation.z);
-        var multiplierZ = Math.pow(2, numberOfOctaves * (Math.abs(rotSinZAngle) - 1.0));
-        audioFilterHighPass.frequency.value = maxValue * multiplierZ * 2;
-        // HIGH PASS
-        var rotSinXAngle = Math.sin(Airship.rotation.x);
-        var numberOfOctaves = Math.log(maxValue / minValue) / Math.LN2;
-        var multiplierX = Math.pow(2, numberOfOctaves * (Math.abs(rotSinXAngle/2) - 1.0));
-        audioFilterFreqExcept.frequency.value = maxValue * multiplierX;
-    }
-}*/
 
 // ANIMATE GRID
 function animateGrid(deltaClock) {
@@ -537,10 +471,11 @@ function animate() {
             }
             var size = 3 * (1 - distFactor);
             slowArea.scale.set(size, size, size);
-            if (dist < 5000) {
+            if (soundsWhale && dist < 5000) {
                 plane.material.color.setRGB(Math.random(), Math.random(), Math.random());
-                if (audioContext && !soundWhale.playing) {
-                    playSound(soundWhale.buffer, 0, false);
+                if (audioContext){// && !soundWhale.playing) {
+                    var rdm = (new Date().getSeconds())%(soundsWhale.length);
+                    playSound(soundsWhale[rdm].buffer, 0, false);
                 }
             }
         }

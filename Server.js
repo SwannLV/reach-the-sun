@@ -32,7 +32,11 @@ fu.get("/sounds/DarkNappe1.mp3", fu.staticHandler("sounds/DarkNappe1.mp3"));
 fu.get("/sounds/DarkNappe2.mp3", fu.staticHandler("sounds/DarkNappe2.mp3"));
 fu.get("/sounds/DarkNappe3.mp3", fu.staticHandler("sounds/DarkNappe3.mp3"));
 fu.get("/sounds/DarkNappe4.mp3", fu.staticHandler("sounds/DarkNappe4.mp3"));
-fu.get("/sounds/Whale.mp3", fu.staticHandler("sounds/Whale.mp3"));
+fu.get("/sounds/balls/bouli1.mp3", fu.staticHandler("sounds/balls/bouli1.mp3"));
+fu.get("/sounds/balls/bouli2.mp3", fu.staticHandler("sounds/balls/bouli2.mp3"));
+fu.get("/sounds/balls/bouli3.mp3", fu.staticHandler("sounds/balls/bouli3.mp3"));
+fu.get("/sounds/balls/bouli4.mp3", fu.staticHandler("sounds/balls/bouli4.mp3"));
+fu.get("/sounds/balls/bouli5.mp3", fu.staticHandler("sounds/balls/bouli5.mp3"));
 fu.get("/sounds/Kick.mp3", fu.staticHandler("sounds/Kick.mp3"));
 
 // SKYBOX
