@@ -17,10 +17,11 @@ var SPEED = 800;
 var SLOWSPEED = 100;
 // Audio
 var audioContext;
+var analyser;
 var audioBufferLoader;
 var soundNappe1, soundNappe2, soundNappe3, soundNappe4, soundsWhale, soundKick;
-var audioFilterFreqExcept, audioFilterHighPass;
-var gainNodeWhale;
+var audioFilterFreqExcept, audioFilterNappeBP, audioFilterKickBP;
+var gainMain, gainNodeWhale, gainNodeKick;
 var nappeTime = 31.320;
 var nextNappeTimeTrigger = nappeTime / 2.0;
 
@@ -64,11 +65,16 @@ function init() {
     scene.add(slowArea);
     //createSkybox();
     createStars(0, 100, - 10000, 0.5);
-    createStars(0, 300, - 5000, 10);
+    //createStars(0, 300, - 5000, 10);
     createPlane();
     createAirship();
     createSun();
     createGrid();
+    LoopVisualizer.loopHolder.position.x = 500;
+    LoopVisualizer.loopHolder.position.y = 200;
+    LoopVisualizer.loopHolder.position.z = -1000;
+    LoopVisualizer.loopHolder.rotation.y = -Math.PI/4;
+	LoopVisualizer.loopHolder.rotation.z = Math.PI/4;
 
     // INIT SOUNDS
     initSounds();
@@ -175,7 +181,7 @@ function createSun() {
 function createGrid() {
     //Shorten the vertex function
     function v(x, y, z) {
-        return new THREE.Vertex(new THREE.Vector3(x, y, z));
+        return new THREE.Vector3(x, y, z);
     }
     //Create line (point1, point2, colour)
     function createLine(p1, p2, color) {
@@ -278,44 +284,74 @@ function initSounds() {
 
 // FINISHED AUDIO LOADING
 function finishedAudioLoading(bufferList) {
-    // Create audio buffers
-    soundNappe1 = audioContext.createBufferSource();
-    soundNappe1.buffer = bufferList[0];
-    soundNappe2 = audioContext.createBufferSource();
-    soundNappe2.buffer = bufferList[1];
-    soundNappe3 = audioContext.createBufferSource();
-    soundNappe3.buffer = bufferList[2];
-    soundNappe4 = audioContext.createBufferSource();
-    soundNappe4.buffer = bufferList[3];
-    soundsWhale = [];
-    for (var i = 0; i < 5; i++){
-        soundsWhale.push(audioContext.createBufferSource());
-        soundsWhale[i].buffer = bufferList[i+4];
-    }
-    soundKick = audioContext.createBufferSource();
-    soundKick.buffer = bufferList[9];
+    try{
+        // Create analyser
+        var processor = audioContext.createJavaScriptNode(2048 , 1 , 1 );
+        analyser = audioContext.createAnalyser();
+        analyser.fftSize = 1024;
+        //processor.connect(audioContext.destination);
+        analyser.connect(audioContext.destination);
+        //analyser.connect(processor);
+        
+        
+        gainMain = audioContext.createGainNode();
+        gainMain.gain.value = 2.0;
+        gainMain.connect(analyser);
+	
+        // Create audio buffers
+        soundNappe1 = audioContext.createBufferSource();
+        soundNappe1.buffer = bufferList[0];
+        soundNappe2 = audioContext.createBufferSource();
+        soundNappe2.buffer = bufferList[1];
+        soundNappe3 = audioContext.createBufferSource();
+        soundNappe3.buffer = bufferList[2];
+        soundNappe4 = audioContext.createBufferSource();
+        soundNappe4.buffer = bufferList[3];
+        soundsWhale = [];
+        for (var i = 0; i < 5; i++){
+            soundsWhale.push(audioContext.createBufferSource());
+            soundsWhale[i].buffer = bufferList[i+4];
+        }
+        soundKick = audioContext.createBufferSource();
+        soundKick.buffer = bufferList[9];
+    
+        //Create filters
+        audioFilterNappeBP = audioContext.createBiquadFilter();
+        audioFilterNappeBP.connect(gainMain);
+        audioFilterNappeBP.type = 0;
 
-    //Create filters
-    audioFilterFreqExcept = audioContext.createBiquadFilter();
-    audioFilterHighPass = audioContext.createBiquadFilter();
-    audioFilterFreqExcept.connect(audioFilterHighPass);
-    audioFilterHighPass.connect(audioContext.destination);
-    audioFilterFreqExcept.type = 6;
-    audioFilterHighPass.type = 0;
-    audioFilterFreqExcept.frequency.value = 440; // Set cutoff to 440 HZ
-    gainNodeWhale = audioContext.createGainNode();
-    gainNodeWhale.gain.value = 0.2;
-    gainNodeWhale.connect(audioContext.destination);
-    //Program audio tracks
-    programAudioTracks(0);
-    
-/*    panner = context.createPanner();
-  panner.setPosition(10, 5, 0);
-  soundSource.connect(panner);
-  panner.connect(context.destination);*/
-    
-    // LAUNCH IF AUDIO
-    if (audioContext) animate();
+        audioFilterFreqExcept = audioContext.createBiquadFilter();
+        audioFilterFreqExcept.connect(audioFilterNappeBP);
+        audioFilterFreqExcept.type = 6;
+        audioFilterFreqExcept.frequency.value = 440; // Set cutoff to 440 HZ
+
+        gainNodeWhale = audioContext.createGainNode();
+        gainNodeWhale.gain.value = 0.2;
+        gainNodeWhale.connect(gainMain);
+        
+        audioFilterKickBP = audioContext.createBiquadFilter();
+        audioFilterKickBP.type = 0; //low pass
+        audioFilterKickBP.frequency.value = 440;
+        audioFilterKickBP.connect(gainMain);
+        
+        gainNodeKick = audioContext.createGainNode();
+        gainNodeKick.gain.value = 0;
+        gainNodeKick.connect(audioFilterKickBP);
+
+        //Program audio tracks
+        programAudioTracks(0);
+        
+    /*    panner = context.createPanner();
+      panner.setPosition(10, 5, 0);
+      soundSource.connect(panner);
+      panner.connect(context.destination);*/
+        LoopVisualizer.init();
+        // LAUNCH IF AUDIO
+        if (audioContext) animate();
+    }
+    catch (e){
+        console.error(e);
+    }
 }
 
 // PROGRAM NEXT AUDIO TRACKS
@@ -329,6 +365,7 @@ function programAudioTracks(time) {
     var barTime = nappeTime / 4;
     var iKicksInBar = 16;
     var iKicksInNappe = iKicksInBar * 4;
+    var kickTime = nappeTime / iKicksInNappe;
     // Sequencer
     //for (var iNappe = 0; iNappe < iNappesCount; iNappe++) {
 
@@ -338,9 +375,9 @@ function programAudioTracks(time) {
         playSound(soundNappe3.buffer, time + 2 * barTime, true);
         playSound(soundNappe4.buffer, time + 3 * barTime, true);
         // Play the kick every eighth note / 8.
-        /*for (var i = 0; i < iKicksInNappe; i++) {
-            playSound(soundKick.buffer, time + (i + 0.23) * nappeTime / iKicksInNappe, false);
-        }*/
+        for (var i = 0; i < iKicksInNappe; i++) {
+            playKick(time + (i + 0.23) * kickTime);
+        }
     //}
 }
 
@@ -353,10 +390,18 @@ function playSound(buffer, time, bFBP) {
     }
     else {
         source.connect(gainNodeWhale);
-        //source.connect(audioContext.destination);
     }
     source.noteOn(time);
 }
+
+// PLAY KICK SOUND
+function playKick(time) {
+    var source = audioContext.createBufferSource();
+    source.buffer = soundKick.buffer;
+    source.connect(gainNodeKick);
+    source.noteOn(time);
+}
+
 
 // ON WINDOW RESIZE
 function onWindowResize(event) {
@@ -425,7 +470,7 @@ function animateAirship(deltaClock) {
     camera_2.rotation = Airship.rotation;
 
     // Change cut off freq audio on height
-    if (audioContext && audioFilterHighPass && audioFilterFreqExcept) {
+    if (audioContext && audioFilterNappeBP && audioFilterFreqExcept) {
         //var dist = Airship.position.distanceToSquared(camera_1.position) / 1000;
         var minValue = 200;
         var maxValue = audioContext.sampleRate / 2;
@@ -433,12 +478,16 @@ function animateAirship(deltaClock) {
         // BASS PASS
         var rotSinZAngle = Math.sin(Airship.rotation.z);
         var multiplierZ = Math.pow(2, numberOfOctaves * (Math.abs(rotSinZAngle) - 1.0));
-        audioFilterHighPass.frequency.value = maxValue * multiplierZ * 2;
+        audioFilterNappeBP.frequency.value = maxValue * multiplierZ * 2;
         // HIGH PASS
         //var rotSinXAngle = Math.sin(Airship.rotation.x);
         var numberOfOctaves = Math.log(maxValue / minValue) / Math.LN2;
         var multiplierX = Math.pow(2, numberOfOctaves * ((Airship.position.y/800) - 1.0));
         audioFilterFreqExcept.frequency.value = maxValue * multiplierX;
+        var kickAreaHeight = 150;
+        if (Airship.position.y < kickAreaHeight) {
+            gainNodeKick.gain.value = (1 - Airship.position.y/kickAreaHeight) * 1.5;
+        }
     }
 }
 
@@ -508,9 +557,9 @@ function animate() {
 
 // RENDER
 function render(deltaClock) {
-
+    LoopVisualizer.update();
     // Seconds for testing
-    $('#ongoing').text(parseInt(audioContext.currentTime));
+    //$('#ongoing').text(parseInt(audioContext.currentTime));
     
     // Check if audio programs have to be updated
     if (audioContext.currentTime > nextNappeTimeTrigger){
@@ -539,6 +588,7 @@ function render(deltaClock) {
     }
     //composer.render( 0.01 ); // TO DO: find better setup
 }
+/*
 var _q1 = new THREE.Quaternion();
 var axisX = new THREE.Vector3( 1, 0, 0 );
 var axisZ = new THREE.Vector3( 0, 0, 1 );
@@ -548,4 +598,4 @@ function rotateOnAxis( object, axis, angle ) {
     _q1.setFromAxisAngle( axis, angle );
     object.quaternion.multiplySelf( _q1 );
 
-}  
+}*/

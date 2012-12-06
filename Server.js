@@ -20,6 +20,8 @@ fu.get("/libs/postprocessing/FilmPass.js", fu.staticHandler("libs/postprocessing
 fu.get("/libs/shaders/ConvolutionShader.js", fu.staticHandler("libs/shaders/ConvolutionShader.js"));
 fu.get("/libs/shaders/CopyShader.js", fu.staticHandler("libs/shaders/CopyShader.js"));
 fu.get("/libs/shaders/FilmShader.js", fu.staticHandler("libs/shaders/FilmShader.js"));
+fu.get("/libs/ImprovedNoise.js", fu.staticHandler("libs/ImprovedNoise.js"));
+fu.get("/libs/Visualiser.js", fu.staticHandler("libs/Visualiser.js"));
 fu.get("/libs/buffer-loader.js", fu.staticHandler("libs/buffer-loader.js"));
 fu.get("/libs/stats.min.js", fu.staticHandler("libs/stats.min.js"));
 fu.get("/libs/Detector.js", fu.staticHandler("libs/Detector.js"));
