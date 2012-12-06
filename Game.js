@@ -4,22 +4,25 @@ if (!Detector.webgl) Detector.addGetWebGLMessage();
 // VARIABLES
 var clock = new THREE.Clock();
 var keyboard = new THREEx.KeyboardState();
-var audioContext;
-var audioBufferLoader;
 var container, stats;
 var slowArea, plane;
 var camera_1, camera_2, scene, renderer, composer;
 var sun_uniforms, sun_material, sun;
 var Airship, AirshipCamera;
 var camera_1_IsActive;
-var soundNappe1, soundNappe2, soundNappe3, soundNappe4, soundsWhale, soundKick;
-var audioFilterFreqExcept, audioFilterHighPass;
-var gainNodeWhale;
 var WIDTH = window.innerWidth || 2;
 var HEIGHT = window.innerHeight || 2;
 var FAR = 3500;
 var SPEED = 800;
 var SLOWSPEED = 100;
+// Audio
+var audioContext;
+var audioBufferLoader;
+var soundNappe1, soundNappe2, soundNappe3, soundNappe4, soundsWhale, soundKick;
+var audioFilterFreqExcept, audioFilterHighPass;
+var gainNodeWhale;
+var nappeTime = 31.320;
+var nextNappeTimeTrigger = nappeTime / 2.0;
 
 // INIT
 function init() {
@@ -88,10 +91,9 @@ function init() {
     // RESIZE
     onWindowResize();
     window.addEventListener('resize', onWindowResize, false);
-
-    // LAUNCH
-    animate();
-
+    
+    // LAUNCH IF NO AUDIO
+    if (!audioContext) animate();
 }
 
 // CREATE PLANE
@@ -246,12 +248,15 @@ function createStars(lineX, lineY, lineZ, scale) {
 
 // INIT SOUNDS
 function initSounds() {
-    try {
+    
+    if (typeof AudioContext == "function") {
+        audioContext = new AudioContext();
+    } else if (typeof webkitAudioContext == "function") {
         audioContext = new webkitAudioContext();
-    }
-    catch (e) {
+    } else {
         alert('Audio effects will be OFF.\n\nPlease try it with Chrome, or wait for the next Firefox.');
     }
+
     if (audioContext) {
         audioBufferLoader = new BufferLoader(
         audioContext, [
@@ -302,20 +307,31 @@ function finishedAudioLoading(bufferList) {
     gainNodeWhale.gain.value = 0.2;
     gainNodeWhale.connect(audioContext.destination);
     //Program audio tracks
-    programAudioTracks();
+    programAudioTracks(0);
+    
+/*    panner = context.createPanner();
+  panner.setPosition(10, 5, 0);
+  soundSource.connect(panner);
+  panner.connect(context.destination);*/
+    
+    // LAUNCH IF AUDIO
+    if (audioContext) animate();
+}
+
+// PROGRAM NEXT AUDIO TRACKS
+function programNextAudioTracks() {
+    var startTime = parseInt(audioContext.currentTime / nappeTime) * nappeTime + nappeTime;
+    programAudioTracks(startTime);
 }
 
 // PROGRAM AUDIO TRACKS
-function programAudioTracks() {
-    var startTime = audioContext.currentTime + 0.100;
-    var iNappesCount = 10;
-    var nappeTime = 31.320;
+function programAudioTracks(time) {
     var barTime = nappeTime / 4;
     var iKicksInBar = 16;
     var iKicksInNappe = iKicksInBar * 4;
     // Sequencer
-    for (var iNappe = 0; iNappe < iNappesCount; iNappe++) {
-        var time = startTime + iNappe * nappeTime;
+    //for (var iNappe = 0; iNappe < iNappesCount; iNappe++) {
+
         // Play the Nappe in four parts due to the size limitation I guess
         playSound(soundNappe1.buffer, time, true);
         playSound(soundNappe2.buffer, time + barTime, true);
@@ -325,7 +341,7 @@ function programAudioTracks() {
         /*for (var i = 0; i < iKicksInNappe; i++) {
             playSound(soundKick.buffer, time + (i + 0.23) * nappeTime / iKicksInNappe, false);
         }*/
-    }
+    //}
 }
 
 // PLAYSOUND
@@ -426,11 +442,14 @@ function animateAirship(deltaClock) {
     }
 }
 
+
 // ANIMATE GRID
 function animateGrid(deltaClock) {
     var speed = keyboard.pressed("space") ? SLOWSPEED : SPEED;
     var randomX = Math.random();
     var randomY = Math.random();
+    var randomZ = Math.random();
+
 
     for (var i = 0; i < scene.children.length; i++) {
         var object = scene.children[i];
@@ -439,7 +458,7 @@ function animateGrid(deltaClock) {
                 object.position.z = 0;
             }
             else if (object.position.z >= 5000) {
-                object.position.z = -5000;
+                object.position.z = -5000 + randomZ * 500;
                 object.position.x = (randomX * 2 - 1) * 300;
                 object.position.y = randomY * 400;
             }
@@ -448,7 +467,7 @@ function animateGrid(deltaClock) {
     }
     // Black Hole
     if (slowArea.position.z >= 5000) {
-        slowArea.position.z = -5000;
+        slowArea.position.z = -5000  + randomZ * 500;
         slowArea.position.x = (randomX * 2 - 1) * 300;
         slowArea.position.y = randomY * 400;
     }
@@ -490,6 +509,15 @@ function animate() {
 // RENDER
 function render(deltaClock) {
 
+    // Seconds for testing
+    $('#ongoing').text(parseInt(audioContext.currentTime));
+    
+    // Check if audio programs have to be updated
+    if (audioContext.currentTime > nextNappeTimeTrigger){
+        nextNappeTimeTrigger = (parseInt(audioContext.currentTime/nappeTime) + 1.5) * nappeTime;
+        programNextAudioTracks();
+    }
+    
     if (Airship) {
         Airship.visible = false;
         AirshipCamera.updateCubeMap(renderer, scene);
