@@ -1,8 +1,8 @@
 var LoopVisualizer = (function() {
 
-    var RINGCOUNT = 10;
-	var SEPARATION = 3;
-	var INIT_RADIUS = 50;
+    var RINGCOUNT = 20;
+    var SEPARATION = 5;
+	var INIT_RADIUS = 5;
 	var SEGMENTS = 256;
 	var VOL_SENS = 20;
 
@@ -118,15 +118,14 @@ var LoopVisualizer = (function() {
 
 			var ringId = RINGCOUNT - ii - 1;
 
-			for(var jj = 0; jj < SEGMENTS; jj++) {
-				geoms[ii].vertices[jj].z = (waves[ringId][jj])*2;
-                if (waves[ringId][jj] != 128){
-                 var uuu = 112;   
-                }
+			for(var jj = 1; jj < SEGMENTS; jj++) {
+				geoms[ii].vertices[jj].z = 3.0*(waves[RINGCOUNT-1][jj])/4.0;
 			}
 
 			//link up last segment
-			geoms[ii].vertices[SEGMENTS].z = geoms[ii].vertices[0].z;
+            geoms[ii].vertices[0] = geoms[ii].vertices[1];
+			geoms[ii].vertices[SEGMENTS] = geoms[ii].vertices[0];
+            geoms[ii].vertices[SEGMENTS+1] = geoms[ii].vertices[SEGMENTS];
 
 			var normLevel = levels[ringId];
 			var hue = colors[ringId];
@@ -136,7 +135,10 @@ var LoopVisualizer = (function() {
 			materials[ii].opacity = normLevel ;
 			geoms[ii].__dirtyVertices = true;
 			geoms[ii].__dirtyColors = true;
+            //console.log(ii, normLevel);
 			rings[ii].scale.z = normLevel;
+            //rings[ii].scale.x = normLevel;
+            //rings[ii].scale.y = normLevel;
 		}
 
 	}

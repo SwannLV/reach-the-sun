@@ -70,11 +70,11 @@ function init() {
     createAirship();
     createSun();
     createGrid();
-    LoopVisualizer.loopHolder.position.x = 500;
-    LoopVisualizer.loopHolder.position.y = 200;
-    LoopVisualizer.loopHolder.position.z = -1000;
-    LoopVisualizer.loopHolder.rotation.y = -Math.PI/4;
-	LoopVisualizer.loopHolder.rotation.z = Math.PI/4;
+    /*LoopVisualizer.loopHolder.position.x = 0;
+    LoopVisualizer.loopHolder.position.y = 0;
+    LoopVisualizer.loopHolder.position.z = -2000;*/
+    //LoopVisualizer.loopHolder.rotation.y = -Math.PI/4;
+	//LoopVisualizer.loopHolder.rotation.z = Math.PI/4;
 
     // INIT SOUNDS
     initSounds();
@@ -548,6 +548,7 @@ function animate() {
             }
         }
         animateAirship(deltaClock);
+        LoopVisualizer.loopHolder.position = Airship.position;
         animateGrid(deltaClock);
         render(deltaClock);
         stats.update();
