@@ -286,7 +286,7 @@ function initSounds() {
 function finishedAudioLoading(bufferList) {
     try{
         // Create analyser
-        var processor = audioContext.createJavaScriptNode(2048 , 1 , 1 );
+        var processor = audioContext.createScriptProcessor(2048 , 1 , 1 );
         analyser = audioContext.createAnalyser();
         analyser.fftSize = 1024;
         //processor.connect(audioContext.destination);
@@ -294,7 +294,7 @@ function finishedAudioLoading(bufferList) {
         //analyser.connect(processor);
         
         
-        gainMain = audioContext.createGainNode();
+        gainMain = audioContext.createGain();
         gainMain.gain.value = 2.0;
         gainMain.connect(analyser);
 	
@@ -325,7 +325,7 @@ function finishedAudioLoading(bufferList) {
         audioFilterFreqExcept.type = 6;
         audioFilterFreqExcept.frequency.value = 440; // Set cutoff to 440 HZ
 
-        gainNodeWhale = audioContext.createGainNode();
+        gainNodeWhale = audioContext.createGain();
         gainNodeWhale.gain.value = 0.2;
         gainNodeWhale.connect(gainMain);
         
@@ -334,7 +334,7 @@ function finishedAudioLoading(bufferList) {
         audioFilterKickBP.frequency.value = 440;
         audioFilterKickBP.connect(gainMain);
         
-        gainNodeKick = audioContext.createGainNode();
+        gainNodeKick = audioContext.createGain();
         gainNodeKick.gain.value = 0;
         gainNodeKick.connect(audioFilterKickBP);
 
@@ -391,7 +391,7 @@ function playSound(buffer, time, bFBP) {
     else {
         source.connect(gainNodeWhale);
     }
-    source.noteOn(time);
+    source.start(time);
 }
 
 // PLAY KICK SOUND
@@ -399,7 +399,7 @@ function playKick(time) {
     var source = audioContext.createBufferSource();
     source.buffer = soundKick.buffer;
     source.connect(gainNodeKick);
-    source.noteOn(time);
+    source.start(time);
 }
 
 
