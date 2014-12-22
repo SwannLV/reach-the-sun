@@ -3,6 +3,7 @@ if (!Detector.webgl) Detector.addGetWebGLMessage();
 
 // VARIABLES
 var clock = new THREE.Clock();
+var timeLastAcceleration = 0;
 var keyboard = new THREEx.KeyboardState();
 var container, stats;
 var slowArea, plane;
@@ -13,8 +14,8 @@ var camera_1_IsActive;
 var WIDTH = window.innerWidth || 2;
 var HEIGHT = window.innerHeight || 2;
 var FAR = 3500;
-var SPEED = 800;
-var SLOWSPEED = 100;
+var SPEED = 600;
+var SLOWSPEED = 300;
 // Audio
 var audioContext;
 var analyser;
@@ -171,7 +172,7 @@ function createSun() {
         vertexShader: document.getElementById('sunVertexShader').textContent,
         fragmentShader: document.getElementById('sunFragmentShader').textContent
     });
-    sun = new THREE.Mesh(new THREE.SphereGeometry(600, 200, 30, 30), sun_material);
+    sun = new THREE.Mesh(new THREE.SphereGeometry(100, 200, 30, 30), sun_material);
     sun.rotation.z = 6 * 3.14 / 4;
     sun.position.set(0, 700, - 3000);
     scene.add(sun);
@@ -286,7 +287,7 @@ function initSounds() {
 function finishedAudioLoading(bufferList) {
     try{
         // Create analyser
-        var processor = audioContext.createScriptProcessor(2048 , 1 , 1 );
+        //var processor = audioContext.createScriptProcessor(2048 , 1 , 1 );
         analyser = audioContext.createAnalyser();
         analyser.fftSize = 1024;
         //processor.connect(audioContext.destination);
@@ -419,7 +420,7 @@ function animateAirship(deltaClock) {
     // SLOW DOWN
     if (keyboard.pressed("space")) {
         timeBase = deltaClock / 4;
-        if (camera_1.position.z > -300) {
+        if (camera_1.position.z > 250) {
             camera_1.position.z -= SLOWSPEED * deltaClock;
         }
     }
@@ -427,14 +428,31 @@ function animateAirship(deltaClock) {
         camera_1.position.z += SLOWSPEED * deltaClock;
     }
     // LEFT & RIGHT
+    var leftRightSpeed = timeBase * 1.5;
     if (keyboard.pressed("left")) {
         if (Airship.rotation.z < Math.PI / 2) {
-            Airship.rotation.z += timeBase;
+            Airship.rotation.z += leftRightSpeed;
         }
     }
     else if (keyboard.pressed("right")) {
         if (Airship.rotation.z > -Math.PI / 2) {
-            Airship.rotation.z -= timeBase;
+            Airship.rotation.z -= leftRightSpeed;
+        }
+    }
+    else if (Airship.rotation.z > 0) {
+        if (Airship.rotation.z < leftRightSpeed) {
+            Airship.rotation.z = 0;
+        }
+        else {
+            Airship.rotation.z -= leftRightSpeed;
+        }
+    }
+    else if (Airship.rotation.z < 0) {
+        if (Airship.rotation.z > leftRightSpeed) {
+            Airship.rotation.z = 0;
+        }
+        else {
+            Airship.rotation.z += leftRightSpeed;
         }
     }
     Airship.position.x -= 300 * timeBase * Airship.rotation.z;
@@ -484,9 +502,15 @@ function animateAirship(deltaClock) {
         var numberOfOctaves = Math.log(maxValue / minValue) / Math.LN2;
         var multiplierX = Math.pow(2, numberOfOctaves * ((Airship.position.y/800) - 1.0));
         audioFilterFreqExcept.frequency.value = maxValue * multiplierX;
-        var kickAreaHeight = 150;
+        /*var kickAreaHeight = 150;
         if (Airship.position.y < kickAreaHeight) {
             gainNodeKick.gain.value = (1 - Airship.position.y/kickAreaHeight) * 1.5;
+        }*/
+        if (keyboard.pressed("space")) {
+            gainNodeKick.gain.value = 1;
+        }
+        else {
+            gainNodeKick.gain.value = 0;
         }
     }
 }
@@ -539,11 +563,17 @@ function animate() {
             }
             var size = 3 * (1 - distFactor);
             slowArea.scale.set(size, size, size);
-            if (soundsWhale && dist < 5000) {
+            if (soundsWhale && dist < 20000) {
                 plane.material.color.setRGB(Math.random(), Math.random(), Math.random());
                 if (audioContext){// && !soundWhale.playing) {
                     var rdm = (new Date().getSeconds())%(soundsWhale.length);
                     playSound(soundsWhale[rdm].buffer, 0, false);
+                    if ((audioContext.currentTime - timeLastAcceleration) > 3){
+                        timeLastAcceleration = audioContext.currentTime;
+                        SPEED += SPEED * 0.8;
+                        sun.scale.x = sun.scale.x * 2;
+                        sun.scale.y = sun.scale.y * 2;
+                    }
                 }
             }
         }
