@@ -481,6 +481,11 @@ function animateAirship(deltaClock) {
         Airship.rotation.z = 0;
         Airship.position.x = -1000;
     }
+    
+    if(sun.scale.x >= 128){
+        Airship.position.z -= 1000 * deltaClock;
+    }
+    
     //Airship.position.y += 300 * timeBase * Math.sin(Airship.rotation.x);
 
     camera_1.position.set(camera_1.position.x, (0.75*Airship.position.y) + 50, camera_1.position.z);
