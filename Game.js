@@ -1,4 +1,5 @@
-window.onload = init;
+
+//window.onload = init;
 if (!Detector.webgl) Detector.addGetWebGLMessage();
 
 // VARIABLES
@@ -25,6 +26,25 @@ var audioFilterFreqExcept, audioFilterNappeBP, audioFilterKickBP;
 var gainMain, gainNodeWhale, gainNodeKick;
 var nappeTime = 31.320;
 var nextNappeTimeTrigger = nappeTime / 2.0;
+
+//Start
+var startBtn = document.getElementById("start");
+var endBtn = document.getElementById("end");
+function start() {
+    startBtn.style.display = 'none';
+    initAudioContext();
+	// create empty buffer
+	var buffer = audioContext.createBuffer(1, 1, 22050);
+	var source = audioContext.createBufferSource();
+	source.buffer = buffer;
+	// connect to output (your speakers)
+	source.connect(audioContext.destination);
+	// play the file
+	source.start(0);
+    init();
+}
+startBtn.addEventListener('touchstart', start, false);
+startBtn.addEventListener('mousedown', start, false);
 
 // INIT
 function init() {
@@ -253,16 +273,21 @@ function createStars(lineX, lineY, lineZ, scale) {
     }
 }
 
-// INIT SOUNDS
-function initSounds() {
-    
+// INIT AUDIO CONTEXT
+function initAudioContext(){
     if (typeof AudioContext == "function") {
         audioContext = new AudioContext();
     } else if (typeof webkitAudioContext == "function") {
         audioContext = new webkitAudioContext();
     } else {
-        alert('Audio effects will be OFF.\n\nPlease try it with Chrome, or wait for the next Firefox.');
+        alert('Audio effects will be OFF.\n\n Your browser is not compatible with webAudioKit.');
     }
+}
+
+// INIT SOUNDS
+function initSounds() {
+    
+    initAudioContext();
 
     if (audioContext) {
         audioBufferLoader = new BufferLoader(
@@ -486,6 +511,9 @@ function animateAirship(deltaClock) {
         Airship.position.z -= 1000 * deltaClock;
     }
     
+    if(Airship.position.z < - 5000){
+        endBtn.style.display = 'block';
+    }
     //Airship.position.y += 300 * timeBase * Math.sin(Airship.rotation.x);
 
     camera_1.position.set(camera_1.position.x, (0.75*Airship.position.y) + 50, camera_1.position.z);
