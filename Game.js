@@ -28,8 +28,29 @@ var nappeTime = 31.320;
 var nextNappeTimeTrigger = nappeTime / 2.0;
 
 //Start
+var isUnlocked = false;
 var startBtn = document.getElementById("start");
 var endBtn = document.getElementById("end");
+function start() {
+	initAudioContext();
+	audioContext.createGain();
+	if(this.unlocked) return;
+	// create empty buffer and play it
+	var buffer = audioContext.createBuffer(1, 1, 22050);
+	var source = audioContext.createBufferSource();
+	source.buffer = buffer;
+	source.connect(audioContext.destination);
+	source.start(0);
+	// by checking the play state after some time, we know if we're really unlocked
+	setTimeout(function() {
+		if((source.playbackState === source.PLAYING_STATE || source.playbackState === source.FINISHED_STATE)) {
+			isUnlocked = true;
+			init();
+		}
+	}, 0);
+	startBtn.style.display = 'none';
+}
+/*
 function start() {
     startBtn.style.display = 'none';
     initAudioContext();
@@ -42,7 +63,7 @@ function start() {
 	// play the file
 	source.start(0);
     init();
-}
+}*/
 startBtn.addEventListener('touchstart', start, false);
 startBtn.addEventListener('mousedown', start, false);
 
@@ -277,7 +298,7 @@ function createStars(lineX, lineY, lineZ, scale) {
 function initAudioContext(){
     if (typeof AudioContext == "function") {
         audioContext = new AudioContext();
-    } else if (typeof webkitAudioContext == "function") {
+    } else if (typeof webkitAudioContext == "function" || typeof webkitAudioContext == "object") {
         audioContext = new webkitAudioContext();
     } else {
         alert('Audio effects will be OFF.\n\n Your browser is not compatible with webAudioKit.');
