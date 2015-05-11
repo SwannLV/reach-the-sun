@@ -7,7 +7,7 @@
 http://swannlv.herokuapp.com/
 
 ### Technologies :
-Html5 - WebGL - WebAudio
+Three.js + WebAudio
 
 ### How :
 Enter the Black Holes
