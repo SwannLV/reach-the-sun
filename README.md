@@ -13,9 +13,9 @@ Html5 - WebGL - WebAudio
 Enter the Black Holes
 
 ### Controls :
-[Left-Right-Up-Down] : move the Spaceship
+> [Left-Right-Up-Down] : move the Spaceship
 
-[Space Bar] : slow down, to enter the Black Holes more easily
+> [Space Bar] : slow down, to enter the Black Holes more easily
 
 
 
