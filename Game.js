@@ -603,6 +603,18 @@ function animateGrid(deltaClock) {
 
 // ANIMATE
 function animate() {
+    
+     /* This code has been written when */
+     debugger
+     
+     /* I was young and innocent */
+      debugger
+      
+      /* So please don't mind the quality of the code */
+       debugger
+       
+       /* Thanks */
+        debugger
 
     requestAnimationFrame(animate);
 
