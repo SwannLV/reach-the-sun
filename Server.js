@@ -5,7 +5,7 @@ var PORT = process.env.PORT;
 fu.listen(Number(process.env.PORT || PORT), HOST);
 
 // FILES
-fu.get("/", fu.staticHandler("Index.html"));
+fu.get("/", fu.staticHandler("index.html"));
 fu.get("/Game.js", fu.staticHandler("Game.js"));
 
 // LIBS
