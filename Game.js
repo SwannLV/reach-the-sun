@@ -64,8 +64,9 @@ function start() {
 	source.start(0);
     init();
 }*/
-startBtn.addEventListener('touchstart', start, false);
-startBtn.addEventListener('mousedown', start, false);
+initSounds()
+// startBtn.addEventListener('touchstart', start, false);
+// startBtn.addEventListener('mousedown', start, false);
 
 // INIT
 function init() {
@@ -119,14 +120,14 @@ function init() {
 	//LoopVisualizer.loopHolder.rotation.z = Math.PI/4;
 
     // INIT SOUNDS
-    initSounds();
+    // initSounds();
 
     // STATS
-    stats = new Stats();
-    stats.domElement.style.position = 'absolute';
-    stats.domElement.style.top = '20px';
-    stats.domElement.style.left = '20px';
-    container.appendChild(stats.domElement);
+    // stats = new Stats();
+    // stats.domElement.style.position = 'absolute';
+    // stats.domElement.style.top = '20px';
+    // stats.domElement.style.left = '20px';
+    // container.appendChild(stats.domElement);
 
     // EFFECTS
     var renderModel = new THREE.RenderPass(scene, camera_1);
@@ -331,6 +332,22 @@ function initSounds() {
 
 // FINISHED AUDIO LOADING
 function finishedAudioLoading(bufferList) {
+    
+    var btn = document.createElement("BUTTON"); 
+    var t = document.createTextNode("CLICK ME");
+    btn.appendChild(t);
+    // btn.addEventListener('click', function() {
+    //     LaunchApp(bufferList)
+    // }, false);
+    var startArea = document.getElementById("start")
+    startArea.appendChild(btn);
+    LaunchApp(bufferList)
+}
+
+function LaunchApp(bufferList){
+    
+    start()
+    
     try{
         // Create analyser
         //var processor = audioContext.createScriptProcessor(2048 , 1 , 1 );
@@ -392,7 +409,7 @@ function finishedAudioLoading(bufferList) {
       panner.setPosition(10, 5, 0);
       soundSource.connect(panner);
       panner.connect(context.destination);*/
-        LoopVisualizer.init();
+        // LoopVisualizer.init();
         // LAUNCH IF AUDIO
         if (audioContext) animate();
     }
@@ -605,16 +622,16 @@ function animateGrid(deltaClock) {
 function animate() {
     
      /* This code has been written when */
-     debugger
+    //  debugger
      
-     /* I was young and innocent */
-      debugger
+    //  /* I was young and innocent */
+    //   debugger
       
-      /* So please don't mind the quality of the code */
-       debugger
+    //   /* So please don't mind the quality of the code */
+    //   debugger
        
-       /* Thanks */
-        debugger
+    //   /* Thanks */
+    //     debugger
 
     requestAnimationFrame(animate);
 
@@ -644,17 +661,17 @@ function animate() {
             }
         }
         animateAirship(deltaClock);
-        LoopVisualizer.loopHolder.position = Airship.position;
+        // LoopVisualizer.loopHolder.position = Airship.position;
         animateGrid(deltaClock);
         render(deltaClock);
-        stats.update();
+        // stats.update();
     }
 
 }
 
 // RENDER
 function render(deltaClock) {
-    LoopVisualizer.update();
+    // LoopVisualizer.update();
     // Seconds for testing
     //$('#ongoing').text(parseInt(audioContext.currentTime));
     
